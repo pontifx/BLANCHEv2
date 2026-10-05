@@ -1,0 +1,94 @@
+BLANCHE work turn: verified source backup, information visibility, and Earth TUI
+Completed: 2026-10-05 11:51 America/Los_Angeles
+
+REQUEST
+- Back up BLANCHE before changing it.
+- Review the rendered UI for information hidden by layout or display limits.
+- Apply an earth-tone terminal/TUI theme.
+- Keep the target URL/output multi-tool first, Run Search next, and place progressively more
+  detailed or configurable features farther down/deeper in the interface.
+
+BACKUP RESULT
+- The established full-copy procedure was attempted first at:
+  ../../backups/BLANCHE-full-pre-earth-tui-2026-10-05
+- Windows reported EBUSY for the live Burp project
+  burp-extension/build/2026-10-03.burp. That partial directory is explicitly marked
+  BACKUP_FAILED.txt and is not a valid restore point.
+- Created the valid source restore point at:
+  ../../backups/BLANCHE-source-pre-earth-tui-2026-10-05
+- PASS: 189 files, 12,194,860 bytes, zero unstable/hash-mismatched files, stable included and
+  excluded inventories. Every copied file was verified with SHA-256 and byte count.
+- Exact intentional exclusions: burp-extension/build, chromium-extension/dist, node_modules,
+  and osint-orchestrator/dist. These are generated/dependency/runtime directories; the locked
+  Burp session is under burp-extension/build. See BACKUP_MANIFEST.json for the per-file inventory.
+- Added reusable procedure ../../backups/backup-blanche-source.mjs.
+
+IMPLEMENTED RESULT
+- Reframed the shared Side Panel/DevTools console as a crisp earth-tone TUI using native
+  monospace fonts, parchment text, moss/olive actions, clay/amber warnings, terracotta errors,
+  solid borders, square terminal surfaces, strong focus rings, reduced motion, and forced-colors
+  support.
+- Added dominant [01] BLANCHE · TARGET / OUTPUT stage with one URL/parameters/GET/POST selector,
+  a visible escaped output preview, and the existing four exact-copy actions.
+- Preserved the full-URL disclosure, clipboard payloads, live copy notices, keyboard focus, and
+  disclosure state across polling, refresh, and navigation.
+- Reordered primary navigation to Home, Search, Findings, Traffic, Documents, Report, Labs.
+- Rebuilt Home as [02] RUN SEARCH, [03] LIVE STATUS, [04] TESTER QUESTIONS, and
+  [05] FINDINGS / RESULTS. The two existing Home actions remain unchanged.
+- Replaced silent UI slices with retained-data disclosures that state Showing X of Y and expose
+  every remaining retained item: tracked search results, open questions, findings/evidence,
+  documents, per-document keywords/URLs/full digest, latent candidates, JavaScript assessments,
+  purpose/behavior/indicator/evidence/test-plan details, and exact search launch previews.
+- Home findings now provide View all (N) instead of implying the first five are the complete set.
+- Removed profile-card clipping, made primary/search navigation wrap without hidden horizontal
+  destinations, added narrow stacked records for Traffic and the operator catalog, and retained
+  sticky first columns for wider tables.
+- Added 420px and 360px no-horizontal-overflow checks for target/output and all seven navigation
+  destinations, plus a 360px stacked-Traffic-table contract that rejects fixed-width clipped cells.
+- Updated README, tester workflow, and architecture notes to record the hierarchy and behavior.
+
+PRIMARY SOURCE CHANGES
+- chromium-extension/src/shared/operatorConsole.ts
+- chromium-extension/static/app.css
+- scripts/smoke-burp-bridge.mjs
+- README.md
+- docs/tester-workflow.md
+- docs/architecture.md
+- Regenerated chromium-extension/dist and chromium-extension/manifest.json.
+
+FINAL VERIFICATION
+- npm run typecheck: PASS
+- npm run test:console-disclosures: PASS (32 disclosure templates)
+- npm run test:target-requests: PASS
+- npm run test:search-features: PASS
+- npm run test:site-search-fingerprint: PASS
+- npm run test:javascript-analysis: PASS
+- npm run test:traffic-ledger: PASS (ledger + manager)
+- npm run build: PASS
+- npm run smoke:target-url-controls: PASS, including exact preview/copy payloads and 420px/360px
+  no-horizontal-overflow contracts
+- npm run smoke:site-search: PASS
+- npm run smoke:extension-workflows: PASS, including the new 360px stacked Traffic-table contract
+- CSS structural check: PASS (499 opening / 499 closing braces)
+- Visual review: PASS for full/narrow Home, Traffic, Site Search, Dork Suite, operator catalog,
+  Feature Switchboard, search-correlated report, and tear-sheet captures.
+
+REVIEW ARTIFACTS
+- WorkSummary/target-url-controls-smoke.png
+- WorkSummary/target-url-controls-narrow-smoke.png
+- WorkSummary/chromium-extension-workflow-smoke.png
+- WorkSummary/site-search-workflow-smoke.png
+- WorkSummary/dork-suite-smoke.png
+- WorkSummary/search-operator-catalog-smoke.png
+- WorkSummary/feature-switchboard-controls-smoke.png
+- WorkSummary/blanche-search-report-smoke.png
+- WorkSummary/blanche-tear-sheet.png
+
+BOUNDARIES
+- This turn changed presentation, navigation order, output inspection, and retained-data display;
+  it did not broaden collection scope, authorization, network behavior, or external side effects.
+- Existing upstream retention/query limits remain intentional and separately disclosed: Traffic
+  query 250, Traffic export 1000, persisted findings 500, and persisted questions 200.
+- The valid backup is a local same-drive source snapshot, not a live Burp-session snapshot or an
+  external/off-device disaster-recovery copy.
+- No credentials, publishing, messaging, spending, account mutation, or external uploads occurred.

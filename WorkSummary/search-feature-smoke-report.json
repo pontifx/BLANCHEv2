@@ -1,0 +1,1140 @@
+{
+  "kind": "blanche.search-feature-smoke-report",
+  "schemaVersion": "1.0.0",
+  "generatedAt": "2026-10-05T18:50:57.390Z",
+  "target": {
+    "url": "http://127.0.0.1:56781/",
+    "title": "BLANCHE bridge smoke target",
+    "origin": "http://127.0.0.1:56781",
+    "hostname": "127.0.0.1"
+  },
+  "reportMetadata": {
+    "reportId": "tear-sheet_export_muvlusqi_7732f726-b8c1-495b-97fa-a4b79482b89e_edltp4",
+    "generatedAt": "2026-10-05T18:50:44.250Z",
+    "evidenceAsOf": "2026-10-05T18:50:43.289Z",
+    "sourceExportId": "export_muvlusqi_7732f726-b8c1-495b-97fa-a4b79482b89e",
+    "generatedBy": {
+      "product": "BLANCHE",
+      "component": "chromium-extension/site-report",
+      "version": "0.1.0"
+    }
+  },
+  "operatorCatalogRowCount": 50,
+  "dorkSuite": {
+    "taskCount": 5,
+    "mode": "dork-suite",
+    "previewQuery": "site:127.0.0.1 after:2025-10-05 security",
+    "previewEntries": [
+      {
+        "id": "dork_google_127.0.0.1_recent-changes_1_1_1",
+        "query": "site:127.0.0.1 after:2025-10-05 security"
+      },
+      {
+        "id": "dork_google_127.0.0.1_recent-changes_2_1_2",
+        "query": "site:127.0.0.1 after:2025-10-05 changelog"
+      },
+      {
+        "id": "dork_bing_127.0.0.1_recent-changes_1_1_3",
+        "query": "site:127.0.0.1 prefer:security release"
+      },
+      {
+        "id": "dork_bing_127.0.0.1_recent-changes_2_1_4",
+        "query": "site:127.0.0.1 prefer:changelog"
+      },
+      {
+        "id": "dork_duckduckgo_127.0.0.1_recent-changes_1_1_5",
+        "query": "site:127.0.0.1 ~\"security release\""
+      }
+    ],
+    "dialects": [
+      "google",
+      "bing",
+      "duckduckgo"
+    ],
+    "engineOutputs": [
+      {
+        "engineId": "google",
+        "dialect": "google",
+        "query": "site:127.0.0.1 after:2025-10-05 security",
+        "operatorIds": [
+          "site",
+          "after"
+        ],
+        "warnings": [
+          "Search operators are constrained by indexing and retrieval limits; no result is not proof of absence."
+        ]
+      },
+      {
+        "engineId": "google",
+        "dialect": "google",
+        "query": "site:127.0.0.1 after:2025-10-05 changelog",
+        "operatorIds": [
+          "site",
+          "after"
+        ],
+        "warnings": [
+          "Search operators are constrained by indexing and retrieval limits; no result is not proof of absence."
+        ]
+      },
+      {
+        "engineId": "bing",
+        "dialect": "bing",
+        "query": "site:127.0.0.1 prefer:security release",
+        "operatorIds": [
+          "site",
+          "prefer"
+        ],
+        "warnings": [
+          "Bing prefer: boosts ranking; it is not a date filter.",
+          "Bing evaluates only the first ten query terms; BLANCHE keeps this recipe bounded.",
+          "Bing browser URL search is used because the legacy Bing Search APIs were retired in 2025."
+        ]
+      },
+      {
+        "engineId": "bing",
+        "dialect": "bing",
+        "query": "site:127.0.0.1 prefer:changelog",
+        "operatorIds": [
+          "site",
+          "prefer"
+        ],
+        "warnings": [
+          "Bing prefer: boosts ranking; it is not a date filter.",
+          "Bing evaluates only the first ten query terms; BLANCHE keeps this recipe bounded.",
+          "Bing browser URL search is used because the legacy Bing Search APIs were retired in 2025."
+        ]
+      },
+      {
+        "engineId": "duckduckgo",
+        "dialect": "duckduckgo",
+        "query": "site:127.0.0.1 ~\"security release\"",
+        "operatorIds": [
+          "site",
+          "ddg-semantic"
+        ],
+        "warnings": [
+          "DuckDuckGo semantic phrase search is experimental; use its date UI for strict date windows.",
+          "DuckDuckGo combines multiple result sources, so documented syntax is not guaranteed for every query."
+        ]
+      }
+    ],
+    "catalogReviewedAt": "2026-09-09"
+  },
+  "nerdSuite": {
+    "taskCount": 4,
+    "mode": "nerd",
+    "surfaceMode": "get",
+    "surfaceMethod": "get",
+    "exactQuery": "security release \"acquisition project\"",
+    "queries": [
+      "security release \"acquisition project\"",
+      "security release \"legacy portal\"",
+      "security OR changelog \"acquisition project\"",
+      "security OR changelog \"legacy portal\""
+    ],
+    "resultCount": 4,
+    "resultUrls": [
+      "http://127.0.0.1:56781/docs/readme.txt?from=nerd&q=security%20release%20%22acquisition%20project%22",
+      "http://127.0.0.1:56781/docs/readme.txt?from=nerd&q=security%20release%20%22legacy%20portal%22",
+      "http://127.0.0.1:56781/docs/readme.txt?from=nerd&q=security%20OR%20changelog%20%22acquisition%20project%22",
+      "http://127.0.0.1:56781/docs/readme.txt?from=nerd&q=security%20OR%20changelog%20%22legacy%20portal%22"
+    ],
+    "portablePreview": [
+      {
+        "id": "dork_portable_127.0.0.1_recent-changes_1_1_1",
+        "query": "security release \"acquisition project\""
+      },
+      {
+        "id": "dork_portable_127.0.0.1_recent-changes_1_2_3",
+        "query": "security release \"legacy portal\""
+      },
+      {
+        "id": "dork_portable_127.0.0.1_recent-changes_2_1_2",
+        "query": "security OR changelog \"acquisition project\""
+      },
+      {
+        "id": "dork_portable_127.0.0.1_recent-changes_2_2_4",
+        "query": "security OR changelog \"legacy portal\""
+      }
+    ],
+    "keywordPassCounts": {
+      "acquisitionProject": 2,
+      "legacyPortal": 2
+    },
+    "roundRobinTerms": [
+      "acquisition project",
+      "legacy portal",
+      "acquisition project",
+      "legacy portal"
+    ],
+    "surfaceHostBound": true,
+    "candidateHighlightVerified": true,
+    "topFramePickerVerified": true,
+    "fingerprintRendered": true
+  },
+  "nerdPostSuite": {
+    "taskCount": 1,
+    "mode": "nerd",
+    "surfaceMode": "form",
+    "surfaceMethod": "post",
+    "exactQuery": "security release \"acquisition project\"",
+    "discoveredSafeFixedParams": {
+      "corpus": "knowledge"
+    },
+    "resultCount": 1,
+    "resultUrls": [
+      "http://127.0.0.1:56781/docs/readme.txt?from=nerd-post&q=security%20release%20%22acquisition%20project%22"
+    ]
+  },
+  "nerdDynamicSuite": {
+    "taskCount": 1,
+    "mode": "nerd",
+    "surfaceMode": "form",
+    "surfaceMethod": "dynamic",
+    "exactQuery": "security release \"acquisition project\"",
+    "resultCount": 1,
+    "resultUrls": [
+      "http://127.0.0.1:56781/docs/readme.txt?from=nerd-dynamic&q=security%20release%20%22acquisition%20project%22"
+    ]
+  },
+  "nerdTemplateSuite": {
+    "taskCount": 1,
+    "mode": "nerd",
+    "surfaceMode": "template",
+    "surfaceMethod": "get",
+    "exactQuery": "security release \"acquisition project\"",
+    "searchUrl": "http://127.0.0.1:56781/search?section=template&q=security%20release%20%22acquisition%20project%22",
+    "resultCount": 1,
+    "resultUrls": [
+      "http://127.0.0.1:56781/docs/readme.txt?from=nerd&q=security%20release%20%22acquisition%20project%22"
+    ]
+  },
+  "transportObservations": {
+    "nerdPost": {
+      "method": "POST",
+      "pathname": "/search/post",
+      "contentType": "application/x-www-form-urlencoded",
+      "exactQuery": "security release \"acquisition project\"",
+      "corpus": "knowledge",
+      "pageManagedSensitiveControlSubmitted": true
+    },
+    "nerdDynamic": {
+      "method": "GET",
+      "pathname": "/search/dynamic",
+      "exactQuery": "security release \"acquisition project\"",
+      "view": "widget"
+    }
+  },
+  "fullReportArtifacts": {
+    "html": "search-feature-full-report.html",
+    "json": "search-feature-full-report.json"
+  },
+  "reportedSearchSessions": [
+    {
+      "id": "search_muvlursz_a4d194fe-bc54-45d0-baf3-386a463b6ce5",
+      "label": "Site Search: Smoke reviewed URL template",
+      "createdAt": "2026-10-05T18:50:39.299Z",
+      "updatedAt": "2026-10-05T18:50:40.043Z",
+      "mode": "nerd",
+      "target": "127.0.0.1",
+      "targets": [
+        "127.0.0.1"
+      ],
+      "catalogReviewedAt": "2026-09-09",
+      "draft": {
+        "name": "Smoke recon sweep",
+        "targetsText": "127.0.0.1",
+        "queryText": "filetype:pdf",
+        "selectedEngineIds": [
+          "google",
+          "bing",
+          "duckduckgo"
+        ],
+        "launchMode": "combined",
+        "openInBackground": true
+      },
+      "automatic": true,
+      "tasks": [
+        {
+          "id": "task_muvlursz_f1e1f3a0-4336-4605-b270-d66ce680359a",
+          "sessionId": "search_muvlursz_a4d194fe-bc54-45d0-baf3-386a463b6ce5",
+          "category": "archives",
+          "engineId": "nerd",
+          "engineName": "Smoke reviewed URL template",
+          "mode": "nerd",
+          "target": "127.0.0.1",
+          "targets": [
+            "127.0.0.1"
+          ],
+          "query": "security release \"acquisition project\"",
+          "searchUrl": "http://127.0.0.1:56781/search?section=template&q=security%20release%20%22acquisition%20project%22",
+          "catalogReviewedAt": "2026-09-09",
+          "dorkId": "dork_portable_127.0.0.1_recent-changes_1_1_1",
+          "dorkTitle": "Recent changes — baseline — acquisition project",
+          "dialect": "portable",
+          "warnings": [
+            "Site Search queries omit site: because the selected destination already defines target scope and may treat portable operator syntax literally."
+          ],
+          "nerdSurface": {
+            "id": "nerd_muvlur03_92dac15a-32eb-4660-b173-957b279315bd",
+            "name": "Smoke reviewed URL template",
+            "mode": "template",
+            "pageUrl": "http://127.0.0.1:56781/search",
+            "actionUrl": "http://127.0.0.1:56781/search",
+            "method": "get"
+          },
+          "status": "completed-results",
+          "createdAt": "2026-10-05T18:50:39.299Z",
+          "resultCount": 1,
+          "results": [
+            {
+              "id": "result_muvlusdn_7f639f9c-dcfb-4bc9-87fa-7345773aa5f8",
+              "url": "http://127.0.0.1:56781/docs/readme.txt?from=nerd&q=security%20release%20%22acquisition%20project%22",
+              "title": "Local indexed smoke result",
+              "snippet": "Local indexed smoke result",
+              "engineId": "nerd",
+              "query": "security release \"acquisition project\"",
+              "rank": 1,
+              "firstSeenAt": "2026-10-05T18:50:40.043Z"
+            }
+          ],
+          "startedAt": "2026-10-05T18:50:39.316Z",
+          "tabId": 905791566,
+          "finishedAt": "2026-10-05T18:50:40.043Z"
+        }
+      ]
+    },
+    {
+      "id": "search_muvluorj_8ec2a5d3-c445-446d-9f62-cbe66ced49dd",
+      "label": "Site Search: 127.0.0.1: Search with the JavaScript widget",
+      "createdAt": "2026-10-05T18:50:35.359Z",
+      "updatedAt": "2026-10-05T18:50:37.395Z",
+      "mode": "nerd",
+      "target": "127.0.0.1",
+      "targets": [
+        "127.0.0.1"
+      ],
+      "catalogReviewedAt": "2026-09-09",
+      "draft": {
+        "name": "Smoke recon sweep",
+        "targetsText": "127.0.0.1",
+        "queryText": "filetype:pdf",
+        "selectedEngineIds": [
+          "google",
+          "bing",
+          "duckduckgo"
+        ],
+        "launchMode": "combined",
+        "openInBackground": true
+      },
+      "automatic": true,
+      "tasks": [
+        {
+          "id": "task_muvluorj_2dd02c7e-be69-4cd5-a887-5ce7b7166c4d",
+          "sessionId": "search_muvluorj_8ec2a5d3-c445-446d-9f62-cbe66ced49dd",
+          "category": "archives",
+          "engineId": "nerd",
+          "engineName": "127.0.0.1: Search with the JavaScript widget",
+          "mode": "nerd",
+          "target": "127.0.0.1",
+          "targets": [
+            "127.0.0.1"
+          ],
+          "query": "security release \"acquisition project\"",
+          "searchUrl": "http://127.0.0.1:56781/",
+          "catalogReviewedAt": "2026-09-09",
+          "dorkId": "dork_portable_127.0.0.1_recent-changes_1_1_1",
+          "dorkTitle": "Recent changes — baseline — acquisition project",
+          "dialect": "portable",
+          "warnings": [
+            "Site Search queries omit site: because the selected destination already defines target scope and may treat portable operator syntax literally."
+          ],
+          "nerdSurface": {
+            "id": "nerd_muvluh00_70e66996-ebce-48ce-9429-b7333b55e557",
+            "name": "127.0.0.1: Search with the JavaScript widget",
+            "mode": "form",
+            "pageUrl": "http://127.0.0.1:56781/",
+            "actionUrl": "http://127.0.0.1:56781/",
+            "method": "dynamic",
+            "queryParam": "q",
+            "providerFingerprint": {
+              "provider": "custom",
+              "label": "Unknown / custom",
+              "confidence": "low",
+              "evidence": [
+                "No recognized provider marker in top-frame DOM or loaded resources"
+              ]
+            }
+          },
+          "nerdFormSubmission": {
+            "surfaceId": "nerd_muvluh00_70e66996-ebce-48ce-9429-b7333b55e557",
+            "surfaceName": "127.0.0.1: Search with the JavaScript widget",
+            "pageUrl": "http://127.0.0.1:56781/",
+            "inputSelector": "#site-dynamic-search-input",
+            "submitSelector": "#site-dynamic-search-submit"
+          },
+          "status": "completed-results",
+          "createdAt": "2026-10-05T18:50:35.359Z",
+          "resultCount": 1,
+          "results": [
+            {
+              "id": "result_muvluqc3_68a5c016-290b-4565-858f-0ea60de349ba",
+              "url": "http://127.0.0.1:56781/docs/readme.txt?from=nerd-dynamic&q=security%20release%20%22acquisition%20project%22",
+              "title": "Local JavaScript-widget smoke result",
+              "snippet": "Local JavaScript-widget smoke result",
+              "engineId": "nerd",
+              "query": "security release \"acquisition project\"",
+              "rank": 1,
+              "firstSeenAt": "2026-10-05T18:50:37.395Z"
+            }
+          ],
+          "startedAt": "2026-10-05T18:50:35.391Z",
+          "tabId": 905791564,
+          "finishedAt": "2026-10-05T18:50:37.395Z"
+        }
+      ]
+    },
+    {
+      "id": "search_muvlumdh_2a6091bf-6ff5-43f8-bfad-7e255054ab33",
+      "label": "Site Search: 127.0.0.1: Search the smoke archive with POST",
+      "createdAt": "2026-10-05T18:50:32.261Z",
+      "updatedAt": "2026-10-05T18:50:34.235Z",
+      "mode": "nerd",
+      "target": "127.0.0.1",
+      "targets": [
+        "127.0.0.1"
+      ],
+      "catalogReviewedAt": "2026-09-09",
+      "draft": {
+        "name": "Smoke recon sweep",
+        "targetsText": "127.0.0.1",
+        "queryText": "filetype:pdf",
+        "selectedEngineIds": [
+          "google",
+          "bing",
+          "duckduckgo"
+        ],
+        "launchMode": "combined",
+        "openInBackground": true
+      },
+      "automatic": true,
+      "tasks": [
+        {
+          "id": "task_muvlumdh_883caf1c-2b29-413d-97a9-bf40bc5dfb99",
+          "sessionId": "search_muvlumdh_2a6091bf-6ff5-43f8-bfad-7e255054ab33",
+          "category": "archives",
+          "engineId": "nerd",
+          "engineName": "127.0.0.1: Search the smoke archive with POST",
+          "mode": "nerd",
+          "target": "127.0.0.1",
+          "targets": [
+            "127.0.0.1"
+          ],
+          "query": "security release \"acquisition project\"",
+          "searchUrl": "http://127.0.0.1:56781/",
+          "catalogReviewedAt": "2026-09-09",
+          "dorkId": "dork_portable_127.0.0.1_recent-changes_1_1_1",
+          "dorkTitle": "Recent changes — baseline — acquisition project",
+          "dialect": "portable",
+          "warnings": [
+            "Site Search queries omit site: because the selected destination already defines target scope and may treat portable operator syntax literally."
+          ],
+          "nerdSurface": {
+            "id": "nerd_muvlugzg_3bf7dd7f-7ac6-4b46-b8a1-d9f0fb18a582",
+            "name": "127.0.0.1: Search the smoke archive with POST",
+            "mode": "form",
+            "pageUrl": "http://127.0.0.1:56781/",
+            "actionUrl": "http://127.0.0.1:56781/search/post",
+            "method": "post",
+            "queryParam": "keyword",
+            "providerFingerprint": {
+              "provider": "custom",
+              "label": "Unknown / custom",
+              "confidence": "low",
+              "evidence": [
+                "No recognized provider marker in top-frame DOM or loaded resources"
+              ]
+            }
+          },
+          "nerdFormSubmission": {
+            "surfaceId": "nerd_muvlugzg_3bf7dd7f-7ac6-4b46-b8a1-d9f0fb18a582",
+            "surfaceName": "127.0.0.1: Search the smoke archive with POST",
+            "pageUrl": "http://127.0.0.1:56781/",
+            "inputSelector": "#site-post-search-input",
+            "formSelector": "#site-post-search",
+            "submitSelector": "#site-post-search-submit"
+          },
+          "status": "completed-results",
+          "createdAt": "2026-10-05T18:50:32.261Z",
+          "resultCount": 1,
+          "results": [
+            {
+              "id": "result_muvlunwa_a7d76baa-23bb-43cb-92a0-b94fc8b64ed8",
+              "url": "http://127.0.0.1:56781/docs/readme.txt?from=nerd-post&q=security%20release%20%22acquisition%20project%22",
+              "title": "Local POST-indexed smoke result",
+              "snippet": "Local POST-indexed smoke result",
+              "engineId": "nerd",
+              "query": "security release \"acquisition project\"",
+              "rank": 1,
+              "firstSeenAt": "2026-10-05T18:50:34.234Z"
+            }
+          ],
+          "startedAt": "2026-10-05T18:50:32.270Z",
+          "tabId": 905791562,
+          "finishedAt": "2026-10-05T18:50:34.235Z"
+        }
+      ]
+    },
+    {
+      "id": "search_muvluhri_152e630a-96ac-46ce-9e90-08ffbe049e23",
+      "label": "Site Search: 127.0.0.1: Search this smoke site",
+      "createdAt": "2026-10-05T18:50:26.286Z",
+      "updatedAt": "2026-10-05T18:50:29.369Z",
+      "mode": "nerd",
+      "target": "127.0.0.1",
+      "targets": [
+        "127.0.0.1"
+      ],
+      "catalogReviewedAt": "2026-09-09",
+      "draft": {
+        "name": "Smoke recon sweep",
+        "targetsText": "127.0.0.1",
+        "queryText": "filetype:pdf",
+        "selectedEngineIds": [
+          "google",
+          "bing",
+          "duckduckgo"
+        ],
+        "launchMode": "combined",
+        "openInBackground": true
+      },
+      "automatic": true,
+      "tasks": [
+        {
+          "id": "task_muvluhri_28629bdb-7b1d-421a-bf9f-b6d875cdcc30",
+          "sessionId": "search_muvluhri_152e630a-96ac-46ce-9e90-08ffbe049e23",
+          "category": "archives",
+          "engineId": "nerd",
+          "engineName": "127.0.0.1: Search this smoke site",
+          "mode": "nerd",
+          "target": "127.0.0.1",
+          "targets": [
+            "127.0.0.1"
+          ],
+          "query": "security release \"acquisition project\"",
+          "searchUrl": "http://127.0.0.1:56781/search?section=all&q=security+release+%22acquisition+project%22",
+          "catalogReviewedAt": "2026-09-09",
+          "dorkId": "dork_portable_127.0.0.1_recent-changes_1_1_1",
+          "dorkTitle": "Recent changes — baseline — acquisition project",
+          "dialect": "portable",
+          "warnings": [
+            "Site Search queries omit site: because the selected destination already defines target scope and may treat portable operator syntax literally."
+          ],
+          "nerdSurface": {
+            "id": "nerd_muvlugyx_5675d714-a7b8-4b0e-a238-20a95c4da60d",
+            "name": "127.0.0.1: Search this smoke site",
+            "mode": "get",
+            "pageUrl": "http://127.0.0.1:56781/",
+            "actionUrl": "http://127.0.0.1:56781/search",
+            "method": "get",
+            "queryParam": "q",
+            "providerFingerprint": {
+              "provider": "custom",
+              "label": "Unknown / custom",
+              "confidence": "low",
+              "evidence": [
+                "No recognized provider marker in top-frame DOM or loaded resources"
+              ]
+            }
+          },
+          "status": "completed-results",
+          "createdAt": "2026-10-05T18:50:26.286Z",
+          "resultCount": 1,
+          "results": [
+            {
+              "id": "result_muvluicr_7bb3e75a-a3ca-4f43-848a-819a0ddb83c5",
+              "url": "http://127.0.0.1:56781/docs/readme.txt?from=nerd&q=security%20release%20%22acquisition%20project%22",
+              "title": "Local indexed smoke result",
+              "snippet": "Local indexed smoke result",
+              "engineId": "nerd",
+              "query": "security release \"acquisition project\"",
+              "rank": 1,
+              "firstSeenAt": "2026-10-05T18:50:27.051Z"
+            }
+          ],
+          "startedAt": "2026-10-05T18:50:26.301Z",
+          "tabId": 905791553,
+          "finishedAt": "2026-10-05T18:50:27.051Z"
+        },
+        {
+          "id": "task_muvluhri_9c151296-4ead-4d88-9569-70afc295c4fb",
+          "sessionId": "search_muvluhri_152e630a-96ac-46ce-9e90-08ffbe049e23",
+          "category": "archives",
+          "engineId": "nerd",
+          "engineName": "127.0.0.1: Search this smoke site",
+          "mode": "nerd",
+          "target": "127.0.0.1",
+          "targets": [
+            "127.0.0.1"
+          ],
+          "query": "security release \"legacy portal\"",
+          "searchUrl": "http://127.0.0.1:56781/search?section=all&q=security+release+%22legacy+portal%22",
+          "catalogReviewedAt": "2026-09-09",
+          "dorkId": "dork_portable_127.0.0.1_recent-changes_1_2_3",
+          "dorkTitle": "Recent changes — baseline — legacy portal",
+          "dialect": "portable",
+          "warnings": [
+            "Site Search queries omit site: because the selected destination already defines target scope and may treat portable operator syntax literally."
+          ],
+          "nerdSurface": {
+            "id": "nerd_muvlugyx_5675d714-a7b8-4b0e-a238-20a95c4da60d",
+            "name": "127.0.0.1: Search this smoke site",
+            "mode": "get",
+            "pageUrl": "http://127.0.0.1:56781/",
+            "actionUrl": "http://127.0.0.1:56781/search",
+            "method": "get",
+            "queryParam": "q",
+            "providerFingerprint": {
+              "provider": "custom",
+              "label": "Unknown / custom",
+              "confidence": "low",
+              "evidence": [
+                "No recognized provider marker in top-frame DOM or loaded resources"
+              ]
+            }
+          },
+          "status": "completed-results",
+          "createdAt": "2026-10-05T18:50:26.286Z",
+          "resultCount": 1,
+          "results": [
+            {
+              "id": "result_muvluiyd_5cbe22e7-1494-4967-99cd-6e440a10537a",
+              "url": "http://127.0.0.1:56781/docs/readme.txt?from=nerd&q=security%20release%20%22legacy%20portal%22",
+              "title": "Local indexed smoke result",
+              "snippet": "Local indexed smoke result",
+              "engineId": "nerd",
+              "query": "security release \"legacy portal\"",
+              "rank": 1,
+              "firstSeenAt": "2026-10-05T18:50:27.829Z"
+            }
+          ],
+          "startedAt": "2026-10-05T18:50:27.087Z",
+          "tabId": 905791556,
+          "finishedAt": "2026-10-05T18:50:27.829Z"
+        },
+        {
+          "id": "task_muvluhri_66f7b9ab-904e-44c9-b912-c390117c2d76",
+          "sessionId": "search_muvluhri_152e630a-96ac-46ce-9e90-08ffbe049e23",
+          "category": "archives",
+          "engineId": "nerd",
+          "engineName": "127.0.0.1: Search this smoke site",
+          "mode": "nerd",
+          "target": "127.0.0.1",
+          "targets": [
+            "127.0.0.1"
+          ],
+          "query": "security OR changelog \"acquisition project\"",
+          "searchUrl": "http://127.0.0.1:56781/search?section=all&q=security+OR+changelog+%22acquisition+project%22",
+          "catalogReviewedAt": "2026-09-09",
+          "dorkId": "dork_portable_127.0.0.1_recent-changes_2_1_2",
+          "dorkTitle": "Recent changes — operator probe — acquisition project",
+          "operatorIds": [
+            "or"
+          ],
+          "dialect": "portable",
+          "warnings": [
+            "Site Search queries omit site: because the selected destination already defines target scope and may treat portable operator syntax literally."
+          ],
+          "nerdSurface": {
+            "id": "nerd_muvlugyx_5675d714-a7b8-4b0e-a238-20a95c4da60d",
+            "name": "127.0.0.1: Search this smoke site",
+            "mode": "get",
+            "pageUrl": "http://127.0.0.1:56781/",
+            "actionUrl": "http://127.0.0.1:56781/search",
+            "method": "get",
+            "queryParam": "q",
+            "providerFingerprint": {
+              "provider": "custom",
+              "label": "Unknown / custom",
+              "confidence": "low",
+              "evidence": [
+                "No recognized provider marker in top-frame DOM or loaded resources"
+              ]
+            }
+          },
+          "status": "completed-results",
+          "createdAt": "2026-10-05T18:50:26.286Z",
+          "resultCount": 1,
+          "results": [
+            {
+              "id": "result_muvlujjp_8872fd5f-7a17-4e3b-8405-9372ca5fd6a1",
+              "url": "http://127.0.0.1:56781/docs/readme.txt?from=nerd&q=security%20OR%20changelog%20%22acquisition%20project%22",
+              "title": "Local indexed smoke result",
+              "snippet": "Local indexed smoke result",
+              "engineId": "nerd",
+              "query": "security OR changelog \"acquisition project\"",
+              "rank": 1,
+              "firstSeenAt": "2026-10-05T18:50:28.597Z"
+            }
+          ],
+          "startedAt": "2026-10-05T18:50:27.876Z",
+          "tabId": 905791558,
+          "finishedAt": "2026-10-05T18:50:28.597Z"
+        },
+        {
+          "id": "task_muvluhri_689b1ac0-726e-49ad-a4c6-b1bf991ead74",
+          "sessionId": "search_muvluhri_152e630a-96ac-46ce-9e90-08ffbe049e23",
+          "category": "archives",
+          "engineId": "nerd",
+          "engineName": "127.0.0.1: Search this smoke site",
+          "mode": "nerd",
+          "target": "127.0.0.1",
+          "targets": [
+            "127.0.0.1"
+          ],
+          "query": "security OR changelog \"legacy portal\"",
+          "searchUrl": "http://127.0.0.1:56781/search?section=all&q=security+OR+changelog+%22legacy+portal%22",
+          "catalogReviewedAt": "2026-09-09",
+          "dorkId": "dork_portable_127.0.0.1_recent-changes_2_2_4",
+          "dorkTitle": "Recent changes — operator probe — legacy portal",
+          "operatorIds": [
+            "or"
+          ],
+          "dialect": "portable",
+          "warnings": [
+            "Site Search queries omit site: because the selected destination already defines target scope and may treat portable operator syntax literally."
+          ],
+          "nerdSurface": {
+            "id": "nerd_muvlugyx_5675d714-a7b8-4b0e-a238-20a95c4da60d",
+            "name": "127.0.0.1: Search this smoke site",
+            "mode": "get",
+            "pageUrl": "http://127.0.0.1:56781/",
+            "actionUrl": "http://127.0.0.1:56781/search",
+            "method": "get",
+            "queryParam": "q",
+            "providerFingerprint": {
+              "provider": "custom",
+              "label": "Unknown / custom",
+              "confidence": "low",
+              "evidence": [
+                "No recognized provider marker in top-frame DOM or loaded resources"
+              ]
+            }
+          },
+          "status": "completed-results",
+          "createdAt": "2026-10-05T18:50:26.286Z",
+          "resultCount": 1,
+          "results": [
+            {
+              "id": "result_muvluk55_e2ee3347-d80d-48b5-911a-1daef65d7449",
+              "url": "http://127.0.0.1:56781/docs/readme.txt?from=nerd&q=security%20OR%20changelog%20%22legacy%20portal%22",
+              "title": "Local indexed smoke result",
+              "snippet": "Local indexed smoke result",
+              "engineId": "nerd",
+              "query": "security OR changelog \"legacy portal\"",
+              "rank": 1,
+              "firstSeenAt": "2026-10-05T18:50:29.369Z"
+            }
+          ],
+          "startedAt": "2026-10-05T18:50:28.625Z",
+          "tabId": 905791560,
+          "finishedAt": "2026-10-05T18:50:29.369Z"
+        }
+      ]
+    },
+    {
+      "id": "search_muvlucca_91dfd8f9-b955-41db-a42d-6b4272019881",
+      "label": "Dork suite: 127.0.0.1",
+      "createdAt": "2026-10-05T18:50:19.258Z",
+      "updatedAt": "2026-10-05T18:50:26.754Z",
+      "mode": "dork-suite",
+      "target": "127.0.0.1",
+      "targets": [
+        "127.0.0.1"
+      ],
+      "catalogReviewedAt": "2026-09-09",
+      "draft": {
+        "name": "Smoke recon sweep",
+        "targetsText": "127.0.0.1",
+        "queryText": "filetype:pdf",
+        "selectedEngineIds": [
+          "google",
+          "bing",
+          "duckduckgo"
+        ],
+        "launchMode": "combined",
+        "openInBackground": true
+      },
+      "automatic": true,
+      "tasks": [
+        {
+          "id": "task_muvlucca_3752801e-ebdf-49db-ae63-788faf83c986",
+          "sessionId": "search_muvlucca_91dfd8f9-b955-41db-a42d-6b4272019881",
+          "category": "archives",
+          "engineId": "google",
+          "engineName": "Google",
+          "mode": "dork-suite",
+          "target": "127.0.0.1",
+          "targets": [
+            "127.0.0.1"
+          ],
+          "query": "site:127.0.0.1 after:2025-10-05 security",
+          "searchUrl": "https://www.google.com/search?q=site%3A127.0.0.1+after%3A2025-10-05+security",
+          "catalogReviewedAt": "2026-09-09",
+          "dorkId": "dork_google_127.0.0.1_recent-changes_1_1_1",
+          "dorkTitle": "Recent changes 1",
+          "operatorIds": [
+            "site",
+            "after"
+          ],
+          "dialect": "google",
+          "warnings": [
+            "Search operators are constrained by indexing and retrieval limits; no result is not proof of absence."
+          ],
+          "status": "completed-no-results",
+          "createdAt": "2026-10-05T18:50:19.258Z",
+          "resultCount": 0,
+          "results": [],
+          "startedAt": "2026-10-05T18:50:19.261Z",
+          "tabId": 905791543,
+          "finishedAt": "2026-10-05T18:50:21.523Z"
+        },
+        {
+          "id": "task_muvlucca_c516e45e-c475-4947-9f63-fef0122d0db7",
+          "sessionId": "search_muvlucca_91dfd8f9-b955-41db-a42d-6b4272019881",
+          "category": "archives",
+          "engineId": "google",
+          "engineName": "Google",
+          "mode": "dork-suite",
+          "target": "127.0.0.1",
+          "targets": [
+            "127.0.0.1"
+          ],
+          "query": "site:127.0.0.1 after:2025-10-05 changelog",
+          "searchUrl": "https://www.google.com/search?q=site%3A127.0.0.1+after%3A2025-10-05+changelog",
+          "catalogReviewedAt": "2026-09-09",
+          "dorkId": "dork_google_127.0.0.1_recent-changes_2_1_2",
+          "dorkTitle": "Recent changes 2",
+          "operatorIds": [
+            "site",
+            "after"
+          ],
+          "dialect": "google",
+          "warnings": [
+            "Search operators are constrained by indexing and retrieval limits; no result is not proof of absence."
+          ],
+          "status": "completed-no-results",
+          "createdAt": "2026-10-05T18:50:19.258Z",
+          "resultCount": 0,
+          "results": [],
+          "startedAt": "2026-10-05T18:50:21.540Z",
+          "tabId": 905791546,
+          "finishedAt": "2026-10-05T18:50:23.146Z"
+        },
+        {
+          "id": "task_muvlucca_ff8c5ea5-93a4-4e49-8597-e740344c623e",
+          "sessionId": "search_muvlucca_91dfd8f9-b955-41db-a42d-6b4272019881",
+          "category": "archives",
+          "engineId": "bing",
+          "engineName": "Bing",
+          "mode": "dork-suite",
+          "target": "127.0.0.1",
+          "targets": [
+            "127.0.0.1"
+          ],
+          "query": "site:127.0.0.1 prefer:security release",
+          "searchUrl": "https://www.bing.com/search?q=site%3A127.0.0.1+prefer%3Asecurity+release",
+          "catalogReviewedAt": "2026-09-09",
+          "dorkId": "dork_bing_127.0.0.1_recent-changes_1_1_3",
+          "dorkTitle": "Recent changes 1",
+          "operatorIds": [
+            "site",
+            "prefer"
+          ],
+          "dialect": "bing",
+          "warnings": [
+            "Bing prefer: boosts ranking; it is not a date filter.",
+            "Bing evaluates only the first ten query terms; BLANCHE keeps this recipe bounded.",
+            "Bing browser URL search is used because the legacy Bing Search APIs were retired in 2025."
+          ],
+          "status": "completed-results",
+          "createdAt": "2026-10-05T18:50:19.258Z",
+          "resultCount": 10,
+          "results": [
+            {
+              "id": "result_muvlug4m_db80ef84-45d2-491d-802b-20dc040dd74a",
+              "url": "https://www.bing.com/ck/a?!&&p=f71132ab5659c9a8f38916b807550ac2f034164d7022253f2d3f190117fcdffbJmltdHM9MTc5MTE1ODQwMA&ptn=3&ver=2&hsh=4&fclid=209f8270-83d8-6cf5-3dad-9599824f6da0&psq=site%3a127.0.0.1+prefer%3asecurity+release&u=a1aHR0cHM6Ly93d3cubWVycmlhbS13ZWJzdGVyLmNvbS9kaWN0aW9uYXJ5L3JlbGVhc2U&ntb=1",
+              "title": "RELEASE Definition & Meaning - Merriam-Webster",
+              "snippet": "merriam-webster.com\nhttps://www.merriam-webster.com › dictionary › release\nRELEASE Definition & Meaning - Merriam-Webster\n\nrelease suggests a setting loose from confinement, restraint, or a state of pressure or tension, often without implication of permanent …",
+              "engineId": "bing",
+              "query": "site:127.0.0.1 prefer:security release",
+              "rank": 1,
+              "firstSeenAt": "2026-10-05T18:50:24.166Z"
+            },
+            {
+              "id": "result_muvlug4o_e1163986-49e2-4163-8d7a-aa75dad0779a",
+              "url": "https://www.bing.com/ck/a?!&&p=5dde068056f8f4cab50a0c162fcbcf74688b05e7e8bd2da07cdcc1dda5d6816bJmltdHM9MTc5MTE1ODQwMA&ptn=3&ver=2&hsh=4&fclid=209f8270-83d8-6cf5-3dad-9599824f6da0&psq=site%3a127.0.0.1+prefer%3asecurity+release&u=a1aHR0cHM6Ly9kaWN0aW9uYXJ5LmNhbWJyaWRnZS5vcmcvZGljdGlvbmFyeS9lbmdsaXNoL3JlbGVhc2U&ntb=1",
+              "title": "RELEASE | English meaning - Cambridge Dictionary",
+              "snippet": "cambridge.org\nhttps://dictionary.cambridge.org › dictionary › english › release\nRELEASE | English meaning - Cambridge Dictionary\n\nRELEASE definition: 1. to give freedom or free movement to someone or something: 2. to move a device from a fixed…. Learn more.",
+              "engineId": "bing",
+              "query": "site:127.0.0.1 prefer:security release",
+              "rank": 2,
+              "firstSeenAt": "2026-10-05T18:50:24.166Z"
+            },
+            {
+              "id": "result_muvlug4o_0159429f-ab25-481a-9a74-f625c35b190a",
+              "url": "https://www.bing.com/ck/a?!&&p=e6ef1c63e9c0aeaafc86b9a900e1a153ffec076662d50b59b837c678c9c3c273JmltdHM9MTc5MTE1ODQwMA&ptn=3&ver=2&hsh=4&fclid=209f8270-83d8-6cf5-3dad-9599824f6da0&psq=site%3a127.0.0.1+prefer%3asecurity+release&u=a1aHR0cHM6Ly93d3cudm9jYWJ1bGFyeS5jb20vZGljdGlvbmFyeS9yZWxlYXNl&ntb=1",
+              "title": "Release - Definition, Meaning & Synonyms | Vocabulary.com",
+              "snippet": "vocabulary.com\nhttps://www.vocabulary.com › dictionary › release\nRelease - Definition, Meaning & Synonyms | Vocabulary.com\n\nTo release something or someone is to set it free, like a caged animal or a prisoner. “I shall be released” is a famous refrain from a …",
+              "engineId": "bing",
+              "query": "site:127.0.0.1 prefer:security release",
+              "rank": 3,
+              "firstSeenAt": "2026-10-05T18:50:24.166Z"
+            },
+            {
+              "id": "result_muvlug4o_7da052b2-cc5e-4fb1-821f-d9deb24d2aff",
+              "url": "https://www.bing.com/ck/a?!&&p=c34fc6e104b0ee3b4bb4bbf841231951300f6af529c83b6143c66ec2c9027a1cJmltdHM9MTc5MTE1ODQwMA&ptn=3&ver=2&hsh=4&fclid=209f8270-83d8-6cf5-3dad-9599824f6da0&psq=site%3a127.0.0.1+prefer%3asecurity+release&u=a1aHR0cHM6Ly93d3cubWVycmlhbS13ZWJzdGVyLmNvbS90aGVzYXVydXMvcmVsZWFzZQ&ntb=1",
+              "title": "RELEASE Synonyms: 356 Similar and Opposite Words - Merriam-Webster",
+              "snippet": "merriam-webster.com\nhttps://www.merriam-webster.com › thesaurus › release\nRELEASE Synonyms: 356 Similar and Opposite Words - Merriam-Webster\n\n1 day ago · Some common synonyms of release are emancipate, free, liberate, and manumit. While all these words mean \"to set loose …",
+              "engineId": "bing",
+              "query": "site:127.0.0.1 prefer:security release",
+              "rank": 4,
+              "firstSeenAt": "2026-10-05T18:50:24.166Z"
+            },
+            {
+              "id": "result_muvlug4o_f18a280c-b05b-43db-9a5f-3c8e85e4bb02",
+              "url": "https://www.bing.com/ck/a?!&&p=ef316475985ae470e821229f149bc0e4adb1eb690b5fa20607b90cbf33fe6165JmltdHM9MTc5MTE1ODQwMA&ptn=3&ver=2&hsh=4&fclid=209f8270-83d8-6cf5-3dad-9599824f6da0&psq=site%3a127.0.0.1+prefer%3asecurity+release&u=a1aHR0cHM6Ly9kaWN0aW9uYXJ5LmNhbWJyaWRnZS5vcmcvdXMvZGljdGlvbmFyeS9lbmdsaXNoL3JlbGVhc2U&ntb=1",
+              "title": "RELEASE | definition in the Cambridge English Dictionary",
+              "snippet": "cambridge.org\nhttps://dictionary.cambridge.org › us › dictionary › english › release",
+              "engineId": "bing",
+              "query": "site:127.0.0.1 prefer:security release",
+              "rank": 5,
+              "firstSeenAt": "2026-10-05T18:50:24.166Z"
+            },
+            {
+              "id": "result_muvlug4o_42cde00e-2ef8-49c5-9258-267c34a9af74",
+              "url": "https://www.bing.com/ck/a?!&&p=4c3cb87da0ebd9f3b2f246021223678a369b2c8d330099472de53c9df0dc4c8bJmltdHM9MTc5MTE1ODQwMA&ptn=3&ver=2&hsh=4&fclid=209f8270-83d8-6cf5-3dad-9599824f6da0&psq=site%3a127.0.0.1+prefer%3asecurity+release&u=a1aHR0cHM6Ly93d3cucmVsZWFzZXMuY29tLw&ntb=1",
+              "title": "Releases",
+              "snippet": "releases.com\nhttps://www.releases.com",
+              "engineId": "bing",
+              "query": "site:127.0.0.1 prefer:security release",
+              "rank": 6,
+              "firstSeenAt": "2026-10-05T18:50:24.166Z"
+            },
+            {
+              "id": "result_muvlug4o_98f18c9b-0e4f-483f-ae74-bdafa954e13a",
+              "url": "https://www.bing.com/ck/a?!&&p=bfdb72222481bb502e700cb2cdd83b1d9018b02cbe7eb9d40af0518d235a6d70JmltdHM9MTc5MTE1ODQwMA&ptn=3&ver=2&hsh=4&fclid=209f8270-83d8-6cf5-3dad-9599824f6da0&psq=site%3a127.0.0.1+prefer%3asecurity+release&u=a1aHR0cHM6Ly9yZWxlYXNlLmNvbS8&ntb=1",
+              "title": "Release - Ephemeral Preview Environments for Shipping with AI",
+              "snippet": "release.com\nhttps://release.com",
+              "engineId": "bing",
+              "query": "site:127.0.0.1 prefer:security release",
+              "rank": 7,
+              "firstSeenAt": "2026-10-05T18:50:24.166Z"
+            },
+            {
+              "id": "result_muvlug4o_c7d7ca04-4c0f-4267-aeb7-7131af75973d",
+              "url": "https://www.bing.com/ck/a?!&&p=dd8f8987ef57ef051ec90e1ee22493d7186dacd832e4a48367a7bedea293d12fJmltdHM9MTc5MTE1ODQwMA&ptn=3&ver=2&hsh=4&fclid=209f8270-83d8-6cf5-3dad-9599824f6da0&psq=site%3a127.0.0.1+prefer%3asecurity+release&u=a1aHR0cHM6Ly93d3cudGhlZnJlZWRpY3Rpb25hcnkuY29tL3JlbGVhc2U&ntb=1",
+              "title": "Release - definition of release by The Free Dictionary",
+              "snippet": "thefreedictionary.com\nhttps://www.thefreedictionary.com › release",
+              "engineId": "bing",
+              "query": "site:127.0.0.1 prefer:security release",
+              "rank": 8,
+              "firstSeenAt": "2026-10-05T18:50:24.166Z"
+            },
+            {
+              "id": "result_muvlug4o_7c1961cc-a41b-4e86-bdf8-2db5d130468e",
+              "url": "https://www.bing.com/ck/a?!&&p=2442666fdcfc4d3c1f2b9f1e9be2836648adaa7fb7ff1e38c1690e6c442782ecJmltdHM9MTc5MTE1ODQwMA&ptn=3&ver=2&hsh=4&fclid=209f8270-83d8-6cf5-3dad-9599824f6da0&psq=site%3a127.0.0.1+prefer%3asecurity+release&u=a1aHR0cHM6Ly93d3cuZGljdGlvbmFyeS5jb20vYnJvd3NlL3JlbGVhc2U&ntb=1",
+              "title": "RELEASE Definition & Meaning | Dictionary.com",
+              "snippet": "dictionary.com\nhttps://www.dictionary.com › browse › releas",
+              "engineId": "bing",
+              "query": "site:127.0.0.1 prefer:security release",
+              "rank": 9,
+              "firstSeenAt": "2026-10-05T18:50:24.166Z"
+            },
+            {
+              "id": "result_muvlug4o_0503a97e-d378-4fe6-a418-dd604ed05bdc",
+              "url": "https://www.bing.com/ck/a?!&&p=521b21222c15977ddc32cb99c54500c8abc0d214a56174509a86004684f93503JmltdHM9MTc5MTE1ODQwMA&ptn=3&ver=2&hsh=4&fclid=209f8270-83d8-6cf5-3dad-9599824f6da0&psq=site%3a127.0.0.1+prefer%3asecurity+release&u=a1aHR0cHM6Ly93d3cuY29sbGluc2RpY3Rpb25hcnkuY29tL2RpY3Rpb25hcnkvZW5nbGlzaC9yZWxlYXNl&ntb=1",
+              "title": "RELEASE definition and meaning | Collins English Dictionary",
+              "snippet": "collinsdictionary.com\nhttps://www.collinsdictionary.com › dictionary › english › release",
+              "engineId": "bing",
+              "query": "site:127.0.0.1 prefer:security release",
+              "rank": 10,
+              "firstSeenAt": "2026-10-05T18:50:24.166Z"
+            }
+          ],
+          "startedAt": "2026-10-05T18:50:23.228Z",
+          "tabId": 905791548,
+          "finishedAt": "2026-10-05T18:50:24.168Z"
+        },
+        {
+          "id": "task_muvlucca_e0033c50-04b1-4aee-8a66-0b7a53cc2a50",
+          "sessionId": "search_muvlucca_91dfd8f9-b955-41db-a42d-6b4272019881",
+          "category": "archives",
+          "engineId": "bing",
+          "engineName": "Bing",
+          "mode": "dork-suite",
+          "target": "127.0.0.1",
+          "targets": [
+            "127.0.0.1"
+          ],
+          "query": "site:127.0.0.1 prefer:changelog",
+          "searchUrl": "https://www.bing.com/search?q=site%3A127.0.0.1+prefer%3Achangelog",
+          "catalogReviewedAt": "2026-09-09",
+          "dorkId": "dork_bing_127.0.0.1_recent-changes_2_1_4",
+          "dorkTitle": "Recent changes 2",
+          "operatorIds": [
+            "site",
+            "prefer"
+          ],
+          "dialect": "bing",
+          "warnings": [
+            "Bing prefer: boosts ranking; it is not a date filter.",
+            "Bing evaluates only the first ten query terms; BLANCHE keeps this recipe bounded.",
+            "Bing browser URL search is used because the legacy Bing Search APIs were retired in 2025."
+          ],
+          "status": "completed-results",
+          "createdAt": "2026-10-05T18:50:19.258Z",
+          "resultCount": 10,
+          "results": [
+            {
+              "id": "result_muvlugwr_c5e6aff3-b882-4089-a307-d51286afd89d",
+              "url": "https://www.bing.com/ck/a?!&&p=5033eb3041c06f2c0da0328950714733a66e6efc395e8ad9b80bbbef919b799dJmltdHM9MTc5MTE1ODQwMA&ptn=3&ver=2&hsh=4&fclid=209f8270-83d8-6cf5-3dad-9599824f6da0&psq=site%3a127.0.0.1+prefer%3achangelog&u=a1aHR0cHM6Ly93d3cubm9ydGh3ZXN0b21zLmNvbS9tZWV0LXVzL2RyLWRhdmlkLXZlcnNjaHVlcmVuLw&ntb=1",
+              "title": "Dr. David Verschueren | Board Certified Oral Surgeon in Vancouver, WA",
+              "snippet": "northwestoms.com\nhttps://www.northwestoms.com › meet-us\nDr. David Verschueren | Board Certified Oral Surgeon in Vancouver, WA\n\nMeet Board-Certified Oral Surgeon, Dr. David Verschueren, who is dedicated to providing the highest quality oral surgery care to his …",
+              "engineId": "bing",
+              "query": "site:127.0.0.1 prefer:changelog",
+              "rank": 1,
+              "firstSeenAt": "2026-10-05T18:50:25.179Z"
+            },
+            {
+              "id": "result_muvlugws_e6c7f981-f970-48c4-8b85-812b966fc568",
+              "url": "https://www.bing.com/ck/a?!&&p=0ebb14a16b8ed663d00db4a8c2a4515fdd28f5601f5a182d1830aee9f1b18516JmltdHM9MTc5MTE1ODQwMA&ptn=3&ver=2&hsh=4&fclid=209f8270-83d8-6cf5-3dad-9599824f6da0&psq=site%3a127.0.0.1+prefer%3achangelog&u=a1aHR0cHM6Ly93d3cubm9ydGh3ZXN0b21zLmNvbS8&ntb=1",
+              "title": "Northwest Oral & Facial Surgery | Oral Surgery In Vancouver WA",
+              "snippet": "northwestoms.com\nhttps://www.northwestoms.com\nNorthwest Oral & Facial Surgery | Oral Surgery In Vancouver WA\n\nAs your top oral surgeon in the Vancouver WA area, Dr. David Verschueren provides the highest level of oral and maxillofacial surgical …",
+              "engineId": "bing",
+              "query": "site:127.0.0.1 prefer:changelog",
+              "rank": 2,
+              "firstSeenAt": "2026-10-05T18:50:25.179Z"
+            },
+            {
+              "id": "result_muvlugws_2fdc8870-a031-48b6-9956-1773bd0b31a7",
+              "url": "https://www.bing.com/ck/a?!&&p=ce2b75758c127b457b99df312e89b54220be10a8b259547a721f48e2c177c513JmltdHM9MTc5MTE1ODQwMA&ptn=3&ver=2&hsh=4&fclid=209f8270-83d8-6cf5-3dad-9599824f6da0&psq=site%3a127.0.0.1+prefer%3achangelog&u=a1aHR0cHM6Ly93d3cuaGVhbHRoZ3JhZGVzLmNvbS9waHlzaWNpYW4vZHItZGF2aWQtdmVyc2NodWVyZW4tMzh5c3I&ntb=1",
+              "title": "Dr. David Verschueren, MD - 30 Reviews - Healthgrades",
+              "snippet": "healthgrades.com\nhttps://www.healthgrades.com › physician\nDr. David Verschueren, MD - 30 Reviews - Healthgrades\n\n5 days ago · Dr. David Verschueren, MD is an oral & maxillofacial surgery specialist in Vancouver, WA and has over 15 years of …",
+              "engineId": "bing",
+              "query": "site:127.0.0.1 prefer:changelog",
+              "rank": 3,
+              "firstSeenAt": "2026-10-05T18:50:25.179Z"
+            },
+            {
+              "id": "result_muvlugws_8e92d3ec-5e31-4fa1-bb85-5208dafb66e0",
+              "url": "https://www.bing.com/ck/a?!&&p=ed33c2450ef1066b3e875ac7d0138dd1c736051ec9da6971ea1beba5aa016a56JmltdHM9MTc5MTE1ODQwMA&ptn=3&ver=2&hsh=4&fclid=209f8270-83d8-6cf5-3dad-9599824f6da0&psq=site%3a127.0.0.1+prefer%3achangelog&u=a1aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvVmVyc2NodWVyZW4&ntb=1",
+              "title": "Verschueren - Wikipedia",
+              "snippet": "wikipedia.org\nhttps://en.wikipedia.org › wiki › Verschueren\nVerschueren - Wikipedia\n\nVerschueren is a Dutch-language toponymic surname common in Belgium. The name is a contraction of van der schueren, meaning …",
+              "engineId": "bing",
+              "query": "site:127.0.0.1 prefer:changelog",
+              "rank": 4,
+              "firstSeenAt": "2026-10-05T18:50:25.179Z"
+            },
+            {
+              "id": "result_muvlugws_2fe038bf-b7b8-4e34-9c61-dddd99f253f7",
+              "url": "https://www.bing.com/ck/a?!&&p=8de30d06afd2ea7e0c291659b64a3766362ab2588179c725a8dec4ddc4282a3eJmltdHM9MTc5MTE1ODQwMA&ptn=3&ver=2&hsh=4&fclid=209f8270-83d8-6cf5-3dad-9599824f6da0&psq=site%3a127.0.0.1+prefer%3achangelog&u=a1aHR0cHM6Ly9kb2N0b3Iud2VibWQuY29tL2RvY3Rvci9kYXZpZC12ZXJzY2h1ZXJlbi0yZGY5Mzg4NS00MGU4LTRjNzMtODE2My04NjQyNzMxMDM2NmUtb3ZlcnZpZXc&ntb=1",
+              "title": "Dr. David Verschueren, MD, Oral and Maxillofacial Surgeon - WebMD",
+              "snippet": "webmd.com\nhttps://doctor.webmd.com › doctor",
+              "engineId": "bing",
+              "query": "site:127.0.0.1 prefer:changelog",
+              "rank": 5,
+              "firstSeenAt": "2026-10-05T18:50:25.179Z"
+            },
+            {
+              "id": "result_muvlugws_18a772d8-a208-4489-a724-3f05a8c64b36",
+              "url": "https://www.bing.com/ck/a?!&&p=87c2ab066973247a89723997b8b346d64ae03489f5d251a8568218b1cfe9a22dJmltdHM9MTc5MTE1ODQwMA&ptn=3&ver=2&hsh=4&fclid=209f8270-83d8-6cf5-3dad-9599824f6da0&psq=site%3a127.0.0.1+prefer%3achangelog&u=a1aHR0cHM6Ly93d3cubGVnYWN5aGVhbHRoLm9yZy9wcm92aWRlcnMvZGF2aWQtdmVyc2NodWVyZW4&ntb=1",
+              "title": "David Verschueren, MD, DMD - Legacy Health",
+              "snippet": "legacyhealth.org\nhttps://www.legacyhealth.org › providers › david-verschueren",
+              "engineId": "bing",
+              "query": "site:127.0.0.1 prefer:changelog",
+              "rank": 6,
+              "firstSeenAt": "2026-10-05T18:50:25.179Z"
+            },
+            {
+              "id": "result_muvlugws_719636ff-8400-4069-a205-35fe2933bad1",
+              "url": "https://www.bing.com/ck/a?!&&p=61bc7289419d6781ea67529c0cca21b335517111dc93a4d720e38198776edf83JmltdHM9MTc5MTE1ODQwMA&ptn=3&ver=2&hsh=4&fclid=209f8270-83d8-6cf5-3dad-9599824f6da0&psq=site%3a127.0.0.1+prefer%3achangelog&u=a1aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvSmVmX1ZlcnNjaHVlcmVu&ntb=1",
+              "title": "Jef Verschueren - Wikipedia",
+              "snippet": "wikipedia.org\nhttps://en.wikipedia.org › wiki › Jef_Verschueren",
+              "engineId": "bing",
+              "query": "site:127.0.0.1 prefer:changelog",
+              "rank": 7,
+              "firstSeenAt": "2026-10-05T18:50:25.179Z"
+            },
+            {
+              "id": "result_muvlugws_a1b29618-76ea-4467-8bcd-a59f5c242c52",
+              "url": "https://www.bing.com/ck/a?!&&p=2aafcc17e98e211cd2b9add128d03e94a2491858143a6ddebd1620b7092e9c31JmltdHM9MTc5MTE1ODQwMA&ptn=3&ver=2&hsh=4&fclid=209f8270-83d8-6cf5-3dad-9599824f6da0&psq=site%3a127.0.0.1+prefer%3achangelog&u=a1aHR0cHM6Ly93d3cucmVzZWFyY2hnYXRlLm5ldC9wcm9maWxlL0plZi1WZXJzY2h1ZXJlbi0y&ntb=1",
+              "title": "Jef VERSCHUEREN | Professor Emeritus | Doctor of Philosophy ...",
+              "snippet": "researchgate.net\nhttps://www.researchgate.net › profile",
+              "engineId": "bing",
+              "query": "site:127.0.0.1 prefer:changelog",
+              "rank": 8,
+              "firstSeenAt": "2026-10-05T18:50:25.179Z"
+            },
+            {
+              "id": "result_muvlugws_cb50df88-3f0c-452e-9f8c-fa4565257616",
+              "url": "https://www.bing.com/ck/a?!&&p=d2bd604aa613d645e78f59c33853ec97c2bc0810eefc229d5b661431670183feJmltdHM9MTc5MTE1ODQwMA&ptn=3&ver=2&hsh=4&fclid=209f8270-83d8-6cf5-3dad-9599824f6da0&psq=site%3a127.0.0.1+prefer%3achangelog&u=a1aHR0cHM6Ly93d3cuY2FtYnJpZGdlLm9yZy9jb3JlL2pvdXJuYWxzL2xhbmd1YWdlLWluLXNvY2lldHkvYXJ0aWNsZS9hYnMvamVmLXZlcnNjaHVlcmVuLXVuZGVyc3RhbmRpbmctcHJhZ21hdGljcy11bmRlcnN0YW5kaW5nLWxhbmd1YWdlLXNlcmllcy1sb25kb24tYXJub2xkLW5ldy15b3JrLW94Zm9yZC11bml2ZXJzaXR5LXByZXNzLTE5OTktcHAteGl2LTI5NS1wYi0xMzk5LTE5OTUvMTM2RDQ2QjhGQjI2QzVCRTBFOEM1OTYxMDQzNTZFRkE&ntb=1",
+              "title": "Jef Verschueren, Understanding pragmatics. (Understanding language ...",
+              "snippet": "cambridge.org\nhttps://www.cambridge.org › core › journals › language...",
+              "engineId": "bing",
+              "query": "site:127.0.0.1 prefer:changelog",
+              "rank": 9,
+              "firstSeenAt": "2026-10-05T18:50:25.179Z"
+            },
+            {
+              "id": "result_muvlugws_cc6d0e97-1668-4871-8d87-cb9b41916160",
+              "url": "https://www.bing.com/ck/a?!&&p=4d4af275ca6b30f901d0a9423d8a41e660d5eef132ea37d088258e878aaadb8fJmltdHM9MTc5MTE1ODQwMA&ptn=3&ver=2&hsh=4&fclid=209f8270-83d8-6cf5-3dad-9599824f6da0&psq=site%3a127.0.0.1+prefer%3achangelog&u=a1aHR0cHM6Ly93d3cuZG94aW1pdHkuY29tL3B1Yi9kYXZpZC12ZXJzY2h1ZXJlbi1tZA&ntb=1",
+              "title": "Dr. David Verschueren, MD – Vancouver, WA | Oral & Maxillofacial ...",
+              "snippet": "doximity.com\nhttps://www.doximity.com › pub › david-verschueren-md",
+              "engineId": "bing",
+              "query": "site:127.0.0.1 prefer:changelog",
+              "rank": 10,
+              "firstSeenAt": "2026-10-05T18:50:25.179Z"
+            }
+          ],
+          "startedAt": "2026-10-05T18:50:24.249Z",
+          "tabId": 905791550,
+          "finishedAt": "2026-10-05T18:50:25.180Z"
+        },
+        {
+          "id": "task_muvlucca_0fc5a305-3272-4dc6-82b2-d6b88b3e6799",
+          "sessionId": "search_muvlucca_91dfd8f9-b955-41db-a42d-6b4272019881",
+          "category": "archives",
+          "engineId": "duckduckgo",
+          "engineName": "DuckDuckGo",
+          "mode": "dork-suite",
+          "target": "127.0.0.1",
+          "targets": [
+            "127.0.0.1"
+          ],
+          "query": "site:127.0.0.1 ~\"security release\"",
+          "searchUrl": "https://duckduckgo.com/?q=site%3A127.0.0.1+%7E%22security+release%22",
+          "catalogReviewedAt": "2026-09-09",
+          "dorkId": "dork_duckduckgo_127.0.0.1_recent-changes_1_1_5",
+          "dorkTitle": "Recent changes 1",
+          "operatorIds": [
+            "site",
+            "ddg-semantic"
+          ],
+          "dialect": "duckduckgo",
+          "warnings": [
+            "DuckDuckGo semantic phrase search is experimental; use its date UI for strict date windows.",
+            "DuckDuckGo combines multiple result sources, so documented syntax is not guaranteed for every query."
+          ],
+          "status": "completed-no-results",
+          "createdAt": "2026-10-05T18:50:19.258Z",
+          "resultCount": 0,
+          "results": [],
+          "startedAt": "2026-10-05T18:50:25.221Z",
+          "tabId": 905791552,
+          "finishedAt": "2026-10-05T18:50:26.754Z"
+        }
+      ]
+    }
+  ]
+}

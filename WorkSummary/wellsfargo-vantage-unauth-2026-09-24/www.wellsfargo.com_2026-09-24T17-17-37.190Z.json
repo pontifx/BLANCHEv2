@@ -1,0 +1,513 @@
+{
+  "kind": "blanche.osint-report",
+  "schemaVersion": "1.0.0",
+  "reportMetadata": {
+    "reportId": "osint_mufsorae_d51f9e55-a222-42ab-b069-56f75d8e89e8",
+    "generatedAt": "2026-09-24T17:17:37.190Z",
+    "generatedBy": {
+      "product": "BLANCHE",
+      "component": "osint-orchestrator/cli",
+      "version": "0.1.0"
+    },
+    "seedId": "seed_mufsoq41_2cb99016-0610-4cea-a523-85ba9b9f1ce4"
+  },
+  "scope": {
+    "mode": "public-passive",
+    "allowedActivities": [
+      "Resolve public DNS records for in-scope hosts.",
+      "Fetch public web resources such as /, robots.txt, sitemap.xml, and /.well-known/security.txt.",
+      "Inspect public TLS certificate metadata presented by the target host.",
+      "Run approved passive OSINT tools with non-intrusive discovery flags only."
+    ],
+    "disallowedActivities": [
+      "Do not authenticate, brute force, fuzz, exploit, scan ports broadly, or validate vulnerabilities.",
+      "Do not collect non-public information or bypass access controls.",
+      "Do not assign severity or represent informational OSINT as validated findings.",
+      "Do not replace existing ProdPT testing workflows; this output is preparatory context."
+    ],
+    "operatorNotes": [
+      "Outputs are informational and intended to guide follow-on testing, not validate security impact."
+    ]
+  },
+  "target": {
+    "primaryHostname": "www.wellsfargo.com",
+    "apparentRootDomain": "wellsfargo.com",
+    "targetUrl": "https://www.wellsfargo.com",
+    "targetOrigin": "https://www.wellsfargo.com",
+    "relatedHostnames": []
+  },
+  "seed": {
+    "kind": "blanche.osint-seed",
+    "schemaVersion": "1.0.0",
+    "seedMetadata": {
+      "seedId": "seed_mufsoq41_2cb99016-0610-4cea-a523-85ba9b9f1ce4",
+      "createdAt": "2026-09-24T17:17:35.666Z",
+      "generatedBy": {
+        "product": "BLANCHE",
+        "component": "osint-orchestrator/cli",
+        "version": "0.1.0"
+      }
+    },
+    "scope": {
+      "mode": "public-passive",
+      "allowedActivities": [
+        "Resolve public DNS records for in-scope hosts.",
+        "Fetch public web resources such as /, robots.txt, sitemap.xml, and /.well-known/security.txt.",
+        "Inspect public TLS certificate metadata presented by the target host.",
+        "Run approved passive OSINT tools with non-intrusive discovery flags only."
+      ],
+      "disallowedActivities": [
+        "Do not authenticate, brute force, fuzz, exploit, scan ports broadly, or validate vulnerabilities.",
+        "Do not collect non-public information or bypass access controls.",
+        "Do not assign severity or represent informational OSINT as validated findings.",
+        "Do not replace existing ProdPT testing workflows; this output is preparatory context."
+      ],
+      "operatorNotes": [
+        "Outputs are informational and intended to guide follow-on testing, not validate security impact."
+      ]
+    },
+    "seed": {
+      "targetUrl": "https://www.wellsfargo.com",
+      "targetOrigin": "https://www.wellsfargo.com",
+      "primaryHostname": "www.wellsfargo.com",
+      "apparentRootDomain": "wellsfargo.com",
+      "sourceType": "manual"
+    },
+    "browserContext": {
+      "pageUrl": "https://www.wellsfargo.com",
+      "pageOrigin": "https://www.wellsfargo.com",
+      "apparentRootDomain": "wellsfargo.com",
+      "relatedHosts": [],
+      "signals": {}
+    },
+    "warnings": [
+      {
+        "code": "MANUAL_SEED_CREATED",
+        "message": "The OSINT run used a manually provided target instead of a Chromium-derived seed.",
+        "severity": "info"
+      }
+    ]
+  },
+  "toolExecutions": [
+    {
+      "toolId": "builtin-dns",
+      "name": "Built-in DNS Collector",
+      "mode": "builtin",
+      "status": "completed",
+      "target": "wellsfargo.com",
+      "startedAt": "2026-09-24T17:17:35.667Z",
+      "finishedAt": "2026-09-24T17:17:35.954Z",
+      "outputCount": 6,
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "toolId": "builtin-http",
+      "name": "Built-in HTTP Surface Collector",
+      "mode": "builtin",
+      "status": "completed",
+      "target": "www.wellsfargo.com",
+      "startedAt": "2026-09-24T17:17:35.668Z",
+      "finishedAt": "2026-09-24T17:17:37.189Z",
+      "outputCount": 4,
+      "warnings": [
+        "security.txt was not publicly available at https://www.wellsfargo.com/.well-known/security.txt."
+      ],
+      "errors": []
+    },
+    {
+      "toolId": "builtin-tls",
+      "name": "Built-in TLS Collector",
+      "mode": "builtin",
+      "status": "completed",
+      "target": "www.wellsfargo.com",
+      "startedAt": "2026-09-24T17:17:35.709Z",
+      "finishedAt": "2026-09-24T17:17:35.734Z",
+      "outputCount": 1,
+      "warnings": [],
+      "errors": []
+    }
+  ],
+  "findings": [
+    {
+      "findingId": "finding_mufsoq5b_2556813d-cb31-489e-b08d-55d09b897902",
+      "category": "dns-record",
+      "title": "DNS A records for www.wellsfargo.com",
+      "description": "Public DNS resolution returned A data for www.wellsfargo.com.",
+      "target": "www.wellsfargo.com",
+      "confidence": "high",
+      "sourceTools": [
+        "builtin-dns"
+      ],
+      "tags": [
+        "dns",
+        "a"
+      ],
+      "evidence": {
+        "recordType": "A",
+        "target": "www.wellsfargo.com",
+        "records": [
+          "23.214.22.136",
+          "23.214.22.138"
+        ]
+      }
+    },
+    {
+      "findingId": "finding_mufsoq5k_fd54fd12-e6e6-4a62-bc2e-0a3500562b35",
+      "category": "dns-record",
+      "title": "DNS CNAME records for www.wellsfargo.com",
+      "description": "Public DNS resolution returned CNAME data for www.wellsfargo.com.",
+      "target": "www.wellsfargo.com",
+      "confidence": "high",
+      "sourceTools": [
+        "builtin-dns"
+      ],
+      "tags": [
+        "dns",
+        "cname"
+      ],
+      "evidence": {
+        "recordType": "CNAME",
+        "target": "www.wellsfargo.com",
+        "records": [
+          "www.wellsfargo.com.edgekey.net"
+        ]
+      }
+    },
+    {
+      "findingId": "finding_mufsoq84_19bcf847-9cc8-470c-b52c-e25e0f0e5355",
+      "category": "dns-record",
+      "title": "DNS MX records for wellsfargo.com",
+      "description": "Public DNS resolution returned MX data for wellsfargo.com.",
+      "target": "wellsfargo.com",
+      "confidence": "high",
+      "sourceTools": [
+        "builtin-dns"
+      ],
+      "tags": [
+        "dns",
+        "mx"
+      ],
+      "evidence": {
+        "recordType": "MX",
+        "target": "wellsfargo.com",
+        "records": [
+          {
+            "exchange": "mxa-00004003.gslb.pphosted.com",
+            "priority": 10
+          },
+          {
+            "exchange": "mxb-00004003.gslb.pphosted.com",
+            "priority": 10
+          }
+        ]
+      }
+    },
+    {
+      "findingId": "finding_mufsoq8e_168e8455-50eb-4f80-93f2-e5ec653edb5d",
+      "category": "dns-record",
+      "title": "DNS NS records for wellsfargo.com",
+      "description": "Public DNS resolution returned NS data for wellsfargo.com.",
+      "target": "wellsfargo.com",
+      "confidence": "high",
+      "sourceTools": [
+        "builtin-dns"
+      ],
+      "tags": [
+        "dns",
+        "ns"
+      ],
+      "evidence": {
+        "recordType": "NS",
+        "target": "wellsfargo.com",
+        "records": [
+          "edns1.ultradns.org",
+          "a1-189.akam.net",
+          "a24-66.akam.net",
+          "a2-64.akam.net",
+          "edns1.ultradns.biz",
+          "edns1.ultradns.com",
+          "edns1.ultradns.net"
+        ]
+      }
+    },
+    {
+      "findingId": "finding_mufsoq9g_41211319-3593-4d4f-bef4-c7ef82cedd9b",
+      "category": "dns-record",
+      "title": "DNS TXT records for wellsfargo.com",
+      "description": "Public DNS resolution returned TXT data for wellsfargo.com.",
+      "target": "wellsfargo.com",
+      "confidence": "high",
+      "sourceTools": [
+        "builtin-dns"
+      ],
+      "tags": [
+        "dns",
+        "txt"
+      ],
+      "evidence": {
+        "recordType": "TXT",
+        "target": "wellsfargo.com",
+        "records": [
+          [
+            "atlassian-domain-verification=3iSn26f6aafKa7o1mfwsx1tZl9Ach7BhUpRmglO24La1WPXoyanfEd3zs1Y0VqiL"
+          ],
+          [
+            "MS=ms55239285"
+          ],
+          [
+            "XKNBNPXX3FGJAJI4IGHIWBRYY6IBLYJKA9TFFIQU"
+          ],
+          [
+            "SFMC-RBMdi4jKmGLzx309qUUmF_jRLq0ZhtELtiy7L3Qh"
+          ],
+          [
+            "docusign=182ba0bd-f7cc-423a-b69f-6597f3418125"
+          ],
+          [
+            "docusign=fa86331e-ce88-4150-9e03-49999c4542a5"
+          ],
+          [
+            "v=spf1 include:%{ir}.%{v}.%{d}.spf.has.pphosted.com ~all"
+          ],
+          [
+            "mongodb-site-verification=jqcFvnzHPnWaB8kuVRCCbrQN1zJQRPQT"
+          ],
+          [
+            "mongodb-site-verification=pdRPv2gbrHzIqdzHpPtCUwOMZBHgPbIQ"
+          ],
+          [
+            "facebook-domain-verification=5m0hrk0snw5sgvxwxdump2kob1wm5u"
+          ],
+          [
+            "poppulo-domain-verification=a43ab4c6-cf0c-408d-892c-910d39b46aec"
+          ],
+          [
+            "slack-domain-verification=TZylPJmHnWc38hjAZndFjbqpORzFahh0CXOLCYBI"
+          ],
+          [
+            "yahoo-verification-key=obqVt160b6+HxLHztMj4LYjtSIXf2WUl7wuBDv+AZpE="
+          ],
+          [
+            "google-site-verification=I_ja-LuIqEJ76WNc4saij8AC-JrnkDqe3--MBdH2LHU"
+          ],
+          [
+            "google-site-verification=JhIekmpe90l9Nsvux7qqfwNmrhbJDI1xKSXsMWlXzYs"
+          ],
+          [
+            "apple-domain-verification=fjpdn_0YZHIPxbMISJedC6zNIlntneK35XOgGcoDH_M"
+          ],
+          [
+            "liveramp-site-verification=eTqekxddhK8on3hD12UkjC56Be8HZGRuzGG9BwQxfRM"
+          ],
+          [
+            "hcp-domain-verification=bed540868e214034c62df7863b2f90e7b217905a6c69831138e93312bcca62c2"
+          ],
+          [
+            "cisco-ci-domain-verification=60939a4d2f539880950cf4f6cd4e97b18a07e85391ff5671f2b7045b2be84f9"
+          ],
+          [
+            "cisco-ci-domain-verification=27d3d23d53cbc01f28bb1e90d2772e1ef8671ef1306d8a6aea2dd98b16973b99"
+          ],
+          [
+            "cisco-ci-domain-verification=611fc9e560697d73912de2f3755da55f7277c7811d44297c0a0a567a21e7a249"
+          ]
+        ]
+      }
+    },
+    {
+      "findingId": "finding_mufsoqc2_97e1bceb-d876-422c-8474-b169288de8da",
+      "category": "dns-record",
+      "title": "DNS SOA records for wellsfargo.com",
+      "description": "Public DNS resolution returned SOA data for wellsfargo.com.",
+      "target": "wellsfargo.com",
+      "confidence": "high",
+      "sourceTools": [
+        "builtin-dns"
+      ],
+      "tags": [
+        "dns",
+        "soa"
+      ],
+      "evidence": {
+        "recordType": "SOA",
+        "target": "wellsfargo.com",
+        "records": {
+          "nsname": "edns1.ultradns.com",
+          "hostmaster": "hostmaster.wellsfargo.com",
+          "serial": 2009396695,
+          "refresh": 1800,
+          "retry": 900,
+          "expire": 2592000,
+          "minttl": 300
+        }
+      }
+    },
+    {
+      "findingId": "finding_mufsoqb5_e15c4d04-6a10-4607-b0e0-9f042f2343ab",
+      "category": "http-surface",
+      "title": "Public web surface for https://www.wellsfargo.com/",
+      "description": "The target returned a public web response that can guide scope familiarization.",
+      "target": "https://www.wellsfargo.com/",
+      "confidence": "high",
+      "sourceTools": [
+        "builtin-http"
+      ],
+      "tags": [
+        "http",
+        "headers"
+      ],
+      "evidence": {
+        "status": 200,
+        "headers": {
+          "accept-ch": "Sec-CH-UA-Arch, Sec-CH-UA-Model, Sec-CH-UA-Platform-Version, Sec-CH-UA-Full-Version-List, Sec-CH-UA-Bitness, Sec-CH-UA-Wow64",
+          "access-control-expose-headers": "Server-Timing",
+          "cache-control": "no-cache, max-age=0, must-revalidate, no-store",
+          "connection": "keep-alive",
+          "content-encoding": "gzip",
+          "content-language": "und",
+          "content-length": "18153",
+          "content-security-policy": "default-src 'none'; form-action 'self' *.wellsfargo.com *.wellsfargo.com:* ; connect-src 'self' https://*.wellsfargo.com https://*.wellsfargo.com:* https://*.schemaapp.com https://*.rlcdn.com https://*.medallia.com https://*.kampyle.com https://*.adobedc.net https://www.google-analytics.com https://*.doubleclick.net https://*.eum-appdynamics.com https://*.demdex.net https://www.sjwoe.com https://www.mczbf.com https://s.yimg.com https://*.nuance.com https://*.wf.com https://*.google.com https://*.onetrust.com; img-src 'self' data: https://*.wellsfargomedia.com https://*.wellsfargo.com https://*.wellsfargo.com:* https://*.wfinterface.com https://*.wfinterface.com:* https://*.analytics.yahoo.com https://*.everesttech.net https://*.linkedin.com https://*.g.doubleclick.net https://*.google.com https://*.demdex.net https://*.nuance.com https://*.eum-appdynamics.com https://*.virtualearth.net https://www.facebook.com https://cx.atdmt.com https://track.linksynergy.com https://s.amazon-adsystem.com https://ct.pinterest.com https://trc.taboola.com https://p.adsymptotic.com https://products.gobankingrates.com https://bttrack.com https://b.videoamp.com https://fcmatch.youtube.com https://www.googleadservices.com https://2549153.fls.doubleclick.net https://ad.doubleclick.net https://www.google-analytics.com https://idsync.rlcdn.com https://s.amazon-adsystem.com https://resources.digital-cloud-prem.medallia.com https://udc-neb.kampyle.com https://wellsfargoprod.prod.fire.glass https://*.mworld.com https://*.postrelease.com; object-src 'self' https://*.wellsfargo.com https://*.wellsfargo.com:* https://*.wfinterface.com https://*.wfinterface.com:*; child-src 'self' *.wellsfargo.com *.wellsfargo.com:* *.wfinterface.com *.wfinterface.com:* https://*.demdex.net https://*.nuance.com https://*.advanced-web-analytics.com https://iframe.arkoselabs.com https://*.doubleclick.net https://*.wf.com; font-src 'self' data: https://*.wellsfargomedia.com https://*.wellsfargo.com https://*.wellsfargo.com:*; style-src 'self' 'unsafe-inline' *.wellsfargo.com *.wellsfargo.com:* https://*.wfinterface.com https://*.wfinterface.com:* https://*.nuance.com; script-src 'nonce-d73098c8c5c239bd9ab4e70c916183e5' 'nonce-1b02f363-1d8d-4f0d-b26d-d5a0ec7880b9' 'self' *.wellsfargo.com *.wellsfargo.com:* *.wfinterface.com *.wfinterface.com:* https://cdn.schemaapp.com https://*.nuance.com;media-src 'self' *.wellsfargo.com *.wellsfargomedia.com; frame-ancestors 'self' *.wellsfargo.com; base-uri 'none'; report-uri https://ort.wellsfargo.com/securereporting/reporting/v1/csp;worker-src blob:",
+          "content-type": "text/html;charset=UTF-8",
+          "date": "Thu, 24 Sep 2026 17:17:35 GMT",
+          "expires": "-1",
+          "pragma": "no-cache",
+          "server-timing": "traceparent;desc=\"00-22fe0873b39105d5f06d511c0cfc6795-683e73cb5053e233-03\"",
+          "set-cookie": "bm_sz=1A98C0DAC1A5688884D5833E3F34FBDA~YAAQiBXWF8eAUtOgAQAAJTNs1AE+OWv9RJ99OoAtc0b9jukQfIyd2db9MCmNp47F6BKauwWbTintUL/azkqsgKq6fFMU49X9ZeCY4ruNbSaxucSPYMXhHOaaeEYK345TDPBU9PwswVPxruZgVKK9DGEwN6nwoeqC9EbSBekUvFZ2ehXG+w0FY2cGN2wR/hUJOzWwXm9ABysRmRXJPxBoEsemqxXTzABll49ToK/+TirLqj6jHgQrP2Dpzl0o4U61YxdKKitT+XCZGo02ZCFp+FFMksCkqgUeRuQSwkPIopNF4UmDG2cv0wLTdCqq20DHNcJF8wzqC3D0htA4c2TlxmqA+MxhgevVNUkxnq238tM264+Imx70mA==~3749425~3551813; Domain=.wellsfargo.com; Path=/; Expires=Thu, 24 Sep 2026 21:17:35 GMT; Max-Age=14400; SameSite=None; Secure",
+          "strict-transport-security": "max-age=31536000 ; includeSubDomains",
+          "vary": "accept-encoding",
+          "x-akamai-transformed": "0 - 0 -",
+          "x-content-type-options": "nosniff",
+          "x-frame-options": "SAMEORIGIN"
+        },
+        "title": "Wells Fargo Bank | Financial Services & Online Banking",
+        "manifestHref": null
+      }
+    },
+    {
+      "findingId": "finding_mufsoqb5_e730a5c2-e83c-487e-bb93-66a655ac021d",
+      "category": "technology-hint",
+      "title": "Public technology hints for www.wellsfargo.com",
+      "description": "The public landing page exposed response headers or HTML metadata that can guide follow-on review.",
+      "target": "www.wellsfargo.com",
+      "confidence": "medium",
+      "sourceTools": [
+        "builtin-http"
+      ],
+      "tags": [
+        "http",
+        "technology"
+      ],
+      "evidence": {
+        "contentSecurityPolicy": "default-src 'none'; form-action 'self' *.wellsfargo.com *.wellsfargo.com:* ; connect-src 'self' https://*.wellsfargo.com https://*.wellsfargo.com:* https://*.schemaapp.com https://*.rlcdn.com https://*.medallia.com https://*.kampyle.com https://*.adobedc.net https://www.google-analytics.com https://*.doubleclick.net https://*.eum-appdynamics.com https://*.demdex.net https://www.sjwoe.com https://www.mczbf.com https://s.yimg.com https://*.nuance.com https://*.wf.com https://*.google.com https://*.onetrust.com; img-src 'self' data: https://*.wellsfargomedia.com https://*.wellsfargo.com https://*.wellsfargo.com:* https://*.wfinterface.com https://*.wfinterface.com:* https://*.analytics.yahoo.com https://*.everesttech.net https://*.linkedin.com https://*.g.doubleclick.net https://*.google.com https://*.demdex.net https://*.nuance.com https://*.eum-appdynamics.com https://*.virtualearth.net https://www.facebook.com https://cx.atdmt.com https://track.linksynergy.com https://s.amazon-adsystem.com https://ct.pinterest.com https://trc.taboola.com https://p.adsymptotic.com https://products.gobankingrates.com https://bttrack.com https://b.videoamp.com https://fcmatch.youtube.com https://www.googleadservices.com https://2549153.fls.doubleclick.net https://ad.doubleclick.net https://www.google-analytics.com https://idsync.rlcdn.com https://s.amazon-adsystem.com https://resources.digital-cloud-prem.medallia.com https://udc-neb.kampyle.com https://wellsfargoprod.prod.fire.glass https://*.mworld.com https://*.postrelease.com; object-src 'self' https://*.wellsfargo.com https://*.wellsfargo.com:* https://*.wfinterface.com https://*.wfinterface.com:*; child-src 'self' *.wellsfargo.com *.wellsfargo.com:* *.wfinterface.com *.wfinterface.com:* https://*.demdex.net https://*.nuance.com https://*.advanced-web-analytics.com https://iframe.arkoselabs.com https://*.doubleclick.net https://*.wf.com; font-src 'self' data: https://*.wellsfargomedia.com https://*.wellsfargo.com https://*.wellsfargo.com:*; style-src 'self' 'unsafe-inline' *.wellsfargo.com *.wellsfargo.com:* https://*.wfinterface.com https://*.wfinterface.com:* https://*.nuance.com; script-src 'nonce-d73098c8c5c239bd9ab4e70c916183e5' 'nonce-1b02f363-1d8d-4f0d-b26d-d5a0ec7880b9' 'self' *.wellsfargo.com *.wellsfargo.com:* *.wfinterface.com *.wfinterface.com:* https://cdn.schemaapp.com https://*.nuance.com;media-src 'self' *.wellsfargo.com *.wellsfargomedia.com; frame-ancestors 'self' *.wellsfargo.com; base-uri 'none'; report-uri https://ort.wellsfargo.com/securereporting/reporting/v1/csp;worker-src blob:",
+        "strictTransportSecurity": "max-age=31536000 ; includeSubDomains"
+      }
+    },
+    {
+      "findingId": "finding_mufsoqf8_3b3e6d6f-4742-4272-a898-7f3f158f5854",
+      "category": "document-reference",
+      "title": "robots.txt observations for www.wellsfargo.com",
+      "description": "Public crawler policy and referenced sitemap hints were collected from robots.txt.",
+      "target": "www.wellsfargo.com",
+      "confidence": "high",
+      "sourceTools": [
+        "builtin-http"
+      ],
+      "tags": [
+        "http",
+        "robots"
+      ],
+      "evidence": {
+        "url": "https://www.wellsfargo.com/robots.txt",
+        "status": 200,
+        "disallowCount": 16,
+        "sitemapReferences": [
+          "Sitemap: https://www.wellsfargo.com/seo-sitemap/wellsfargositemap_index.xml"
+        ]
+      }
+    },
+    {
+      "findingId": "finding_mufsorad_c437a3d0-6788-46c0-aa90-08541389ad83",
+      "category": "document-reference",
+      "title": "Public sitemap reference for www.wellsfargo.com",
+      "description": "A public sitemap was discoverable and can be used to widen page-level OSINT review.",
+      "target": "www.wellsfargo.com",
+      "confidence": "high",
+      "sourceTools": [
+        "builtin-http"
+      ],
+      "tags": [
+        "http",
+        "sitemap"
+      ],
+      "evidence": {
+        "url": "https://www.wellsfargo.com/sitemap/?utm_medium=www-redirect&utm_source=sitemap-xml",
+        "status": 200,
+        "snippet": "<!DOCTYPE html>\n<html xmlns=\"http://www.w3.org/1999/xhtml\" class=\"no-js\" lang=\"en\">\n<head>\n\t\n\t\n    <link rel=\"preconnect\" href=\"https://www17.wellsfargomedia.com/\">\n    <link rel=\"dns-prefetch\" href=\"https://www17.wellsfargomedia.com/\">\n    <link rel=\"preconnect\" href=\"https://connect.secure.wellsfargo.com/\">\n    <link rel=\"dns-prefetch\" href=\"https://connect.secure.wellsfargo.com/\">\n    <link rel=\"preconnect\" href=\"https://static.wellsfargo.com/\">\n    <link rel=\"dns-prefetch\" href=\"https://static.wellsfargo.com/\">\n    <link rel=\"preconnect\" href=\"https://c1.wfinterface.com/\">\n    <link rel=\"dns-prefetch\" href=\"https://c1.wfinterface.com/\">\n    <link rel=\"preconnect\" href=\"https://service.maxymiser.net/\">\n    <link rel=\"dns-prefetch\" href=\"https://service.maxymiser.net/\">\n\n\n\t\n\t\n\n\t\n\t<script type=\"text/javascript\" nonce=\"93f2a6ac-8530-41ab-ae1a-9dda7e967799\">\n\t\tvar akamaiImageHostUrl = \"https:\\/\\/www17.wellsfargomedia.com\";\n\t</script>\n\n\n\t\n\t\r\n\t\r\n\t\r\n\t\r\n\t\r\n\t\r\n\n\n\t<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n\n\t\n\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n\n\t\n\t<title>Personal Sitemap – Wells Fargo</title>\n\n    \n    <script type=\"text/javasc"
+      }
+    },
+    {
+      "findingId": "finding_mufsoq5y_6a02f103-4910-47d1-ab51-0ddba30c722f",
+      "category": "tls-certificate",
+      "title": "TLS certificate metadata for www.wellsfargo.com",
+      "description": "The target exposed certificate metadata on TCP/443 that can reveal related names and issuance details.",
+      "target": "www.wellsfargo.com",
+      "confidence": "high",
+      "sourceTools": [
+        "builtin-tls"
+      ],
+      "tags": [
+        "tls",
+        "certificate"
+      ],
+      "evidence": {
+        "subject": "{\"jurisdictionC\":\"US\",\"jurisdictionST\":\"Delaware\",\"businessCategory\":\"Private Organization\",\"serialNumber\":\"251212\",\"C\":\"US\",\"ST\":\"California\",\"L\":\"San Francisco\",\"O\":\"Wells Fargo & Company\",\"CN\":\"www.wellsfargo.com\"}",
+        "issuer": "{\"C\":\"US\",\"O\":\"DigiCert Inc\",\"CN\":\"DigiCert EV RSA CA G2\"}",
+        "validFrom": "Aug 24 00:00:00 2026 GMT",
+        "validTo": "Mar 10 23:59:59 2027 GMT",
+        "serialNumber": "0D2B7BC39F6A220449314E0C10967AF3",
+        "fingerprint256": "0A:86:CE:39:6D:9B:3D:B6:77:94:86:41:9A:85:08:3D:2A:BB:8D:4E:C2:60:C1:C0:3D:BF:FB:1D:30:A9:17:F6",
+        "subjectAltName": "DNS:www.wellsfargo.com"
+      }
+    }
+  ],
+  "warnings": [
+    {
+      "code": "MANUAL_SEED_CREATED",
+      "message": "The OSINT run used a manually provided target instead of a Chromium-derived seed.",
+      "severity": "info"
+    },
+    {
+      "code": "SECURITY_TXT_UNAVAILABLE",
+      "message": "security.txt was not publicly available at https://www.wellsfargo.com/.well-known/security.txt.",
+      "severity": "info"
+    }
+  ],
+  "errors": [],
+  "narrative": {
+    "headline": "Public OSINT summary for www.wellsfargo.com",
+    "summary": "Collected 11 informational findings for www.wellsfargo.com. The strongest current themes are dns-record (6), document-reference (2), http-surface (1). Completed tools: 3; skipped tools: 0.",
+    "followOnFocus": [
+      "No public security.txt contact was observed; plan coordination channels separately.",
+      "Use public technology hints to prioritize manual review paths, not to infer vulnerabilities."
+    ],
+    "reportReadyNotes": [
+      "This output is informational OSINT only and does not validate vulnerabilities or business impact.",
+      "Skipped tools usually indicate local environment gaps rather than absence of public data.",
+      "Counts and summaries should be used to prioritize manual testing, not replace it."
+    ]
+  },
+  "summary": {
+    "findingCount": 11,
+    "findingsByCategory": {
+      "dns-record": 6,
+      "http-surface": 1,
+      "technology-hint": 1,
+      "document-reference": 2,
+      "tls-certificate": 1
+    },
+    "completedTools": 3,
+    "skippedTools": 0,
+    "failedTools": 0
+  }
+}

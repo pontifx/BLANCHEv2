@@ -1,0 +1,23 @@
+Timestamp: 2026-03-19 21:27:27 America/Los_Angeles
+
+Prompt Used:
+Modify ingestion to be automatic, include it in the sitemap, and it either underline, highlight or represent with an icon a page that has chromium data that burp wouldnt otherwise see. Also create a folder called WorkSummary, and include a timestamped txt of the prompt used for the work turn and a summary of the work
+
+Work Summary:
+- Added automatic Burp ingestion on the Chromium side by extending Burp Bridge settings with `autoSendToBurp` and `burpIngestUrl`, defaulting to `http://127.0.0.1:47625/api/blanche/ingest`.
+- Added localhost host permissions for Burp auto-ingest in the Burp Bridge module descriptor.
+- Implemented Chromium-side POST handoff after export generation, with timeout handling, structured warnings, and non-fatal failure behavior so collection still completes locally if Burp is unavailable.
+- Added a Burp-side loopback HTTP ingestion server that accepts `POST` and `OPTIONS`, returns JSON status responses, and updates the BLANCHE suite tab automatically.
+- Refactored the Burp suite tab so both manual file imports and automatic Chromium handoff use the same ingestion path.
+- Added Burp site map integration that annotates matching items or creates a synthetic site map item when needed.
+- Implemented a visible marker using Burp highlight annotations in cyan for pages that contain Chromium-only observations. The detection includes browser-local/storage-oriented artifacts, service worker state, blob/data URLs, and document-start instrumentation observations.
+- Preserved manual JSON loading and updated the suite tab summary/status text to report site map integration outcomes and Chromium-only artifact counts.
+- Added `npm run build:burp` and updated README files to document the automatic ingestion flow, site map highlighting behavior, and current limitations.
+- Rebuilt and verified the project with:
+  - `npm run typecheck`
+  - `npm run build`
+  - `npm run build:burp`
+
+Current Limitation Notes:
+- The implemented Burp marker is cyan highlight plus a managed annotation note because Burp's exposed extension API supports highlight colors and notes directly; underline or custom site map icons are not implemented here.
+- Chromium-only detection is intentionally heuristic and based on artifacts Burp would not ordinarily recover from network traffic alone.

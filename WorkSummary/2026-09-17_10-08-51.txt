@@ -1,0 +1,75 @@
+BLANCHE work turn: compact Target tab URL controls
+Date: 2026-09-17
+Workspace: C:UserspontiOneDriveDesktopBLANCHEBLANCHE-main
+
+User request
+- Collapse the full target URL behind a click-to-reveal control.
+- Add compact controls to copy the full URL, raw URL parameters, and Burp-ready GET or POST request templates.
+
+Backup
+- Pre-change backup:
+  C:UserspontiOneDriveDesktopBLANCHEackupsBLANCHE-main-pre-target-url-controls-2026-09-17
+- Backup manifest:
+  C:UserspontiOneDriveDesktopBLANCHEackupsBLANCHE-main-pre-target-url-controls-2026-09-17BACKUP_MANIFEST.txt
+
+Implemented
+- Replaced the always-visible Target tab URL with a closed native details/summary disclosure.
+- Added compact URL, Params, GET, and POST copy controls shared by the side panel and DevTools console.
+- Kept full URLs and generated requests out of data attributes and status messages.
+- Added a persistent polite live status region; copy confirmation updates no longer replace the console or discard keyboard focus.
+- Disabled parameter copy when the query is empty and disabled request templates for non-HTTP(S) targets.
+- Added exact raw query extraction that preserves ordering, duplicate keys, blank/bare parameters, plus signs, percent encoding, and escape casing.
+- Added minimal HTTP/1.1 templates:
+  GET <path>?<raw-query> HTTP/1.1
+  Host: <host>
+
+  POST <path> HTTP/1.1
+  Host: <host>
+  Content-Type: application/x-www-form-urlencoded
+  Content-Length: <UTF-8 byte length>
+
+  <raw-query>
+- Fragments and URL credentials are omitted from requests. Default ports normalize; non-default ports and bracketed IPv6 hosts are retained.
+- POST is explicitly labeled as a constructed form template derived from the URL query, not an observed POST.
+- Raw ASCII control characters are rejected before exact query preservation.
+- Added focused unit and real-browser smoke commands and documented the controls.
+
+Source files
+- chromium-extension/src/shared/targetRequestTemplates.ts
+- chromium-extension/src/shared/operatorConsole.ts
+- chromium-extension/static/app.css
+- scripts/test-target-request-templates.mjs
+- scripts/smoke-burp-bridge.mjs
+- package.json
+- README.md
+
+Validation passed
+- npm run typecheck
+- npm run test:target-requests
+- npm run test:javascript-analysis
+- npm run test:traffic-ledger
+- npm run test:search-features
+- node --check scripts/smoke-burp-bridge.mjs
+- npm run build
+- npm run smoke:target-url-controls
+
+Focused browser assertions
+- Native disclosure starts closed.
+- Clicking the summary reveals the exact full URL.
+- URL, Params, GET, and POST copies match exact expected strings.
+- Query fixture covers duplicates, blank and bare values, plus encoding, percent encoding, and a fragment.
+- All success notices match and disclose no copied values.
+- Each copy button retains keyboard focus and confirmations use a polite live status region.
+- The collapsed target controls fit without horizontal overflow at 420 px.
+
+Visual artifacts
+- WorkSummary/target-url-controls-smoke.png
+- WorkSummary/target-url-controls-narrow-smoke.png
+
+Full workflow observations
+- The first full smoke attempt passed the target-control stage, then timed out in the existing local NERD result workflow.
+- The second full smoke attempt completed the target-control workflow, then failed the existing export check because an instrumented blob artifact was absent.
+- The focused browser smoke isolates the requested feature and passed repeatedly.
+
+External effects
+- None. Tests used a temporary local browser profile, localhost fixtures, and a stubbed clipboard writer.

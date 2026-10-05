@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://blanche.local/schema/blanche-osint-report.schema.json",
+  "title": "BLANCHE OSINT Report",
+  "type": "object",
+  "required": [
+    "kind",
+    "schemaVersion",
+    "reportMetadata",
+    "scope",
+    "target",
+    "toolExecutions",
+    "findings",
+    "warnings",
+    "errors",
+    "narrative",
+    "summary"
+  ],
+  "properties": {
+    "kind": {
+      "const": "blanche.osint-report"
+    },
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "reportMetadata": {
+      "type": "object",
+      "required": ["reportId", "generatedAt", "generatedBy"],
+      "properties": {
+        "reportId": { "type": "string" },
+        "generatedAt": { "type": "string" },
+        "generatedBy": { "type": "object" },
+        "seedId": { "type": "string" }
+      }
+    },
+    "scope": {
+      "type": "object",
+      "required": ["mode", "allowedActivities", "disallowedActivities"],
+      "properties": {
+        "mode": { "enum": ["public-passive", "public-minimal-touch"] },
+        "allowedActivities": { "type": "array", "items": { "type": "string" } },
+        "disallowedActivities": { "type": "array", "items": { "type": "string" } },
+        "operatorNotes": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "target": {
+      "type": "object",
+      "required": ["primaryHostname", "relatedHostnames"],
+      "properties": {
+        "primaryHostname": { "type": "string" },
+        "apparentRootDomain": { "type": "string" },
+        "targetUrl": { "type": "string" },
+        "targetOrigin": { "type": "string" },
+        "relatedHostnames": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "seed": {
+      "type": "object"
+    },
+    "toolExecutions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["toolId", "name", "mode", "status", "target", "startedAt", "finishedAt", "outputCount"],
+        "properties": {
+          "toolId": { "type": "string" },
+          "name": { "type": "string" },
+          "mode": { "enum": ["builtin", "external"] },
+          "status": { "enum": ["completed", "partial", "skipped", "failed"] },
+          "target": { "type": "string" },
+          "startedAt": { "type": "string" },
+          "finishedAt": { "type": "string" },
+          "command": { "type": "string" },
+          "outputCount": { "type": "number" },
+          "warnings": { "type": "array", "items": { "type": "string" } },
+          "errors": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["findingId", "category", "title", "description", "target", "confidence", "sourceTools", "tags", "evidence"],
+        "properties": {
+          "findingId": { "type": "string" },
+          "category": { "type": "string" },
+          "title": { "type": "string" },
+          "description": { "type": "string" },
+          "target": { "type": "string" },
+          "confidence": { "enum": ["high", "medium", "low"] },
+          "sourceTools": { "type": "array", "items": { "type": "string" } },
+          "tags": { "type": "array", "items": { "type": "string" } },
+          "evidence": { "type": "object" }
+        }
+      }
+    },
+    "warnings": { "type": "array", "items": { "type": "object" } },
+    "errors": { "type": "array", "items": { "type": "object" } },
+    "narrative": {
+      "type": "object",
+      "required": ["headline", "summary", "followOnFocus", "reportReadyNotes"],
+      "properties": {
+        "headline": { "type": "string" },
+        "summary": { "type": "string" },
+        "followOnFocus": { "type": "array", "items": { "type": "string" } },
+        "reportReadyNotes": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "required": ["findingCount", "findingsByCategory", "completedTools", "skippedTools", "failedTools"],
+      "properties": {
+        "findingCount": { "type": "number" },
+        "findingsByCategory": { "type": "object" },
+        "completedTools": { "type": "number" },
+        "skippedTools": { "type": "number" },
+        "failedTools": { "type": "number" }
+      }
+    }
+  }
+}

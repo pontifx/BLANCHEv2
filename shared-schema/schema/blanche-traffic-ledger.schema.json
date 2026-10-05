@@ -1,0 +1,838 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://blanche.dev/schema/blanche-traffic-ledger-v1.json",
+  "title": "BLANCHE Traffic Ledger",
+  "type": "object",
+  "required": [
+    "kind",
+    "schemaVersion",
+    "metadata",
+    "scopePolicy",
+    "entries",
+    "summary",
+    "dataHandling"
+  ],
+  "properties": {
+    "kind": {
+      "const": "blanche.traffic-ledger"
+    },
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "metadata": {
+      "$ref": "#/$defs/metadata"
+    },
+    "scopePolicy": {
+      "$ref": "#/$defs/scopePolicy"
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/entry"
+      }
+    },
+    "summary": {
+      "$ref": "#/$defs/summary"
+    },
+    "dataHandling": {
+      "$ref": "#/$defs/dataHandling"
+    }
+  },
+  "$defs": {
+    "confidence": {
+      "enum": ["high", "medium", "low"]
+    },
+    "metadata": {
+      "type": "object",
+      "required": [
+        "ledgerId",
+        "generatedAt",
+        "sourceSessionId",
+        "identityModel",
+        "scoreModel"
+      ],
+      "properties": {
+        "ledgerId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "generatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "sourceSessionId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "targetOrigin": {
+          "type": "string"
+        },
+        "observationWindowStart": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "observationWindowBasis": {
+          "const": "retained-last-seen"
+        },
+        "identityModel": {
+          "const": "blanche.endpoint-sha256.v1"
+        },
+        "scoreModel": {
+          "const": "blanche.traffic-priority.v1"
+        },
+        "captureCoverage": {
+          "$ref": "#/$defs/captureCoverage"
+        }
+      },
+      "additionalProperties": false
+    },
+    "captureCoverage": {
+      "type": "object",
+      "required": [
+        "retainedEntryLimit",
+        "persistedByteLimit",
+        "droppedEntryCount",
+        "retentionLossScope",
+        "availableEntryCount",
+        "exportedEntryCount",
+        "truncated",
+        "reasonCodes"
+      ],
+      "properties": {
+        "retainedEntryLimit": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Maximum number of endpoint records retained by the local traffic store."
+        },
+        "persistedByteLimit": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Maximum serialized bytes retained by the local traffic store."
+        },
+        "droppedEntryCount": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Store-wide count of endpoint records evicted since the ledger was last cleared."
+        },
+        "retentionLossScope": {
+          "const": "store-wide-conservative",
+          "description": "Declares that droppedEntryCount and retention reason codes cover the full local store and may include unrelated target contexts."
+        },
+        "availableEntryCount": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Retained endpoint records matching this export context before its output limit."
+        },
+        "exportedEntryCount": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Endpoint records included in this export."
+        },
+        "truncated": {
+          "type": "boolean",
+          "description": "True when store retention, cold-start buffering, or the export limit can make this inventory incomplete."
+        },
+        "reasonCodes": {
+          "$ref": "#/$defs/stringSet",
+          "description": "Machine-readable reasons why this export may be incomplete."
+        }
+      },
+      "additionalProperties": false
+    },
+    "scopePolicy": {
+      "type": "object",
+      "required": ["policyId", "version", "defaultDisposition", "evaluation", "rules"],
+      "properties": {
+        "policyId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "defaultDisposition": {
+          "enum": ["out-of-scope", "review", "unknown"]
+        },
+        "evaluation": {
+          "const": "highest-priority-exclude-on-tie"
+        },
+        "rules": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/scopeRule"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "scopeRule": {
+      "type": "object",
+      "required": ["ruleId", "priority", "disposition", "source", "matcher"],
+      "properties": {
+        "ruleId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "priority": {
+          "type": "integer"
+        },
+        "disposition": {
+          "enum": ["in-scope", "out-of-scope", "review"]
+        },
+        "source": {
+          "enum": ["operator", "burp", "capture-target", "imported"]
+        },
+        "matcher": {
+          "$ref": "#/$defs/scopeMatcher"
+        },
+        "methods": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Z0-9._-]*$"
+          }
+        },
+        "note": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "scopeMatcher": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/exactHostMatcher"
+        },
+        {
+          "$ref": "#/$defs/wildcardSubdomainMatcher"
+        },
+        {
+          "$ref": "#/$defs/urlPrefixMatcher"
+        },
+        {
+          "$ref": "#/$defs/ipv4CidrMatcher"
+        }
+      ]
+    },
+    "exactHostMatcher": {
+      "type": "object",
+      "required": ["kind", "hostname"],
+      "properties": {
+        "kind": {
+          "const": "exact-host"
+        },
+        "hostname": {
+          "type": "string",
+          "minLength": 1
+        },
+        "schemes": {
+          "$ref": "#/$defs/schemes"
+        },
+        "ports": {
+          "$ref": "#/$defs/ports"
+        }
+      },
+      "additionalProperties": false
+    },
+    "wildcardSubdomainMatcher": {
+      "type": "object",
+      "required": ["kind", "baseHostname"],
+      "properties": {
+        "kind": {
+          "const": "wildcard-subdomain"
+        },
+        "baseHostname": {
+          "type": "string",
+          "minLength": 1
+        },
+        "schemes": {
+          "$ref": "#/$defs/schemes"
+        },
+        "ports": {
+          "$ref": "#/$defs/ports"
+        }
+      },
+      "additionalProperties": false
+    },
+    "urlPrefixMatcher": {
+      "type": "object",
+      "required": ["kind", "prefix"],
+      "properties": {
+        "kind": {
+          "const": "url-prefix"
+        },
+        "prefix": {
+          "type": "string",
+          "pattern": "^(https?|wss?)://"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ipv4CidrMatcher": {
+      "type": "object",
+      "required": ["kind", "cidr"],
+      "properties": {
+        "kind": {
+          "const": "ipv4-cidr"
+        },
+        "cidr": {
+          "type": "string",
+          "pattern": "^[0-9]{1,3}(\\.[0-9]{1,3}){3}/([0-9]|[12][0-9]|3[0-2])$"
+        },
+        "schemes": {
+          "$ref": "#/$defs/schemes"
+        },
+        "ports": {
+          "$ref": "#/$defs/ports"
+        }
+      },
+      "additionalProperties": false
+    },
+    "schemes": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "enum": ["http", "https", "ws", "wss"]
+      }
+    },
+    "ports": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 65535
+      }
+    },
+    "entry": {
+      "type": "object",
+      "required": [
+        "entryId",
+        "endpoint",
+        "observation",
+        "scope",
+        "classification",
+        "priority",
+        "evidence"
+      ],
+      "properties": {
+        "entryId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "endpoint": {
+          "$ref": "#/$defs/endpoint"
+        },
+        "observation": {
+          "$ref": "#/$defs/observation"
+        },
+        "scope": {
+          "$ref": "#/$defs/scopeDecision"
+        },
+        "classification": {
+          "$ref": "#/$defs/classification"
+        },
+        "priority": {
+          "$ref": "#/$defs/priorityAssessment"
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/evidenceReference"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "endpoint": {
+      "type": "object",
+      "required": ["scheme", "host", "port", "method", "pathTemplate", "queryParameterNames"],
+      "properties": {
+        "scheme": {
+          "enum": ["http", "https", "ws", "wss"]
+        },
+        "host": {
+          "type": "string",
+          "minLength": 1
+        },
+        "registrableDomain": {
+          "type": "string",
+          "minLength": 1
+        },
+        "port": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 65535
+        },
+        "method": {
+          "type": "string",
+          "pattern": "^(UNKNOWN|[A-Z][A-Z0-9._-]*)$"
+        },
+        "pathTemplate": {
+          "type": "string",
+          "pattern": "^/"
+        },
+        "queryParameterNames": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "observation": {
+      "type": "object",
+      "required": [
+        "firstSeen",
+        "lastSeen",
+        "count",
+        "sources",
+        "sourceOrigins",
+        "frameIds",
+        "initiatorTypes",
+        "resourceTypes",
+        "statusCodes",
+        "contentTypes",
+        "protocols",
+        "cacheStates",
+        "requestHeaderNames",
+        "responseHeaderNames",
+        "requestBodyFieldNames",
+        "coverageGaps"
+      ],
+      "properties": {
+        "firstSeen": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "lastSeen": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "sources": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/observationSource"
+          }
+        },
+        "sourceOrigins": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "frameIds": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "integer"
+          }
+        },
+        "initiatorTypes": {
+          "$ref": "#/$defs/stringSet"
+        },
+        "resourceTypes": {
+          "$ref": "#/$defs/stringSet"
+        },
+        "statusCodes": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 999
+          }
+        },
+        "contentTypes": {
+          "$ref": "#/$defs/stringSet"
+        },
+        "protocols": {
+          "$ref": "#/$defs/stringSet"
+        },
+        "cacheStates": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "enum": ["network", "memory-cache", "disk-cache", "service-worker", "unknown"]
+          }
+        },
+        "requestHeaderNames": {
+          "$ref": "#/$defs/stringSet"
+        },
+        "responseHeaderNames": {
+          "$ref": "#/$defs/stringSet"
+        },
+        "requestBodyFieldNames": {
+          "$ref": "#/$defs/stringSet"
+        },
+        "coverageGaps": {
+          "$ref": "#/$defs/stringSet"
+        },
+        "bytes": {
+          "type": "object",
+          "required": ["transfer", "encoded", "decoded"],
+          "properties": {
+            "transfer": {
+              "type": "number",
+              "minimum": 0
+            },
+            "encoded": {
+              "type": "number",
+              "minimum": 0
+            },
+            "decoded": {
+              "type": "number",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "observationSource": {
+      "enum": [
+        "chromium-performance",
+        "chromium-web-request",
+        "chromium-instrumentation",
+        "burp-proxy",
+        "burp-site-map"
+      ]
+    },
+    "stringSet": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "scopeDecision": {
+      "type": "object",
+      "required": [
+        "disposition",
+        "confidence",
+        "basis",
+        "policyId",
+        "policyVersion",
+        "matchedRuleIds",
+        "reasonCodes",
+        "evaluatedAt"
+      ],
+      "properties": {
+        "disposition": {
+          "enum": ["in-scope", "out-of-scope", "review", "unknown"]
+        },
+        "confidence": {
+          "$ref": "#/$defs/confidence"
+        },
+        "basis": {
+          "enum": ["matched-rule", "default", "operator-override", "burp-target-scope"]
+        },
+        "policyId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "policyVersion": {
+          "type": "string",
+          "minLength": 1
+        },
+        "matchedRuleIds": {
+          "$ref": "#/$defs/stringSet"
+        },
+        "reasonCodes": {
+          "$ref": "#/$defs/stringSet"
+        },
+        "evaluatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "additionalProperties": false
+    },
+    "classification": {
+      "type": "object",
+      "required": [
+        "boundary",
+        "ownership",
+        "environment",
+        "roles",
+        "access",
+        "operations",
+        "dataClasses",
+        "confidence",
+        "reasonCodes"
+      ],
+      "properties": {
+        "boundary": {
+          "enum": ["same-origin", "same-site", "cross-site", "unknown"]
+        },
+        "ownership": {
+          "enum": ["target", "same-organization", "delegated", "third-party", "shared", "unknown"]
+        },
+        "environment": {
+          "enum": ["production", "staging", "development", "test", "local", "unknown"]
+        },
+        "roles": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "navigation",
+              "api",
+              "authentication",
+              "authorization",
+              "administration",
+              "configuration",
+              "upload",
+              "download",
+              "realtime",
+              "telemetry",
+              "static",
+              "worker",
+              "client-control",
+              "source-map",
+              "other"
+            ]
+          }
+        },
+        "access": {
+          "enum": ["anonymous", "authenticated", "privileged", "service", "unknown"]
+        },
+        "operations": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "read",
+              "create",
+              "update",
+              "delete",
+              "authenticate",
+              "authorize",
+              "upload",
+              "download",
+              "subscribe",
+              "execute",
+              "unknown"
+            ]
+          }
+        },
+        "dataClasses": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "enum": ["credential", "session", "personal", "financial", "health", "internal", "source-code"]
+          }
+        },
+        "confidence": {
+          "$ref": "#/$defs/confidence"
+        },
+        "reasonCodes": {
+          "$ref": "#/$defs/stringSet"
+        }
+      },
+      "additionalProperties": false
+    },
+    "priorityAssessment": {
+      "type": "object",
+      "required": ["score", "band", "evidenceConfidence", "classificationConfidence", "factors"],
+      "properties": {
+        "score": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "band": {
+          "enum": ["low", "medium", "high", "urgent"]
+        },
+        "evidenceConfidence": {
+          "$ref": "#/$defs/confidence"
+        },
+        "classificationConfidence": {
+          "$ref": "#/$defs/confidence"
+        },
+        "factors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/priorityFactor"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "priorityFactor": {
+      "type": "object",
+      "required": ["code", "delta", "reason", "evidenceRefs"],
+      "properties": {
+        "code": {
+          "type": "string",
+          "minLength": 1
+        },
+        "delta": {
+          "type": "integer"
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidenceRefs": {
+          "$ref": "#/$defs/stringSet"
+        }
+      },
+      "additionalProperties": false
+    },
+    "evidenceReference": {
+      "type": "object",
+      "required": ["kind", "id", "source"],
+      "properties": {
+        "kind": {
+          "enum": ["artifact", "browser-request", "burp-message", "collector"]
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source": {
+          "type": "string",
+          "minLength": 1
+        },
+        "observedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "additionalProperties": false
+    },
+    "summary": {
+      "type": "object",
+      "required": ["entryCount", "byScope", "byPriority", "handoffEligibleCount", "highestScore"],
+      "properties": {
+        "entryCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "byScope": {
+          "type": "object",
+          "required": ["in-scope", "out-of-scope", "review", "unknown"],
+          "properties": {
+            "in-scope": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "out-of-scope": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "review": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "unknown": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        },
+        "byPriority": {
+          "type": "object",
+          "required": ["low", "medium", "high", "urgent"],
+          "properties": {
+            "low": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "medium": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "high": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "urgent": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        },
+        "handoffEligibleCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "highestScore": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        }
+      },
+      "additionalProperties": false
+    },
+    "dataHandling": {
+      "type": "object",
+      "required": [
+        "queryValuesIncluded",
+        "fragmentsIncluded",
+        "userinfoIncluded",
+        "pathHandling",
+        "rawEvidenceOutsideLedger"
+      ],
+      "properties": {
+        "queryValuesIncluded": {
+          "const": false
+        },
+        "fragmentsIncluded": {
+          "const": false
+        },
+        "userinfoIncluded": {
+          "const": false
+        },
+        "pathHandling": {
+          "type": "object",
+          "required": [
+            "model",
+            "recognizedIdentifiersTemplated",
+            "unrecognizedPathSegmentsIncluded",
+            "residualIdentifierRisk"
+          ],
+          "properties": {
+            "model": {
+              "const": "blanche.path-template.v1"
+            },
+            "recognizedIdentifiersTemplated": {
+              "const": true
+            },
+            "unrecognizedPathSegmentsIncluded": {
+              "const": true
+            },
+            "residualIdentifierRisk": {
+              "const": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "rawEvidenceOutsideLedger": {
+          "const": true
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,756 @@
+{
+  "kind": "blanche.public-javascript-audit",
+  "generatedAt": "2026-09-24T17:20:35.084Z",
+  "collection": {
+    "mode": "anonymous-public-read",
+    "startUrl": "https://wellsoffice.ceo.wellsfargo.com/",
+    "credentialsSent": false,
+    "extractedEnvironmentHostsContacted": false,
+    "limits": {
+      "scriptCount": 8,
+      "charactersPerScript": 524288,
+      "combinedCharacters": 2097152
+    }
+  },
+  "vantageAuthSurface": {
+    "signOnEntry": "https://wellsoffice.ceo.wellsfargo.com/",
+    "signOnPage": "https://wellsoffice.ceo.wellsfargo.com/portal/signon/index.jsp",
+    "authorizationEndpoint": "https://wellsceopf.ceo.wellsfargo.com/as/authorization.oauth2"
+  },
+  "scripts": [
+    {
+      "url": "https://wellsoffice.ceo.wellsfargo.com/adrum/adrum-config.js",
+      "status": 200,
+      "contentType": "application/javascript",
+      "lastModified": "Thu, 04 Jun 2026 03:34:51 GMT",
+      "byteLength": 993,
+      "sha256": "3414ec94f36b9138e8dedfd4416ce1d15cb4f6903e3b3a86758fa74d45b37191",
+      "truncated": false,
+      "blancheAnalysis": {
+        "artifactId": "script_1lso1rq",
+        "transform": {
+          "primary": "readable",
+          "detected": [
+            "readable"
+          ],
+          "confidence": "medium",
+          "complexityScore": 0,
+          "metrics": {
+            "characterCount": 993,
+            "byteLength": 993,
+            "lineCount": 26,
+            "nonEmptyLineCount": 25,
+            "longestLineLength": 77,
+            "meanNonEmptyLineLength": 39,
+            "whitespaceRatio": 0.2165
+          }
+        },
+        "coverage": {
+          "gaps": [
+            "HEURISTIC_STATIC_ANALYSIS",
+            "RUNTIME_NOT_OBSERVED"
+          ]
+        },
+        "purposeClaims": [
+          {
+            "category": "unknown",
+            "confidence": "low",
+            "score": 0
+          }
+        ],
+        "reviewPriority": {
+          "scoreModel": "blanche.script-review-priority.v1",
+          "score": 3,
+          "band": "low",
+          "isVulnerabilitySeverity": false,
+          "factors": [
+            {
+              "code": "CROSS_ORIGIN",
+              "baseWeight": 10,
+              "appliedWeight": 3,
+              "reason": "Cross-origin references or observed transfers warrant boundary review.",
+              "evidenceRefs": [
+                "evidence_1sef4rq"
+              ]
+            }
+          ]
+        },
+        "environmentIndicators": []
+      },
+      "explicitEnvironmentMappings": []
+    },
+    {
+      "url": "https://wellsoffice.ceo.wellsfargo.com/adrum/adrum.js",
+      "status": 200,
+      "contentType": "application/javascript",
+      "lastModified": "Tue, 20 May 2025 05:34:08 GMT",
+      "byteLength": 128206,
+      "sha256": "601612454084c113177eaaec923451e363302357d9583506b57551409f3e66a4",
+      "truncated": false,
+      "blancheAnalysis": {
+        "artifactId": "script_cnardk",
+        "transform": {
+          "primary": "minified",
+          "detected": [
+            "minified"
+          ],
+          "confidence": "medium",
+          "complexityScore": 25,
+          "metrics": {
+            "characterCount": 128206,
+            "byteLength": 128206,
+            "lineCount": 240,
+            "nonEmptyLineCount": 239,
+            "longestLineLength": 7181,
+            "meanNonEmptyLineLength": 535,
+            "whitespaceRatio": 0.0154
+          }
+        },
+        "coverage": {
+          "gaps": [
+            "HEURISTIC_STATIC_ANALYSIS",
+            "RUNTIME_NOT_OBSERVED"
+          ]
+        },
+        "purposeClaims": [
+          {
+            "category": "api-data",
+            "confidence": "medium",
+            "score": 3
+          },
+          {
+            "category": "loader-runtime",
+            "confidence": "medium",
+            "score": 3
+          },
+          {
+            "category": "telemetry-analytics",
+            "confidence": "medium",
+            "score": 3
+          },
+          {
+            "category": "app-shell-ui",
+            "confidence": "low",
+            "score": 2
+          }
+        ],
+        "reviewPriority": {
+          "scoreModel": "blanche.script-review-priority.v1",
+          "score": 37,
+          "band": "medium",
+          "isVulnerabilitySeverity": false,
+          "factors": [
+            {
+              "code": "STATE_CHANGE",
+              "baseWeight": 25,
+              "appliedWeight": 17,
+              "reason": "Potentially state-changing server behavior warrants review.",
+              "evidenceRefs": [
+                "evidence_16vo7ul"
+              ]
+            },
+            {
+              "code": "SENSITIVE_DATA",
+              "baseWeight": 15,
+              "appliedWeight": 4,
+              "reason": "Potentially sensitive data semantics warrant review.",
+              "evidenceRefs": [
+                "evidence_ssgvgs"
+              ]
+            },
+            {
+              "code": "DYNAMIC_EXECUTION",
+              "baseWeight": 15,
+              "appliedWeight": 10,
+              "reason": "Dynamic code or module loading warrants review.",
+              "evidenceRefs": [
+                "evidence_1czz206"
+              ]
+            },
+            {
+              "code": "CROSS_ORIGIN",
+              "baseWeight": 10,
+              "appliedWeight": 3,
+              "reason": "Cross-origin references or observed transfers warrant boundary review.",
+              "evidenceRefs": [
+                "evidence_1twr9ai"
+              ]
+            },
+            {
+              "code": "NETWORK_FANOUT",
+              "baseWeight": 5,
+              "appliedWeight": 3,
+              "reason": "The artifact references 3 distinct network hosts.",
+              "evidenceRefs": [
+                "evidence_1twr9ai",
+                "evidence_fb972s",
+                "evidence_uq1emp",
+                "evidence_1dinlur",
+                "evidence_lr5dkl",
+                "evidence_1vveqcf"
+              ]
+            }
+          ]
+        },
+        "environmentIndicators": []
+      },
+      "explicitEnvironmentMappings": []
+    },
+    {
+      "url": "https://wellsoffice.ceo.wellsfargo.com/adrum/splunk-otel-web.js",
+      "status": 200,
+      "contentType": "application/javascript",
+      "lastModified": "Thu, 04 Jun 2026 03:27:36 GMT",
+      "byteLength": 384523,
+      "sha256": "24a49a87a009025fcd4b02dddb8f5f4c5755f4770d8340e6eb090b1d5e5a2bbc",
+      "truncated": false,
+      "blancheAnalysis": {
+        "artifactId": "script_qfm9z6",
+        "transform": {
+          "primary": "minified",
+          "detected": [
+            "minified"
+          ],
+          "confidence": "medium",
+          "complexityScore": 25,
+          "metrics": {
+            "characterCount": 384507,
+            "byteLength": 384523,
+            "lineCount": 2,
+            "nonEmptyLineCount": 2,
+            "longestLineLength": 384463,
+            "meanNonEmptyLineLength": 192253,
+            "whitespaceRatio": 0.0221
+          }
+        },
+        "coverage": {
+          "gaps": [
+            "HEURISTIC_STATIC_ANALYSIS",
+            "SOURCE_MAP_UNAVAILABLE",
+            "UNRESOLVED_WASM",
+            "RUNTIME_NOT_OBSERVED"
+          ]
+        },
+        "purposeClaims": [
+          {
+            "category": "api-data",
+            "confidence": "medium",
+            "score": 3
+          },
+          {
+            "category": "realtime-messaging",
+            "confidence": "medium",
+            "score": 3
+          },
+          {
+            "category": "storage-offline",
+            "confidence": "medium",
+            "score": 3
+          },
+          {
+            "category": "telemetry-analytics",
+            "confidence": "medium",
+            "score": 3
+          },
+          {
+            "category": "app-shell-ui",
+            "confidence": "low",
+            "score": 2
+          },
+          {
+            "category": "feature-configuration",
+            "confidence": "low",
+            "score": 1
+          },
+          {
+            "category": "identity-access",
+            "confidence": "low",
+            "score": 1
+          }
+        ],
+        "reviewPriority": {
+          "scoreModel": "blanche.script-review-priority.v1",
+          "score": 47,
+          "band": "medium",
+          "isVulnerabilitySeverity": false,
+          "factors": [
+            {
+              "code": "STATE_CHANGE",
+              "baseWeight": 25,
+              "appliedWeight": 17,
+              "reason": "Potentially state-changing server behavior warrants review.",
+              "evidenceRefs": [
+                "evidence_quvijm"
+              ]
+            },
+            {
+              "code": "SENSITIVE_DATA",
+              "baseWeight": 15,
+              "appliedWeight": 4,
+              "reason": "Potentially sensitive data semantics warrant review.",
+              "evidenceRefs": [
+                "evidence_rpfxct"
+              ]
+            },
+            {
+              "code": "DYNAMIC_EXECUTION",
+              "baseWeight": 15,
+              "appliedWeight": 10,
+              "reason": "Dynamic code or module loading warrants review.",
+              "evidenceRefs": [
+                "evidence_100vifm"
+              ]
+            },
+            {
+              "code": "CROSS_ORIGIN",
+              "baseWeight": 10,
+              "appliedWeight": 3,
+              "reason": "Cross-origin references or observed transfers warrant boundary review.",
+              "evidenceRefs": [
+                "evidence_1u7ejzo"
+              ]
+            },
+            {
+              "code": "PERSISTENCE_REALTIME",
+              "baseWeight": 10,
+              "appliedWeight": 7,
+              "reason": "Persistent, background, or realtime behavior warrants review.",
+              "evidenceRefs": [
+                "evidence_1noljo4"
+              ]
+            },
+            {
+              "code": "LATENT_CONTROL",
+              "baseWeight": 10,
+              "appliedWeight": 3,
+              "reason": "Latent, debug, or administrative controls warrant review.",
+              "evidenceRefs": [
+                "evidence_ja4xt5"
+              ]
+            },
+            {
+              "code": "NETWORK_FANOUT",
+              "baseWeight": 5,
+              "appliedWeight": 3,
+              "reason": "The artifact references 9 distinct network hosts.",
+              "evidenceRefs": [
+                "evidence_1u7ejzo",
+                "evidence_1cj4138",
+                "evidence_4fvqjp",
+                "evidence_38uc2j",
+                "evidence_1itltxm",
+                "evidence_1ykezun",
+                "evidence_1j7n132",
+                "evidence_lc37ru",
+                "evidence_1bndhze",
+                "evidence_nregwo",
+                "evidence_1qdw05q",
+                "evidence_p12e21",
+                "evidence_1gguzmb"
+              ]
+            }
+          ]
+        },
+        "environmentIndicators": []
+      },
+      "explicitEnvironmentMappings": []
+    },
+    {
+      "url": "https://wellsoffice.ceo.wellsfargo.com/adrum/splunk-config.js",
+      "status": 200,
+      "contentType": "application/javascript",
+      "lastModified": "Thu, 04 Jun 2026 03:32:34 GMT",
+      "byteLength": 504,
+      "sha256": "cf722c9ac81c010c6427929411f45df4de1a4e89ddc11775f9be62f4ea536e86",
+      "truncated": false,
+      "blancheAnalysis": {
+        "artifactId": "script_n16xgg",
+        "transform": {
+          "primary": "readable",
+          "detected": [
+            "readable"
+          ],
+          "confidence": "medium",
+          "complexityScore": 0,
+          "metrics": {
+            "characterCount": 504,
+            "byteLength": 504,
+            "lineCount": 19,
+            "nonEmptyLineCount": 18,
+            "longestLineLength": 58,
+            "meanNonEmptyLineLength": 26,
+            "whitespaceRatio": 0.1905
+          }
+        },
+        "coverage": {
+          "gaps": [
+            "HEURISTIC_STATIC_ANALYSIS",
+            "RUNTIME_NOT_OBSERVED"
+          ]
+        },
+        "purposeClaims": [
+          {
+            "category": "identity-access",
+            "confidence": "low",
+            "score": 1
+          }
+        ],
+        "reviewPriority": {
+          "scoreModel": "blanche.script-review-priority.v1",
+          "score": 4,
+          "band": "low",
+          "isVulnerabilitySeverity": false,
+          "factors": [
+            {
+              "code": "SENSITIVE_DATA",
+              "baseWeight": 15,
+              "appliedWeight": 4,
+              "reason": "Potentially sensitive data semantics warrant review.",
+              "evidenceRefs": [
+                "evidence_1r4nfrl"
+              ]
+            }
+          ]
+        },
+        "environmentIndicators": []
+      },
+      "explicitEnvironmentMappings": []
+    },
+    {
+      "url": "https://wellsoffice.ceo.wellsfargo.com/ceosignon/optanonScript.js",
+      "status": 200,
+      "contentType": "text/javascript",
+      "lastModified": "Mon, 21 Sep 2026 23:40:20 GMT",
+      "byteLength": 35,
+      "sha256": "576e2898a6f8e1d7294054591747717e60185018c1d9c3a28dceea78eb3c1092",
+      "truncated": false,
+      "blancheAnalysis": {
+        "artifactId": "script_sod237",
+        "transform": {
+          "primary": "readable",
+          "detected": [
+            "readable"
+          ],
+          "confidence": "low",
+          "complexityScore": 0,
+          "metrics": {
+            "characterCount": 35,
+            "byteLength": 35,
+            "lineCount": 1,
+            "nonEmptyLineCount": 1,
+            "longestLineLength": 35,
+            "meanNonEmptyLineLength": 35,
+            "whitespaceRatio": 0
+          }
+        },
+        "coverage": {
+          "gaps": [
+            "HEURISTIC_STATIC_ANALYSIS",
+            "RUNTIME_NOT_OBSERVED"
+          ]
+        },
+        "purposeClaims": [
+          {
+            "category": "unknown",
+            "confidence": "low",
+            "score": 0
+          }
+        ],
+        "reviewPriority": {
+          "scoreModel": "blanche.script-review-priority.v1",
+          "score": 0,
+          "band": "low",
+          "isVulnerabilitySeverity": false,
+          "factors": []
+        },
+        "environmentIndicators": []
+      },
+      "explicitEnvironmentMappings": []
+    },
+    {
+      "url": "https://wellsoffice.ceo.wellsfargo.com/ceosignon/MVP2.bundle.4ad597c3f52a94af6168.js",
+      "status": 200,
+      "contentType": "text/javascript",
+      "lastModified": "Mon, 21 Sep 2026 23:40:20 GMT",
+      "byteLength": 45068,
+      "sha256": "939cb3af27ff554390c81a850c6ead1d0fc84fcb46b2b079180e9783a4b171cb",
+      "truncated": false,
+      "blancheAnalysis": {
+        "artifactId": "script_1ju0asq",
+        "transform": {
+          "primary": "bundled",
+          "detected": [
+            "bundled",
+            "minified"
+          ],
+          "confidence": "medium",
+          "complexityScore": 49,
+          "metrics": {
+            "characterCount": 45068,
+            "byteLength": 45068,
+            "lineCount": 1,
+            "nonEmptyLineCount": 1,
+            "longestLineLength": 45068,
+            "meanNonEmptyLineLength": 45068,
+            "whitespaceRatio": 0.0069
+          }
+        },
+        "coverage": {
+          "gaps": [
+            "HEURISTIC_STATIC_ANALYSIS",
+            "RUNTIME_NOT_OBSERVED"
+          ]
+        },
+        "purposeClaims": [
+          {
+            "category": "loader-runtime",
+            "confidence": "high",
+            "score": 5
+          }
+        ],
+        "reviewPriority": {
+          "scoreModel": "blanche.script-review-priority.v1",
+          "score": 14,
+          "band": "low",
+          "isVulnerabilitySeverity": false,
+          "factors": [
+            {
+              "code": "DYNAMIC_EXECUTION",
+              "baseWeight": 15,
+              "appliedWeight": 10,
+              "reason": "Dynamic code or module loading warrants review.",
+              "evidenceRefs": [
+                "evidence_dgwlbz"
+              ]
+            },
+            {
+              "code": "CROSS_ORIGIN",
+              "baseWeight": 10,
+              "appliedWeight": 3,
+              "reason": "Cross-origin references or observed transfers warrant boundary review.",
+              "evidenceRefs": [
+                "evidence_14ejb08"
+              ]
+            },
+            {
+              "code": "NETWORK_FANOUT",
+              "baseWeight": 5,
+              "appliedWeight": 1,
+              "reason": "The artifact references 8 distinct network hosts.",
+              "evidenceRefs": [
+                "evidence_14ejb08",
+                "evidence_1pns6mf",
+                "evidence_1mif9qe",
+                "evidence_1jehep3",
+                "evidence_uvz41d",
+                "evidence_1i7zxy6",
+                "evidence_1dsy5qs",
+                "evidence_1jdfoh0",
+                "evidence_y14eqe",
+                "evidence_1ekgr2x",
+                "evidence_1lvzftb",
+                "evidence_doddnm",
+                "evidence_1lc7gxt",
+                "evidence_sk4gl3",
+                "evidence_awu34w",
+                "evidence_9cvmvr",
+                "evidence_1cc8umg",
+                "evidence_1mw99i"
+              ]
+            }
+          ]
+        },
+        "environmentIndicators": [
+          {
+            "kind": "host",
+            "value": "wcaloginmfedev.cfapps.wellsfargo.net"
+          },
+          {
+            "kind": "host",
+            "value": "wcaloginmfesit.cfapps.wellsfargo.net"
+          },
+          {
+            "kind": "host",
+            "value": "wellsceomfes-devd.ceo.wellsfargo.com"
+          },
+          {
+            "kind": "host",
+            "value": "wellsceomfes-sitd.ceo.wellsfargo.com"
+          }
+        ]
+      },
+      "explicitEnvironmentMappings": [
+        {
+          "mappingKey": "WFRIA_MFE_LOGINMFE",
+          "environment": "SIT",
+          "hostname": "wcaloginmfesit.cfapps.wellsfargo.net",
+          "resourceUrl": "https://wcaloginmfesit.cfapps.wellsfargo.net/login-mfe/auth/v1/remoteEntry.js"
+        },
+        {
+          "mappingKey": "WFRIA_MFE_LOGINMFE",
+          "environment": "DEV",
+          "hostname": "wcaloginmfedev.cfapps.wellsfargo.net",
+          "resourceUrl": "https://wcaloginmfedev.cfapps.wellsfargo.net/login-mfe/auth/v1/remoteEntry.js"
+        },
+        {
+          "mappingKey": "MFE_6DFC4560_E6F2_478F_8D95_E33063EDA3B5",
+          "environment": "SIT",
+          "hostname": "wellsceomfes-sitd.ceo.wellsfargo.com",
+          "resourceUrl": "https://wellsceomfes-sitd.ceo.wellsfargo.com/selfhelpmfe/selfhelpmfe/remoteEntry.js"
+        },
+        {
+          "mappingKey": "MFE_6DFC4560_E6F2_478F_8D95_E33063EDA3B5",
+          "environment": "DEV",
+          "hostname": "wellsceomfes-devd.ceo.wellsfargo.com",
+          "resourceUrl": "https://wellsceomfes-devd.ceo.wellsfargo.com/selfhelpmfe/selfhelpmfe/remoteEntry.js"
+        },
+        {
+          "mappingKey": "CEOPT_MFE_FOOTERMFE",
+          "environment": "SIT",
+          "hostname": "wellsceomfes-sitd.ceo.wellsfargo.com",
+          "resourceUrl": "https://wellsceomfes-sitd.ceo.wellsfargo.com/footermfe/footermfe/v1/remoteEntry.js"
+        },
+        {
+          "mappingKey": "CEOPT_MFE_FOOTERMFE",
+          "environment": "DEV",
+          "hostname": "wellsceomfes-devd.ceo.wellsfargo.com",
+          "resourceUrl": "https://wellsceomfes-devd.ceo.wellsfargo.com/footermfe/footermfe/v1/remoteEntry.js"
+        }
+      ]
+    },
+    {
+      "url": "https://wellsoffice.ceo.wellsfargo.com/ceosignon/globals.bundle.a9cc6427866bf36d2459.js",
+      "status": 200,
+      "contentType": "text/javascript",
+      "lastModified": "Mon, 21 Sep 2026 23:40:20 GMT",
+      "byteLength": 40508,
+      "sha256": "6d68d7f7669ec9b2a9625189a0303a876d3eeceb4f55dff0057f1dd01f58aa6e",
+      "truncated": false,
+      "blancheAnalysis": {
+        "artifactId": "script_1jovz5v",
+        "transform": {
+          "primary": "bundled",
+          "detected": [
+            "bundled",
+            "minified"
+          ],
+          "confidence": "medium",
+          "complexityScore": 49,
+          "metrics": {
+            "characterCount": 40508,
+            "byteLength": 40508,
+            "lineCount": 1,
+            "nonEmptyLineCount": 1,
+            "longestLineLength": 40508,
+            "meanNonEmptyLineLength": 40508,
+            "whitespaceRatio": 0.0064
+          }
+        },
+        "coverage": {
+          "gaps": [
+            "HEURISTIC_STATIC_ANALYSIS",
+            "RUNTIME_NOT_OBSERVED"
+          ]
+        },
+        "purposeClaims": [
+          {
+            "category": "loader-runtime",
+            "confidence": "high",
+            "score": 5
+          }
+        ],
+        "reviewPriority": {
+          "scoreModel": "blanche.script-review-priority.v1",
+          "score": 0,
+          "band": "low",
+          "isVulnerabilitySeverity": false,
+          "factors": [
+            {
+              "code": "DYNAMIC_EXECUTION",
+              "baseWeight": 15,
+              "appliedWeight": 10,
+              "reason": "Dynamic code or module loading warrants review.",
+              "evidenceRefs": [
+                "evidence_1s4joce"
+              ]
+            },
+            {
+              "code": "VENDOR_ONLY",
+              "baseWeight": -15,
+              "appliedWeight": -15,
+              "reason": "Current evidence supports only loader/runtime or third-party integration behavior.",
+              "evidenceRefs": [
+                "evidence_aj21m1",
+                "evidence_lbhdf3"
+              ]
+            }
+          ]
+        },
+        "environmentIndicators": []
+      },
+      "explicitEnvironmentMappings": []
+    },
+    {
+      "url": "https://wellsoffice.ceo.wellsfargo.com/p9UTyWCD5S9-Qb3Mfw/OiDirQGzpcwLNQ/ZkxYJBIC/fSUi/XDwLBkk",
+      "status": 200,
+      "contentType": "application/javascript",
+      "lastModified": "Sat, 19 Sep 2026 17:14:07 GMT",
+      "byteLength": 632211,
+      "sha256": "c8fbb7c81ed56b67cbd26b7607f8b80bde8111cb47b830fcb6f361dfe286e7b2",
+      "truncated": true,
+      "blancheAnalysis": {
+        "artifactId": "script_1fwli8b",
+        "transform": {
+          "primary": "minified",
+          "detected": [
+            "minified"
+          ],
+          "confidence": "medium",
+          "complexityScore": 25,
+          "metrics": {
+            "characterCount": 524288,
+            "byteLength": 524288,
+            "lineCount": 1,
+            "nonEmptyLineCount": 1,
+            "longestLineLength": 524288,
+            "meanNonEmptyLineLength": 524288,
+            "whitespaceRatio": 0.0133
+          }
+        },
+        "coverage": {
+          "gaps": [
+            "TRUNCATED_SOURCE",
+            "HEURISTIC_STATIC_ANALYSIS",
+            "RUNTIME_NOT_OBSERVED"
+          ]
+        },
+        "purposeClaims": [
+          {
+            "category": "unknown",
+            "confidence": "low",
+            "score": 0
+          }
+        ],
+        "reviewPriority": {
+          "scoreModel": "blanche.script-review-priority.v1",
+          "score": 4,
+          "band": "low",
+          "isVulnerabilitySeverity": false,
+          "factors": [
+            {
+              "code": "SENSITIVE_DATA",
+              "baseWeight": 15,
+              "appliedWeight": 4,
+              "reason": "Potentially sensitive data semantics warrant review.",
+              "evidenceRefs": [
+                "evidence_o2h3cc"
+              ]
+            }
+          ]
+        },
+        "environmentIndicators": []
+      },
+      "explicitEnvironmentMappings": []
+    }
+  ]
+}

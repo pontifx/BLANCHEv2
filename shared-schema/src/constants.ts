@@ -1,0 +1,9 @@
+export const BLANCHE_SCHEMA_VERSION = '1.1.0' as const;
+export const BLANCHE_EXPORT_KIND = 'blanche.export' as const;
+export const BLANCHE_TRAFFIC_LEDGER_SCHEMA_VERSION = '1.0.0' as const;
+export const BLANCHE_TRAFFIC_LEDGER_KIND = 'blanche.traffic-ledger' as const;
+export const BLANCHE_OSINT_SCHEMA_VERSION = '1.0.0' as const;
+export const BLANCHE_OSINT_SEED_KIND = 'blanche.osint-seed' as const;
+export const BLANCHE_OSINT_REPORT_KIND = 'blanche.osint-report' as const;
+export const BLANCHE_TEAR_SHEET_SCHEMA_VERSION = '1.0.0' as const;
+export const BLANCHE_TEAR_SHEET_KIND = 'blanche.tear-sheet' as const;

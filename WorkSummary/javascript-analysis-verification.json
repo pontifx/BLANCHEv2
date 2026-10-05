@@ -1,0 +1,77 @@
+{
+  "kind": "blanche.javascript-analysis-smoke-report",
+  "schemaVersion": "1.0.0",
+  "generatedAt": "2026-10-05T18:50:57.391Z",
+  "target": {
+    "url": "http://127.0.0.1:56781/",
+    "title": "BLANCHE bridge smoke target",
+    "origin": "http://127.0.0.1:56781",
+    "hostname": "127.0.0.1"
+  },
+  "rubricVersion": "blanche.script-purpose-rubric.v1",
+  "staticAnalysis": {
+    "rawDocumentAssessmentPresent": true,
+    "passiveAssessmentCount": 1,
+    "passiveAppAssessmentPresent": true,
+    "passiveReloadCountDelta": 0,
+    "queuedPassiveStartupSerialized": true,
+    "multiCandidateRecoveryRetained": true
+  },
+  "featureSwitchboard": {
+    "lateDiscoveryStatus": "ok",
+    "newFeatureFlashVerified": true,
+    "onOffControlsPresent": true,
+    "enableStatus": "ok",
+    "disableStatus": "ok",
+    "secondEnableStatus": "ok",
+    "codeDiffVerified": true,
+    "pageAdditionVerified": true,
+    "pageRemovalVerified": true,
+    "activeChangeCountBeforeRestore": 2,
+    "exactContainerRestore": true
+  },
+  "startupObservation": {
+    "actionStatus": "partial",
+    "testRunId": "javascript-test_muvluusc_3756be28-6fb8-481e-9d57-1e56b24b96ee",
+    "overallStatus": "partial",
+    "scopeDisposition": "in-scope",
+    "reloadCountDelta": 1,
+    "instrumentationAvailable": true,
+    "instrumentationIntegrity": "page-world-unverified",
+    "sourceBindingMatches": true,
+    "fingerprintCount": 1,
+    "evidenceRecordCount": 24,
+    "trafficEvidenceRecordCount": 5,
+    "allCellEvidenceRefsResolve": true,
+    "runtimeStats": {
+      "eventCount": 19,
+      "lifecycleCount": 2,
+      "trafficEntryCount": 5,
+      "networkRequestCount": 1,
+      "domMutationCount": 4,
+      "storageWriteCount": 3,
+      "routeChangeCount": 0,
+      "workerCount": 1,
+      "realtimeCount": 0,
+      "runtimeErrorCount": 0
+    },
+    "observedCellIds": [
+      "traffic-window",
+      "behavior-network"
+    ],
+    "unverifiedObservedCellIds": [
+      "behavior-dom-ui",
+      "behavior-client-storage",
+      "behavior-dynamic-code-loading",
+      "behavior-persistence-background-realtime",
+      "behavior-latent-debug-admin"
+    ]
+  },
+  "reportCorrelation": {
+    "scriptAssessmentCount": 1,
+    "javascriptTestRunId": "javascript-test_muvluusc_3756be28-6fb8-481e-9d57-1e56b24b96ee",
+    "hasJavascriptContext": true,
+    "fullReportHtml": "search-feature-full-report.html",
+    "fullReportJson": "search-feature-full-report.json"
+  }
+}

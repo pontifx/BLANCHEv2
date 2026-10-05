@@ -1,0 +1,25 @@
+Timestamp: 2026-03-19 22:00:45 America/Los_Angeles
+
+Prompt Used:
+That makes sense lets try that. Burp already has a http://burp function so I think it would not be insane to include that
+
+Work Summary:
+- Replaced the Burp-side localhost ingestion transport with a proxy-native synthetic request transport.
+- Removed `BlancheIngestionServer` and added `BlancheProxyBridge` in `burp-extension/src/main/java/com/blanche/burp/BlancheProxyBridge.java`.
+- Registered Montoya proxy request and response handlers so the extension now:
+  - detects `http://burp/blanche/ingest`
+  - ingests the JSON body directly from the proxied request
+  - rewrites the outbound transit request to `http://burp/`
+  - replaces the browser-facing response with a synthetic `204 No Content` or structured error response
+- Updated the Burp extension bootstrap to use the new proxy bridge and expose `http://burp/blanche/ingest` in the UI.
+- Updated the Chromium Burp Bridge default ingest URL to `http://burp/blanche/ingest`.
+- Added `http://burp/*` to the Chromium module host permissions and updated documentation to describe the proxy-native flow.
+- Kept the existing site map integration and Chromium-only highlighting behavior intact.
+
+Verification:
+- `npm run typecheck`
+- `npm run build`
+- `npm run build:burp`
+
+Operational Note:
+- The default automatic handoff now depends on the browser actually using Burp as its proxy, so that requests to `http://burp/blanche/ingest` are seen inside Burp's proxy pipeline.

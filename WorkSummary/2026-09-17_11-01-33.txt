@@ -1,0 +1,70 @@
+BLANCHE work turn: persistent console disclosure state
+Date: 2026-09-17
+Workspace: C:UserspontiOneDriveDesktopBLANCHEBLANCHE-main
+
+User report
+- Target tab Full URL disclosure opened and then automatically closed.
+- Requested an audit and fix for the same behavior in other features.
+
+Root cause
+- operatorConsole pollState runs every 1500 ms.
+- Every successful poll called render(), which replaced the full container with innerHTML.
+- Native details elements were recreated closed.
+- The previous target smoke retained a detached HTMLDetailsElement reference and asserted before/reused that stale node, so it did not catch the live-DOM failure.
+
+Affected disclosure families audited
+- Target URL.
+- Search throttle settings.
+- Per-module settings.
+- JavaScript scan warnings.
+- Per-script weak purpose signals, sanitized indicators, evidence/priority factors, and test plans.
+- JavaScript startup-test coverage gaps.
+- Traffic evidence and score factors.
+- NERD reviewed URL template composer.
+- Search operator support cells.
+- Report permission details shown in the console preview.
+- The standalone downloaded report has no polling, but shares the harmless stable key.
+
+Implementation
+- Added a mounted-console Set of open disclosure keys.
+- Every details template now has a stable data-disclosure-key based on feature identity and record IDs, never URL values.
+- render() captures the live open/closed state before replacing the DOM.
+- After the main markup and dynamic module cards are present, render() restores each disclosure and rewires toggle tracking.
+- Open and deliberately closed states both persist across polling, manual refresh, actions, and console-view navigation.
+- Focused summary controls restore keyboard focus to the matching live summary after a background poll replaces the node.
+- Changed the target summary accessible name from the state-specific "Reveal the full target URL" to "Full target URL".
+
+Regression coverage
+- Added scripts/test-console-disclosures.mjs and npm run test:console-disclosures.
+- Source audit covers all 13 current details templates and rejects missing or duplicate key expressions.
+- Focused Edge smoke now:
+  - focuses and opens the target disclosure;
+  - waits until polling disconnects the original node;
+  - requeries the live DOM and verifies the exact URL remains visible;
+  - verifies keyboard focus moved to the live replacement summary;
+  - verifies persistence through explicit Refresh and navigation;
+  - verifies a deliberate close stays closed after another poll;
+  - repeats live poll persistence for Search throttles, NERD composer, an operator catalog disclosure, and module settings.
+- Traffic, JavaScript, and report disclosure templates use the same state path and are covered by the exhaustive key audit; the early target-only browser fixture does not create those records.
+
+Validation passed
+- npm run typecheck
+- npm run test:console-disclosures
+- npm run test:target-requests
+- npm run test:javascript-analysis
+- npm run test:traffic-ledger
+- npm run test:search-features
+- node --check scripts/smoke-burp-bridge.mjs
+- npm run build
+- npm run smoke:target-url-controls
+
+Backup
+- C:UserspontiOneDriveDesktopBLANCHEackupsBLANCHE-main-pre-disclosure-state-fix-2026-09-17
+- Manifest: BACKUP_MANIFEST.txt
+
+Visual artifacts
+- WorkSummary	arget-url-controls-smoke.png
+- WorkSummary	arget-url-controls-narrow-smoke.png
+
+External effects
+- None. Browser checks used a temporary local profile and localhost fixture.

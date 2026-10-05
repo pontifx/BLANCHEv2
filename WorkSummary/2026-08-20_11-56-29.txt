@@ -1,0 +1,34 @@
+Timestamp:
+2026-08-20 11:56:29 America/Los_Angeles
+
+Prompt:
+Hey DB~ lets do some work turns on BLANCHE. First off, can we create a comprehensive tear sheet report that also has a json export mode of what BLANCHE saw from the site? Think like a HAR file on steroids that we can also use to explain things to the stakeholders.
+
+Summary:
+- Added an additive blanche.tear-sheet v1 TypeScript model and strict JSON Schema without changing the existing blanche.export envelope.
+- Added a canonical site-report builder that combines the complete source browser capture with exact-hostname-correlated BLANCHE findings, search activity, documents, latent-feature observations, interest analysis, and recent activity.
+- Added evidence metrics, collector coverage, category/origin/provenance summaries, referenced observations, collection limitations, confidence/assessment labels, evidence timestamps, source/report IDs, and an explicit sensitive-data declaration.
+- Added a stakeholder-oriented, self-contained HTML renderer with a restrictive CSP, escaped dynamic values, redacted browser values, and masked URL credentials, query strings, fragments, data payloads, and sensitive/high-entropy path segments.
+- Added a Report surface to the Chromium console with Stakeholder and JSON Evidence modes; full instrumented and passive capture controls; HTML/JSON downloads; JSON copy; and clear handling guidance.
+- Kept JSON Evidence lossless relative to the BLANCHE source export by embedding the full BlancheExportV1 source capture. This mode may include sensitive browser-storage values.
+- Added a forced full instrumented capture action and registered report JSON/HTML exporters in the Burp Bridge module descriptor.
+- Added responsive report styling and a visual smoke artifact at WorkSummary/site-tear-sheet-smoke.png.
+- Added report documentation in docs/site-tear-sheet.md and updated README.md and docs/architecture.md with workflow, provenance, data-handling, and HAR-boundary guidance.
+- Added a focused npm run smoke:tear-sheet workflow that verifies UI modes and controls, report/source parity, provenance totals, browser-only classification, limitations, URL/storage masking, and the actual downloaded HTML and JSON files.
+
+Verification:
+- PASS: npm run typecheck
+- PASS: npm run build
+- PASS: npm run build:osint
+- PASS: npm run build:burp
+- PASS: npm run smoke:tear-sheet
+- PASS: node --check scripts/smoke-burp-bridge.mjs
+- PASS: blanche-tear-sheet.schema.json parses as JSON
+- VISUAL PASS: WorkSummary/site-tear-sheet-smoke.png reviewed for hierarchy, readability, evidence inventory, limitations, and artifact-table rendering.
+- NOTE: The broader npm run smoke:extension-workflows was attempted but stopped on its existing tracked-search-session timeout before reaching report coverage. The focused tear-sheet smoke passed independently and covers this change.
+
+Current boundaries:
+- The tear sheet is richer browser evidence, not a literal full HAR or packet capture. BLANCHE still does not preserve complete raw HTTP requests/responses, headers, bodies, cookies, redirect chains, connection timings, or initiator chains.
+- Stakeholder HTML is masked but still requires distribution review; JSON Evidence intentionally contains the fuller and potentially sensitive source capture.
+- Exact-hostname correlation does not prove that a related BLANCHE record came from the same capture session; timestamps and a limitation statement are preserved for reviewers.
+- The Report surface is built from the latest source browser export available to the extension.

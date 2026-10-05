@@ -1,0 +1,19 @@
+Timestamp: 2026-03-20 02:08:59 America/Los_Angeles
+
+Prompt Used:
+Denying load of chrome-extension://clgphdbjofpabhgomikgncfkchjjelnk/content/pageInstrumentor.js. Resources must be listed in the web_accessible_resources manifest key in order to be loaded by pages outside the extension.
+
+Work Summary:
+- Traced the failure to a root-load manifest path mismatch.
+- Confirmed that when the extension is loaded from `chromium-extension/`, the active manifest exposes `dist/content/pageInstrumentor.js`, while the content bridge had been requesting `content/pageInstrumentor.js`.
+- Updated `chromium-extension/src/content/bridgeContent.ts` so it no longer hardcodes the instrumentor path.
+- Implemented manifest-driven resolution of the actual web-accessible `pageInstrumentor.js` path using `chrome.runtime.getManifest()`.
+- Added a small type guard for legacy string-style `web_accessible_resources` entries so TypeScript passes cleanly.
+- Rebuilt the Chromium extension and verified the compiled `bridgeContent.js` now calls `resolveInstrumentorPath()` and injects the returned manifest path.
+
+Verification:
+- `npm run typecheck`
+- `npm run build`
+
+Expected Result:
+- After reloading the unpacked Chromium extension, the content script should request the same `pageInstrumentor.js` path that the active manifest exposes, eliminating the `web_accessible_resources` denial.

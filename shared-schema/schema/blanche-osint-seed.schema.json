@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://blanche.local/schema/blanche-osint-seed.schema.json",
+  "title": "BLANCHE OSINT Seed",
+  "type": "object",
+  "required": [
+    "kind",
+    "schemaVersion",
+    "seedMetadata",
+    "scope",
+    "seed",
+    "browserContext",
+    "warnings"
+  ],
+  "properties": {
+    "kind": {
+      "const": "blanche.osint-seed"
+    },
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "seedMetadata": {
+      "type": "object",
+      "required": ["seedId", "createdAt", "generatedBy"],
+      "properties": {
+        "seedId": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "generatedBy": { "type": "object" }
+      }
+    },
+    "scope": {
+      "type": "object",
+      "required": ["mode", "allowedActivities", "disallowedActivities"],
+      "properties": {
+        "mode": { "enum": ["public-passive", "public-minimal-touch"] },
+        "allowedActivities": { "type": "array", "items": { "type": "string" } },
+        "disallowedActivities": { "type": "array", "items": { "type": "string" } },
+        "operatorNotes": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "seed": {
+      "type": "object",
+      "required": ["primaryHostname", "sourceType"],
+      "properties": {
+        "targetUrl": { "type": "string" },
+        "targetOrigin": { "type": "string" },
+        "primaryHostname": { "type": "string" },
+        "apparentRootDomain": { "type": "string" },
+        "sourceType": { "type": "string" }
+      }
+    },
+    "browserContext": {
+      "type": "object",
+      "required": ["relatedHosts", "signals"],
+      "properties": {
+        "tabId": { "type": "number" },
+        "pageUrl": { "type": "string" },
+        "pageOrigin": { "type": "string" },
+        "pageTitle": { "type": "string" },
+        "referrer": { "type": "string" },
+        "apparentRootDomain": { "type": "string" },
+        "relatedHosts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["hostname", "sourceType", "confidence"],
+            "properties": {
+              "hostname": { "type": "string" },
+              "url": { "type": "string" },
+              "sourceType": { "type": "string" },
+              "confidence": { "enum": ["high", "medium", "low"] },
+              "note": { "type": "string" }
+            }
+          }
+        },
+        "signals": {
+          "type": "object"
+        }
+      }
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    }
+  }
+}

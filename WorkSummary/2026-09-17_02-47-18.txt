@@ -1,0 +1,54 @@
+Timestamp:
+2026-09-17 02:47:18 -07:00 America/Los_Angeles
+
+Prompt:
+Add a rubric that explains what packed, minified, bundled, obfuscated, and otherwise difficult JavaScript delivered without authentication appears to do, plus a practical way to test it under an OSINT/security-review workflow.
+
+Backup:
+- Created the pre-change source backup at C:\Users\ponti\OneDrive\Desktop\BLANCHE\backups\BLANCHE-main-pre-javascript-analysis-2026-09-17.
+- The backup contains 95 source, schema, documentation, script, manifest, and package files plus BACKUP_MANIFEST.txt; generated build artifacts were excluded.
+- BACKUP_MANIFEST.txt records source/destination paths and SHA-256 checkpoints for README.md and package-lock.json.
+
+Summary:
+- Added versioned rubric blanche.script-purpose-rubric.v1. It separates representation (readable, minified, bundled, packed, obfuscated, unknown) from likely purpose, behavior maturity, review priority, and source coverage.
+- Added 12 purpose categories, 10 behavior axes with maturity levels 0 through 3, explicit evidence and confidence rules, sanitized indicators, material coverage gaps, and a review-priority score that is explicitly not vulnerability severity.
+- Added a four-stage per-artifact test plan: offline static review, isolated sandbox planning, passive observation, and separately reviewed server-boundary validation. The UI does not claim that unexecuted/manual stages were completed.
+- Added bounded acquisition for inline scripts, already-loaded external scripts, and tabs displaying raw .js/.mjs content. Every retained source is SHA-256 identified. Anonymous external reads require Traffic scope, omit credentials, validate every visible redirect, use hard byte/count/time caps, and do not retry or execute source as extension code.
+- Added Labs actions Analyze Current Tab and Observe Startup (reloads). Static analysis does not reload. Startup observation requires an explicit in-scope Traffic decision, reloads exactly once, freezes runtime and Traffic evidence at the configured cutoff, and records an eight-state behavior matrix.
+- Added bounded document-start observation for fetch/XHR/beacon activity, storage writes, DOM changes, routes, scripts, workers, WebSocket/EventSource construction, errors, and rejections. Response reading, event history, DOM traversal, page signals, and persisted evidence all have hard caps.
+- Separated extension-owned Traffic ledger evidence from same-window page instrumentation. Page messages are retained as page-world-unverified because page code can fabricate or suppress them; they cannot create runtime feature candidates or raise an individual script to maturity level 3.
+- Added exact scan/test binding using stable per-delivery artifact identities plus hashes. Identical bodies delivered as distinct artifacts remain distinct, stale or mismatched successful tests are withheld, and all cell references are filtered to retained evidence and artifacts.
+- Added persistence normalization, URL/query/credential/title/label redaction, bidi/control cleanup, nested-value caps, reversible-probe value caps, and failed-attempt trace handling.
+- Serialized passive analysis, startup observation, local probes, and restore operations per tab. Concurrent action kinds queue in order; concurrent probes cannot both pass the active-probe check.
+- Added navigation/scope revalidation after page collection and again before active-result persistence. Results are discarded if the collected document, origin, or explicit scope no longer matches.
+- Added Delivered JavaScript and bounded startup panels to Labs, correlated findings, stakeholder HTML, and JSON Evidence. Scope policy/version, source coverage, evidence provenance, integrity, gaps, and limitations remain visible.
+- Added docs/javascript-analysis.md and updated README.md, docs/architecture.md, and docs/tester-workflow.md.
+
+Verification:
+- PASS: npm run typecheck
+- PASS: npm run test:javascript-analysis (93 focused assertions covering transform detection, purpose taxonomy, source maps/truncation, maturity, scoring, caps, determinism, scope gates, duplicate bodies, scan/test binding, privacy normalization, integrity downgrades, probe caps, and raw-document detection)
+- PASS: npm run test:traffic-ledger
+- PASS: npm run test:search-features
+- PASS: npm run build
+- PASS: npm run build:burp
+- PASS: node --check scripts/smoke-burp-bridge.mjs
+- PASS: npm run smoke:extension-workflows against a temporary localhost target in Microsoft Edge
+- Browser smoke result: 38 captured artifacts, 5 Traffic endpoints, 8 latent-feature candidates, direct raw-JavaScript assessment, one passive assessment with 0 reloads, and one scoped startup observation with exactly 1 reload.
+- Startup evidence result: 24 retained records, including 5 extension-recorded Traffic ledger shapes and 19 page-world events; 2 extension-verified cells, 5 page-world-unverified cells, 2 static-only cells, and 0 dangling evidence references.
+- Concurrency result: passive plus startup actions serialized with one reload; two simultaneous probes produced one applied probe and one already-active rejection; restore returned the original value.
+- Reporting result: the exact script assessment and startup test run appear together in stakeholder/JSON report output with matching scan ID and artifact fingerprints.
+- Manual visual review: WorkSummary/javascript-analysis-smoke.png clearly renders the rubric result, evidence summaries, action controls, scope provenance, and integrity status.
+
+Review artifacts:
+- WorkSummary/javascript-analysis-verification.json: machine-readable smoke result.
+- WorkSummary/javascript-analysis-smoke.png: Labs UI visual evidence.
+- WorkSummary/search-feature-full-report.json: complete correlated JSON report containing the JavaScript scan and startup test.
+- WorkSummary/search-feature-full-report.html: complete stakeholder report.
+- chromium-extension/dist and chromium-extension/manifest.json: rebuilt extension output.
+- burp-extension/build/blanche-burp-extension-0.1.0-all.jar: rebuilt Burp package.
+
+Current boundaries:
+- No finite automated run can prove every JavaScript path. Observe Startup covers one bounded startup path and states unvisited interaction, identity, entitlement, timing, dynamic-chunk, and backend-dependent paths as gaps.
+- The extension supplies the full four-stage review procedure. Isolated execution and reviewed server-boundary requests remain explicit operator-controlled stages; the one-reload action does not click controls, submit forms, replay transactions, spend, publish, message, or mutate feature flags.
+- Public delivery supports static OSINT collection. Additional reads and any reload still follow the active Traffic scope policy. Third-party library reads remain disabled by default.
+- Same-window page instrumentation is useful lead evidence with unverified integrity. Independently extension-recorded Traffic ledger shapes are the trusted page-level runtime evidence in the current implementation.

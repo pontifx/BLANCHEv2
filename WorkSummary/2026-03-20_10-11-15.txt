@@ -1,0 +1,48 @@
+Prompt:
+From this position adhere and build in functionality that achieves these goals between our burp and chromium extensions. 
+
+In Scope
+
+Automation of publicly accessible OSINT tasks used in team assessments (Wells Fargo & Third party Hosted applications)
+Centralized orchestration of existing and open‑source OSINT tools
+Aggregation and normalization of OSINT outputs
+Report‑ready, informational OSINT outputs to guide follow‑on testing
+
+Out of Scope
+
+Exploitation or active attack capabilities
+Vulnerability validation or severity assignment
+Replacement of existing ProdPT testing tools or methodologies
+Unauthorized data collection or non‑public information gathering
+Expected Outcome
+
+Improved consistency and coverage of OSINT activities across teams
+Reduced manual effort and preparation time for testers
+Earlier identification of potential attack surfaces and testing focus areas
+Clear separation of informational OSINT findings from validated vulnerabilities
+Increased repeatability and auditability of OSINT activities within team
+
+Deliverables:
+
+A centralized OSINT orchestration tool or script framework
+Integrated workflows for launching and coordinating approved OSINT tools
+AI‑assisted analysis capabilities for summarizing and contextualizing results
+Structured, report‑ready OSINT output aligned with ProdPT expectations
+Supporting documentation outlining usage, scope, and guardrails
+Documentation that explains how to use the tool
+
+Summary:
+- Added shared OSINT schema types in shared-schema plus JSON Schema files for OSINT seeds and OSINT reports.
+- Added a new osint-orchestrator package with a build step and a bundled CLI.
+- Implemented passive/public collectors for DNS, HTTP surface, and TLS metadata.
+- Added optional passive wrappers for existing open-source tools already on PATH: subfinder, assetfinder, amass passive mode, gau, and waybackurls.
+- Added normalized OSINT report assembly and markdown report generation for report-ready informational output.
+- Added a new Chromium module, osint-seed, that derives a Burp-consumable OSINT seed from the current tab and browser-visible references.
+- Added Burp-side OSINT coordination, including seed ingestion, local CLI execution, OSINT report ingestion, and new Burp tab views for seed/report data.
+- Broadened both proxy-native and loopback bridges to support browser exports, OSINT seeds, and OSINT reports.
+- Updated README, Burp README, architecture docs, and added docs/osint-workflow.md with scope and guardrails.
+- Verified npm run typecheck, npm run build, npm run build:osint, and npm run build:burp.
+
+Notes:
+- The current OSINT “analysis” layer is deterministic narrative/report-ready summarization, not a live external LLM integration.
+- External passive tool wrappers are best-effort and depend on those tools being installed locally.

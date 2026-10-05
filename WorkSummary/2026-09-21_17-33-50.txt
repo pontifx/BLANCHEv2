@@ -1,0 +1,93 @@
+BLANCHE work turn: pre-change backup and Chromium Feature Switchboard
+Completed: 2026-09-21 17:33 America/Los_Angeles
+
+REQUEST
+- Back up and test the extensions.
+- Build a Chromium panel that discovers feature-shaped controls from packed/delivered JavaScript,
+  switches safe browser-local candidates ON or OFF, highlights the represented code/config change,
+  highlights page changes observed after the switch, and flashes newly discovered features.
+
+BACKUP RESULT
+- Snapshot: ..\..\backups\BLANCHE-main-pre-feature-control-panel-2026-09-20
+- Reusable verifier: ..\..\backups\verify-blanche-extension-backup.mjs
+- PASS: 150 files, 10,793,819 bytes, zero missing/extra/hash-mismatched files.
+- PASS: temporary restore copied and SHA-256 verified all 150 files.
+- PASS: backed Chromium source typechecked with the repository's pinned dependencies.
+- PASS: backed Chromium background bundle passed node --check.
+- PASS: backed Burp fat JAR directory contains the Montoya service entry and BLANCHE classes.
+- Intentionally excluded node_modules, non-Chromium generated build trees, WorkSummary, and about
+  4.2 GB of historical .burp session data. The session histories are test data, may contain
+  sensitive traffic, and are not extension source. The current Burp fat JAR is included.
+- Full inventory and test record: backup BACKUP_MANIFEST.json and BACKUP_MANIFEST.txt.
+
+IMPLEMENTED RESULT
+- Added a Feature Switchboard to Labs with explicit ON/OFF controls and Restore All.
+- Derived explicit enabled/disabled pairs for boolean, 0/1, on/off, enabled/disabled,
+  yes/no, and control/treatment values, including candidates initially observed ON.
+- Only exact, unambiguous localStorage/sessionStorage locations are switchable. Sensitive
+  auth/token/cookie/key/secret/credential/session/license/subscription/permission/role-shaped
+  roots and nested paths remain evidence-only.
+- Added same-tab/origin and explicit in-scope gates plus a live compare-and-set check before write.
+- Recovery is persisted and verified before reload. Multiple flags share one active recovery record;
+  flags in one JSON container retain one exact raw baseline and Restore All writes that container once.
+- Added a one-time New flash/badge for newly discovered candidates. Scans received outside Labs stay
+  unacknowledged until Labs renders them; polling does not restart the 1.2-second animation.
+- Added escaped before/after virtual code/config diff. The UI explicitly says shipped bundle bytes
+  are unchanged rather than pretending to patch minified JavaScript.
+- Added bounded pre/post DOM signatures, added/changed/removed records, and temporary live outlines.
+  Removed nodes highlight their surviving parent. UI and retained limitations call these changes
+  observed after toggle and do not claim causation.
+- Surfaced the latest switch result above the candidate grid so the code and page effects are visible
+  immediately after a change.
+- Preserved probeCandidate as an enabled-state compatibility alias for older callers/snapshots.
+
+PRIMARY SOURCE CHANGES
+- chromium-extension/src/shared/latentFeatureWorkbench.ts
+- chromium-extension/src/modules/latentFeatures/analyzer.ts
+- chromium-extension/src/modules/latentFeatures/background.ts
+- chromium-extension/src/modules/latentFeatures/domToggleObservation.ts (new)
+- chromium-extension/src/modules/latentFeatures/descriptor.json
+- chromium-extension/src/shared/operatorConsole.ts
+- chromium-extension/static/app.css
+- scripts/test-javascript-analysis.mjs
+- scripts/smoke-burp-bridge.mjs
+- docs/feature-switchboard.md (new)
+- docs/latent-feature-discovery.md
+- docs/tester-workflow.md
+- docs/architecture.md
+- README.md
+- Regenerated chromium-extension/dist and chromium-extension/manifest.json.
+
+FINAL VERIFICATION
+- npm run typecheck: PASS
+- npm run test:javascript-analysis: PASS
+- npm run test:console-disclosures: PASS (15 templates)
+- npm run test:traffic-ledger: PASS
+- npm run test:search-features: PASS
+- npm run test:site-search-fingerprint: PASS
+- npm run test:target-requests: PASS
+- npm run build: PASS
+- npm run smoke:extension-workflows: PASS against disposable localhost fixtures.
+
+SWITCHBOARD ACCEPTANCE OBSERVED
+- Newly injected latePreviewFeature was the only newly added ID and rendered New/flash state.
+- Real panel ON/OFF clicks changed compactDashboard false -> true -> false.
+- ON revealed #compact-dashboard-panel; the DOM addition and page outline were verified.
+- OFF removed the section; the removal, surviving-parent outline, and virtual true -> false diff were verified.
+- hiddenTelemetryPanel and compactDashboard were retained concurrently in one recovery record.
+- Restore All returned the shared JSON storage string byte-for-byte to its pre-toggle baseline.
+- Final local smoke: 37 capture artifacts, 5 traffic endpoints, 8 latent features, all workflow
+  assertions passed. No live banking site or production account was used.
+
+REVIEW ARTIFACTS
+- WorkSummary/feature-switchboard-result-smoke.png
+- WorkSummary/feature-switchboard-controls-smoke.png
+- WorkSummary/javascript-analysis-verification.json
+- WorkSummary/chromium-extension-workflow-smoke.png
+
+BOUNDARIES
+- The switchboard changes only verified browser-local storage controls; it does not change
+  server-side entitlements, bypass access control, submit forms, replay transactions, publish,
+  message, purchase, or grant authorization.
+- DOM comparisons are bounded top-frame/open-DOM observations. Closed shadow roots, cross-origin
+  frames, and unrelated asynchronous page activity are outside the causal claim.

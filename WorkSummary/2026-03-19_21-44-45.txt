@@ -1,0 +1,35 @@
+Timestamp: 2026-03-19 21:44:45 America/Los_Angeles
+
+Prompt Used:
+java.lang.ClassNotFoundException: com.sun.net.httpserver.HttpServer
+	at java.base/java.net.URLClassLoader.findClass(URLClassLoader.java:377)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:557)
+	at burp.Zwzc.loadClass(Unknown Source)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:490)
+	at com.blanche.burp.BlancheIngestionServer.start(BlancheIngestionServer.java:32)
+	at com.blanche.burp.BlancheBurpExtension.initialize(BlancheBurpExtension.java:17)
+	at burp.Zwt.ZJ(Unknown Source)
+	at burp.Zn0e.ZW(Unknown Source)
+	at burp.Zn0a.lambda$initialiseOnNewThread$0(Unknown Source)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:545)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:328)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+
+Work Summary:
+- Replaced the Burp ingestion server implementation in `burp-extension/src/main/java/com/blanche/burp/BlancheIngestionServer.java`.
+- Removed the dependency on `com.sun.net.httpserver.HttpServer`, which Burp's extension classloader could not resolve.
+- Implemented a loopback HTTP listener using `ServerSocket`, a daemon accept thread, and worker threads from `Executors.newCachedThreadPool`.
+- Preserved the existing automatic ingest behavior:
+  - `OPTIONS` handling for Chromium preflight
+  - `POST` JSON ingestion
+  - JSON status responses
+  - CORS headers
+  - non-fatal error handling and logging
+- Kept the public extension wiring unchanged, so the rest of the Burp integration still targets the same endpoint and workflow.
+- Rebuilt the Burp jar successfully with `npm run build:burp`.
+
+Result:
+- Updated jar path: `burp-extension/build/blanche-burp-extension-0.1.0-all.jar`
+- Expected runtime effect: the extension no longer relies on `jdk.httpserver` visibility inside Burp and should initialize the auto-ingest listener using only core socket classes available from `java.base`.

@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BLANCHE Tear Sheet</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #101417;
+        --panel: #171d21;
+        --panel-strong: #20282d;
+        --border: #344047;
+        --text: #f4f7f9;
+        --muted: #a3adb7;
+        --accent: #74d8b3;
+        --warning: #ffd280;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+        line-height: 1.5;
+      }
+
+      main {
+        width: min(1160px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 32px 0;
+        display: grid;
+        gap: 24px;
+      }
+
+      header {
+        display: grid;
+        grid-template-columns: minmax(0, 0.85fr) minmax(320px, 1.15fr);
+        gap: 24px;
+        align-items: center;
+        min-height: 72vh;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin: 0;
+      }
+
+      h1 {
+        font-size: clamp(2.4rem, 6vw, 5.6rem);
+        line-height: 0.95;
+        letter-spacing: 0;
+      }
+
+      h2 {
+        font-size: 1.25rem;
+      }
+
+      .lead {
+        color: var(--muted);
+        font-size: 1.05rem;
+        max-width: 58ch;
+      }
+
+      .stack {
+        display: grid;
+        gap: 16px;
+      }
+
+      .button-row,
+      .tag-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .tag {
+        border: 1px solid rgba(116, 216, 179, 0.28);
+        color: var(--accent);
+        border-radius: 999px;
+        padding: 4px 10px;
+        font-size: 0.88rem;
+      }
+
+      .shot {
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        background: var(--panel);
+        overflow: hidden;
+      }
+
+      .shot img {
+        display: block;
+        width: 100%;
+        max-height: 72vh;
+        object-fit: cover;
+        object-position: top;
+      }
+
+      section {
+        display: grid;
+        gap: 16px;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .card {
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        background: var(--panel);
+        padding: 16px;
+        display: grid;
+        gap: 8px;
+      }
+
+      .card p,
+      li {
+        color: var(--muted);
+      }
+
+      ul {
+        margin: 0;
+        padding-left: 18px;
+      }
+
+      .flow {
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        background: var(--panel-strong);
+        padding: 16px;
+        display: grid;
+        gap: 10px;
+      }
+
+      .flow-row {
+        display: grid;
+        grid-template-columns: 140px 1fr;
+        gap: 12px;
+        align-items: start;
+      }
+
+      .flow-row strong {
+        color: var(--warning);
+      }
+
+      footer {
+        border-top: 1px solid var(--border);
+        padding-top: 16px;
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+
+      @media (max-width: 860px) {
+        header,
+        .grid,
+        .flow-row {
+          grid-template-columns: 1fr;
+        }
+
+        header {
+          min-height: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <div class="stack">
+          <div class="tag-row">
+            <span class="tag">Chromium extension</span>
+            <span class="tag">Burp Suite extension</span>
+            <span class="tag">OSINT workflows</span>
+          </div>
+          <h1>BLANCHE</h1>
+          <p class="lead">
+            Browser-side visibility and operator-driven OSINT collection for Burp workflows. BLANCHE captures
+            client-only state, turns it into Burp-readable notes, and keeps search, documents, and seed handoff
+            in one focused console.
+          </p>
+        </div>
+        <figure class="shot">
+          <img src="../WorkSummary/chromium-extension-workflow-smoke.png" alt="BLANCHE operator console screenshot" />
+        </figure>
+      </header>
+
+      <section>
+        <h2>Operator Surfaces</h2>
+        <div class="grid">
+          <article class="card">
+            <h3>Search Workbench</h3>
+            <p>
+              Multi-engine OSINT search launcher with three built-in profiles for public footprint, document
+              exposure, and infrastructure or certificate discovery.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Document Center</h3>
+            <p>
+              Tracks document links and browsed document responses, downloads allowed files, hashes content,
+              extracts URLs, and highlights keywords like token, credential, internal, and admin.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Burp Bridge</h3>
+            <p>
+              Collects Chromium-only page state including storage, IndexedDB, cache, workers, service workers,
+              blob URLs, data URLs, and frame metadata, then posts the export to Burp.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section>
+        <h2>Burp Output</h2>
+        <div class="flow">
+          <div class="flow-row">
+            <strong>Site Map</strong>
+            <span>Annotated synthetic response with BLANCHE notes, a page-state header, and structured JSON.</span>
+          </div>
+          <div class="flow-row">
+            <strong>Organizer</strong>
+            <span>Receives the annotated page-state item where Montoya supports handoff.</span>
+          </div>
+          <div class="flow-row">
+            <strong>OSINT Seed</strong>
+            <span>Turns browser-visible hosts, forms, assets, iframes, and manifests into a passive public OSINT seed.</span>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Built-In OSINT Profiles</h2>
+        <div class="grid">
+          <article class="card">
+            <h3>Public Footprint Sweep</h3>
+            <ul>
+              <li>Google, Bing, Yahoo</li>
+              <li>Login, admin, portal, VPN, SSO, and remote access terms</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Documents and Secrets Sweep</h3>
+            <ul>
+              <li>PDF, Office, spreadsheet, and CSV document types</li>
+              <li>Confidential, internal, password, credential, token, and API key terms</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Infrastructure and Certificates</h3>
+            <ul>
+              <li>Shodan hostname lookups</li>
+              <li>crt.sh wildcard certificate identity lookup</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <footer>
+        Built for local operator workflows. The browser extension runs collection; the Burp extension receives
+        page state, notes, Site Map items, Organizer handoff, and OSINT seeds.
+      </footer>
+    </main>
+  </body>
+</html>

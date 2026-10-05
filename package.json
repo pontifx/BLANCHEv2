@@ -1,0 +1,31 @@
+{
+  "name": "blanche",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node ./scripts/build-extension.mjs",
+    "build:osint": "node ./scripts/build-osint.mjs",
+    "build:burp": "powershell -ExecutionPolicy Bypass -File ./scripts/build-burp.ps1",
+    "smoke:burp-bridge": "node ./scripts/smoke-burp-bridge.mjs",
+    "smoke:extension-workflows": "node ./scripts/smoke-burp-bridge.mjs",
+    "smoke:site-search": "node ./scripts/smoke-burp-bridge.mjs --site-search-only",
+    "smoke:target-url-controls": "node ./scripts/smoke-burp-bridge.mjs --target-url-controls-only",
+    "smoke:tear-sheet": "node ./scripts/smoke-burp-bridge.mjs --tear-sheet-only",
+    "clean": "powershell -NoProfile -Command \"Remove-Item -Recurse -Force chromium-extension/dist,shared-schema/dist -ErrorAction SilentlyContinue; Remove-Item -Force chromium-extension/manifest.json -ErrorAction SilentlyContinue\"",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test:search-features": "node ./scripts/test-search-features.mjs",
+    "test:site-search-fingerprint": "node ./scripts/test-site-search-fingerprint.mjs",
+    "test:javascript-analysis": "node ./scripts/test-javascript-analysis.mjs",
+    "test:console-disclosures": "node ./scripts/test-console-disclosures.mjs",
+    "test:target-requests": "node ./scripts/test-target-request-templates.mjs",
+    "test:traffic-ledger": "node ./scripts/test-traffic-ledger.mjs && node ./scripts/test-traffic-ledger-manager.mjs",
+    "test:traffic-ledger:manager": "node ./scripts/test-traffic-ledger-manager.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "^24.6.0",
+    "@types/chrome": "^0.1.38",
+    "esbuild": "^0.27.4",
+    "typescript": "^5.9.3"
+  }
+}

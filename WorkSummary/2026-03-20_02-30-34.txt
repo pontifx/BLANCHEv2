@@ -1,0 +1,28 @@
+Timestamp: 2026-03-20 02:30:34 America/Los_Angeles
+
+Prompt Used:
+Not seeing any content automatically update in the burp extension. Can you check it out?
+
+Work Summary:
+- Investigated the automatic Burp update path and found the most likely failure mode was transport delivery, not the Burp tab rendering logic.
+- Kept the proxy-native bridge as the primary handoff path:
+  - `http://blanche.invalid/ingest`
+  - handled by `burp-extension/src/main/java/com/blanche/burp/BlancheProxyBridge.java`
+- Added a second automatic Burp ingest transport:
+  - loopback `http://127.0.0.1:47625/api/blanche/ingest`
+  - implemented in `burp-extension/src/main/java/com/blanche/burp/BlancheLoopbackBridge.java`
+- Updated the Burp extension bootstrap in `burp-extension/src/main/java/com/blanche/burp/BlancheBurpExtension.java` to start both bridges and show both endpoints in the Burp tab.
+- Updated Chromium Burp Bridge delivery logic in `chromium-extension/src/modules/burpBridge/background.ts` so it:
+  - tries the proxy-native endpoint first
+  - falls back automatically to the loopback endpoint if the primary handoff fails
+  - records fallback use as an informational warning
+  - only marks the run partial when both delivery paths fail
+- Updated README files to document the fallback behavior.
+
+Verification:
+- `npm run typecheck`
+- `npm run build`
+- `npm run build:burp`
+
+Expected Result:
+- After reloading both extensions, Burp should update automatically either via the proxy-native synthetic host or, if that path does not land, via the loopback bridge.

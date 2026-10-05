@@ -1,0 +1,61 @@
+BLANCHE Site Search and advanced search suite change trace
+Created: 2026-09-17 15:18:47 -07:00
+
+Requested behavior
+- Select Google by default while retaining the other engines as explicit options.
+- Let an operator pick, scan/highlight, or supply the target site's search endpoint.
+- Run the portable advanced-operator templates with an optional keyword list.
+- Summarize direct page markers separately from observed result behavior.
+
+Implemented
+- Fresh/reset Search drafts select Google only. Valid persisted engine choices and built-in reviewed multi-engine profiles remain intact.
+- Focus terms accept newline, comma, or semicolon delimiters; normalize, deduplicate, and enforce bounded word, character, term, and submission limits.
+- Query caps distribute probes round robin across focus terms and report complete/partial/omitted coverage.
+- Site Search binds every portable probe once to the selected search page host and omits the redundant site: operator.
+- Added top-frame page scan, candidate highlight, and interactive field picker with Escape, timeout, replacement, and cleanup handling.
+- Aligned picker and discovery ranking/limits and protected overlapping highlight timers.
+- Added bounded possible provider markers for Google Programmable Search, Algolia, Elastic/App Search, Azure AI Search, Solr, Typesense, Meilisearch, and Swiftype. The UI labels them as page-level hints with medium confidence.
+- Added aggregate result/zero-result/manual/failed behavior fingerprints by category and operator. Result behavior does not name a backend.
+- Provider markers persist in the sanitized task surface snapshot; selectors, hidden form data, credentials, fragments, old query values, and sensitive URL parameters do not.
+- Added a focused browser smoke command: npm run smoke:site-search.
+- Fixed the generic search-tab load race by registering the completion listener before the follow-up status check.
+- Retained disclosure state and target URL control behavior from the previous change.
+
+Primary files
+- chromium-extension/src/shared/searchWorkbench.ts
+- chromium-extension/src/shared/searchDorkSuite.ts
+- chromium-extension/src/shared/nerdSearch.ts
+- chromium-extension/src/shared/searchExecution.ts
+- chromium-extension/src/shared/siteSearchFingerprint.ts
+- chromium-extension/src/shared/runtimeBus.ts
+- chromium-extension/src/shared/operatorConsole.ts
+- chromium-extension/src/background/host.ts
+- chromium-extension/src/background/searchCoordinator.ts
+- scripts/test-search-features.mjs
+- scripts/test-site-search-fingerprint.mjs
+- scripts/smoke-burp-bridge.mjs
+- package.json
+- README.md
+
+Verification passed
+- npm run build
+- npm run typecheck
+- npm run test:search-features
+- npm run test:site-search-fingerprint
+- npm run test:console-disclosures (14 disclosure templates)
+- npm run test:target-requests
+- npm run smoke:site-search
+- npm run smoke:target-url-controls
+- node --check scripts/smoke-burp-bridge.mjs
+
+Browser evidence
+- WorkSummary/site-search-workflow-smoke.png
+- WorkSummary/target-url-controls-smoke.png
+- WorkSummary/target-url-controls-narrow-smoke.png
+
+Backup
+- C:/Users/ponti/OneDrive/Desktop/BLANCHE/backups/BLANCHE-main-pre-site-search-workflow-2026-09-17
+- BACKUP_MANIFEST.txt records the pre-edit SHA-256 hashes, including supplemental source files changed after review.
+
+Known unrelated result
+- The monolithic extension workflow passed the new Site Search stages and later encountered its existing intermittent instrumented-blob export assertion. The focused Site Search and target URL browser commands both completed with exit code 0.

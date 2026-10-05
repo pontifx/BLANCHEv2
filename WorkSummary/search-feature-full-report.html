@@ -1,0 +1,1013 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; base-uri 'none'; form-action 'none'" />
+    <title>127.0.0.1 · BLANCHE Site Tear Sheet</title>
+    <style>
+  :root { color-scheme: light; --ink:#172126; --muted:#617078; --paper:#f5f7f6; --card:#fff; --line:#d8e0dd; --accent:#157a5b; --accent-soft:#e5f4ee; --warn:#9a6416; --warn-soft:#fff3d9; --danger:#a53d44; --danger-soft:#fdebec; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--paper); color:var(--ink); font:15px/1.55 "Segoe UI", Inter, Arial, sans-serif; }
+  .tear-document { width:min(1180px, calc(100% - 40px)); margin:0 auto; padding:38px 0 54px; }
+  h1,h2,h3,p,dl,dd { margin:0; }
+  h1 { font-size:clamp(2.2rem,6vw,4.8rem); line-height:.98; letter-spacing:-.045em; }
+  h2 { font-size:1.45rem; letter-spacing:-.02em; }
+  h3 { font-size:1rem; }
+  code { font:0.82em/1.45 ui-monospace,SFMono-Regular,Consolas,monospace; overflow-wrap:anywhere; }
+  small { display:block; color:var(--muted); }
+  .tear-hero,.tear-section,.tear-sensitive-banner,.tear-footer { background:var(--card); border:1px solid var(--line); border-radius:14px; }
+  .tear-hero { padding:clamp(24px,5vw,54px); border-top:5px solid var(--accent); }
+  .tear-kicker { color:var(--accent); font-size:.78rem; font-weight:800; letter-spacing:.16em; text-transform:uppercase; margin-bottom:30px; }
+  .tear-hero-grid { display:grid; grid-template-columns:minmax(0,1.5fr) minmax(250px,.5fr); gap:40px; align-items:start; }
+  .tear-lead { color:var(--muted); font-size:1.08rem; margin-top:14px; max-width:60ch; }
+  .tear-identity { display:grid; gap:12px; }
+  .tear-identity div { display:grid; grid-template-columns:90px 1fr; gap:12px; border-bottom:1px solid var(--line); padding-bottom:9px; }
+  .tear-identity dt { color:var(--muted); }
+  .tear-identity dd { font-weight:700; }
+  .tear-target-line { display:flex; flex-wrap:wrap; justify-content:space-between; gap:10px 18px; padding:15px 0; margin:30px 0 16px; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .tear-target-line code { color:var(--accent); }
+  .tear-sensitive-banner { display:flex; gap:16px; margin:18px 0; padding:16px 20px; background:var(--warn-soft); border-color:#edcc8f; }
+  .tear-sensitive-banner strong { color:var(--warn); white-space:nowrap; }
+  .tear-section { margin-top:18px; padding:26px; }
+  .tear-section-heading { display:flex; justify-content:space-between; gap:24px; align-items:flex-start; margin-bottom:20px; }
+  .tear-section-heading > div { display:flex; gap:12px; align-items:center; }
+  .tear-section-heading > div > span { display:inline-grid; place-items:center; width:32px; height:32px; border-radius:50%; background:var(--accent-soft); color:var(--accent); font-weight:800; }
+  .tear-section-heading > p { max-width:48ch; color:var(--muted); text-align:right; }
+  .tear-metric-grid,.tear-category-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; }
+  .tear-metric,.tear-category,.tear-context-panel { border:1px solid var(--line); border-radius:10px; padding:16px; background:#fbfcfb; }
+  .tear-metric > strong,.tear-category > div > strong { display:block; color:var(--accent); font-size:2rem; line-height:1; }
+  .tear-metric h3,.tear-category h3 { margin:7px 0; }
+  .tear-metric p,.tear-category p { color:var(--muted); font-size:.88rem; }
+  .tear-category small { margin-top:9px; overflow-wrap:anywhere; }
+  .tear-provenance-row { display:flex; flex-wrap:wrap; gap:12px; margin-top:14px; }
+  .tear-provenance-row span { padding:7px 10px; border-radius:7px; background:var(--accent-soft); }
+  .tear-observation-list { display:grid; gap:12px; }
+  .tear-observation { border:1px solid var(--line); border-left:4px solid var(--accent); border-radius:9px; padding:16px; }
+  .tear-observation-attention { border-left-color:var(--warn); background:#fffdfa; }
+  .tear-observation-heading,.tear-context-item > div,.tear-limit-heading { display:flex; justify-content:space-between; gap:16px; align-items:flex-start; }
+  .tear-observation-heading span,.tear-context-item span { color:var(--muted); font-size:.82rem; white-space:nowrap; }
+  .tear-observation p { margin:7px 0; }
+  .tear-pill { display:inline-flex; padding:2px 8px; border:1px solid var(--line); border-radius:999px; font-size:.78rem; text-transform:capitalize; }
+  .tear-assessment-healthy,.tear-status-ok { color:var(--accent); background:var(--accent-soft); border-color:#b6ddce; }
+  .tear-assessment-limited,.tear-status-partial { color:var(--warn); background:var(--warn-soft); border-color:#edcc8f; }
+  .tear-assessment-degraded,.tear-status-error { color:var(--danger); background:var(--danger-soft); border-color:#edb6ba; }
+  .tear-table-wrap { overflow:auto; border:1px solid var(--line); border-radius:10px; }
+  table { width:100%; border-collapse:collapse; min-width:720px; }
+  th,td { padding:11px 12px; text-align:left; vertical-align:top; border-bottom:1px solid var(--line); }
+  th { color:var(--muted); font-size:.75rem; letter-spacing:.06em; text-transform:uppercase; background:#f5f8f7; }
+  tr:last-child td { border-bottom:0; }
+  td small { max-width:460px; overflow-wrap:anywhere; }
+  .tear-context-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
+  .tear-context-panel h3 { display:flex; justify-content:space-between; margin-bottom:12px; }
+  .tear-context-panel h3 span { color:var(--accent); }
+  .tear-context-item { padding:12px 0; border-top:1px solid var(--line); }
+  .tear-context-item:first-of-type { border-top:0; padding-top:0; }
+  .tear-context-item p { margin-top:5px; color:var(--muted); }
+  .tear-capture-facts { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; margin-bottom:14px; }
+  .tear-capture-facts div { border:1px solid var(--line); border-radius:8px; padding:12px; }
+  .tear-capture-facts strong { display:block; font-size:1.1rem; text-transform:capitalize; }
+  .tear-capture-facts span { color:var(--muted); font-size:.82rem; }
+  .tear-details { margin-top:14px; border:1px solid var(--line); border-radius:9px; padding:12px 14px; }
+  .tear-details summary { cursor:pointer; font-weight:700; }
+  .tear-permission-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; margin-top:12px; }
+  .tear-permission-grid p { display:flex; gap:6px; flex-wrap:wrap; margin-top:7px; }
+  .tear-permission-grid code { padding:3px 6px; background:var(--paper); border-radius:5px; }
+  .tear-limit-list { list-style:none; margin:0; padding:0; display:grid; gap:10px; }
+  .tear-limit-list li { border:1px solid var(--line); border-radius:9px; padding:14px; }
+  .tear-limit-list p { margin-top:6px; color:var(--muted); }
+  .tear-empty { color:var(--muted); padding:10px 0; }
+  .tear-footer { margin-top:18px; padding:20px 24px; display:grid; gap:8px; color:var(--muted); }
+  .tear-footer div { display:flex; gap:12px; }
+  @media (max-width:850px) { .tear-hero-grid,.tear-context-grid { grid-template-columns:1fr; } .tear-metric-grid,.tear-category-grid,.tear-capture-facts { grid-template-columns:repeat(2,minmax(0,1fr)); } .tear-section-heading { display:block; } .tear-section-heading > p { margin-top:8px; text-align:left; } }
+  @media (max-width:520px) { .tear-document { width:min(100% - 20px,1180px); padding:10px 0 28px; } .tear-metric-grid,.tear-category-grid,.tear-capture-facts,.tear-permission-grid { grid-template-columns:1fr; } .tear-sensitive-banner { display:grid; } }
+  @media print { body { background:#fff; font-size:10.5pt; } .tear-document { width:100%; padding:0; } .tear-hero,.tear-section,.tear-sensitive-banner,.tear-footer { break-inside:avoid; box-shadow:none; } .tear-artifact-appendix { break-before:page; } .tear-details { display:block; } }
+</style>
+  </head>
+  <body>
+    <main class="tear-document">
+      
+    <div class="tear-report-root" data-tear-sheet-report>
+    <header class="tear-hero">
+      <div class="tear-kicker">BLANCHE · Site Evidence Tear Sheet</div>
+      <div class="tear-hero-grid">
+        <div>
+          <h1>127.0.0.1</h1>
+          <p class="tear-lead">BLANCHE observed 25 browser-visible artifacts for 127.0.0.1.</p>
+        </div>
+        <dl class="tear-identity">
+          <div><dt>Captured</dt><dd>10/5/2026, 11:50:40 AM</dd></div>
+          <div><dt>Evidence as of</dt><dd>10/5/2026, 11:50:43 AM</dd></div>
+          <div><dt>Report generated</dt><dd>10/5/2026, 11:50:44 AM</dd></div>
+          <div><dt>Mode</dt><dd>passive</dd></div>
+          <div><dt>Assessment</dt><dd><span class="tear-pill tear-assessment-limited">limited</span></dd></div>
+          <div><dt>Confidence</dt><dd>medium</dd></div>
+        </dl>
+      </div>
+      <div class="tear-target-line">
+        <span>BLANCHE bridge smoke target</span>
+        <code>http://127.0.0.1:56781/</code>
+      </div>
+      <p>The passive browser capture mapped 10 evidence categories across 1 origin. Collection health is limited. BLANCHE also correlated 28 testing-context records to the target. Observations are informational and require tester validation before reporting as vulnerabilities.</p>
+    </header>
+
+    <section class="tear-sensitive-banner" role="note">
+      <strong>Evidence handling</strong>
+      <span>This stakeholder view masks raw values and URL query data. The companion JSON preserves full evidence and must be handled as assessment-sensitive.</span>
+    </section>
+
+    <section class="tear-section">
+      <div class="tear-section-heading"><div><span>01</span><h2>Executive snapshot</h2></div><p>Counts reconcile to report JSON and the embedded source capture.</p></div>
+      <div class="tear-metric-grid">
+        
+              <article class="tear-metric">
+                <strong>25</strong>
+                <h3>Artifacts</h3>
+                <p>Normalized browser-visible evidence records.</p>
+              </article>
+              <article class="tear-metric">
+                <strong>17</strong>
+                <h3>Browser-only</h3>
+                <p>State and runtime evidence that a traditional HTTP archive generally misses.</p>
+              </article>
+              <article class="tear-metric">
+                <strong>2</strong>
+                <h3>Frames</h3>
+                <p>Top-level and child frames known to Chromium.</p>
+              </article>
+              <article class="tear-metric">
+                <strong>1</strong>
+                <h3>Origins</h3>
+                <p>Distinct artifact origins visible in the capture.</p>
+              </article>
+              <article class="tear-metric">
+                <strong>7</strong>
+                <h3>Testing leads</h3>
+                <p>Host-correlated findings; these are not validated vulnerabilities.</p>
+              </article>
+              <article class="tear-metric">
+                <strong>27</strong>
+                <h3>Search results</h3>
+                <p>Results from tracked searches associated with this target.</p>
+              </article>
+              <article class="tear-metric">
+                <strong>1</strong>
+                <h3>Documents</h3>
+                <p>Document queue records associated with this target.</p>
+              </article>
+              <article class="tear-metric">
+                <strong>5</strong>
+                <h3>Traffic endpoints</h3>
+                <p>Sanitized, method-aware endpoint shapes observed by Chromium.</p>
+              </article>
+              <article class="tear-metric">
+                <strong>1</strong>
+                <h3>Priority traffic</h3>
+                <p>In-scope endpoints scoring high or urgent for triage; not vulnerability severity.</p>
+              </article>
+              <article class="tear-metric">
+                <strong>2</strong>
+                <h3>Coverage gaps</h3>
+                <p>Explicit surfaces BLANCHE could not fully observe.</p>
+              </article>
+      </div>
+    </section>
+
+    <section class="tear-section">
+      <div class="tear-section-heading"><div><span>02</span><h2>What BLANCHE observed</h2></div><p>Informational testing context with direct evidence references.</p></div>
+      <div class="tear-observation-list">
+    <article class="tear-observation tear-observation-neutral">
+      <div class="tear-observation-heading">
+        <h3>Browser-only state was present</h3>
+        <span>17 evidence refs</span>
+      </div>
+      <p>17 artifacts came from storage, runtime, worker, cache, blob, or data-URL surfaces.</p>
+      <small>These surfaces explain behavior that cannot be reconstructed from ordinary proxy traffic alone.</small>
+    </article>
+    <article class="tear-observation tear-observation-attention">
+      <div class="tear-observation-heading">
+        <h3>Cross-origin dependencies were visible</h3>
+        <span>1 evidence ref</span>
+      </div>
+      <p>1 artifact resolved outside http://127.0.0.1:56781.</p>
+      <small>External origins can identify trust relationships, hosted assets, and follow-on testing boundaries; ownership is not inferred here.</small>
+    </article>
+    <article class="tear-observation tear-observation-neutral">
+      <div class="tear-observation-heading">
+        <h3>Client execution surface was mapped</h3>
+        <span>5 evidence refs</span>
+      </div>
+      <p>5 script, worker, service-worker, or runtime artifacts were recorded.</p>
+      <small>This inventory helps testers explain what executes in the browser and where client-side behavior originates.</small>
+    </article>
+    <article class="tear-observation tear-observation-attention">
+      <div class="tear-observation-heading">
+        <h3>Persistent browser state was observed</h3>
+        <span>12 evidence refs</span>
+      </div>
+      <p>12 storage, IndexedDB, or Cache Storage artifacts were recorded.</p>
+      <small>Persisted state can explain feature controls, session behavior, offline content, and browser-only application context.</small>
+    </article>
+    <article class="tear-observation tear-observation-attention">
+      <div class="tear-observation-heading">
+        <h3>BLANCHE correlated tester-facing leads</h3>
+        <span>7 evidence refs</span>
+      </div>
+      <p>7 findings in the tester workbench matched this target.</p>
+      <small>These records provide prioritized follow-up context. They remain informational until a tester validates and dispositions them.</small>
+    </article>
+    <article class="tear-observation tear-observation-neutral">
+      <div class="tear-observation-heading">
+        <h3>Tracked searches returned target context</h3>
+        <span>12 evidence refs</span>
+      </div>
+      <p>12 target-associated search tasks were retained with 27 rendered results.</p>
+      <small>Exact dork queries, zero-result outcomes, and manual-required states provide a reviewable record even when a search does not return a result.</small>
+    </article>
+    <article class="tear-observation tear-observation-attention">
+      <div class="tear-observation-heading">
+        <h3>Document evidence was associated with the target</h3>
+        <span>1 evidence ref</span>
+      </div>
+      <p>1 document queue record matched the site or a target-related source page.</p>
+      <small>Document hashes, keyword hits, extracted URLs, and review decisions provide auditable context without implying a vulnerability.</small>
+    </article>
+    <article class="tear-observation tear-observation-neutral">
+      <div class="tear-observation-heading">
+        <h3>Delivered JavaScript purpose was assessed</h3>
+        <span>1 evidence ref</span>
+      </div>
+      <p>1 retained script source were assessed; 0 were packed or obfuscated. Highest review priority was 30/100.</p>
+      <small>Purpose, transform complexity, and behavior maturity help prioritize review. The priority score is not vulnerability severity.</small>
+    </article>
+    <article class="tear-observation tear-observation-attention">
+      <div class="tear-observation-heading">
+        <h3>Instrumented JavaScript startup observation was retained</h3>
+        <span>1 evidence ref</span>
+      </div>
+      <p>The bounded one-reload observation was partial: 2 extension-verified cells, 5 page-world-unverified cells, and 2 blocked, failed, or manual cells.</p>
+      <small>The matrix distinguishes observed startup behavior from static evidence and explicit coverage gaps; it does not claim exhaustive path execution.</small>
+    </article>
+    <article class="tear-observation tear-observation-attention">
+      <div class="tear-observation-heading">
+        <h3>Shipped client-feature candidates were correlated</h3>
+        <span>8 evidence refs</span>
+      </div>
+      <p>8 latent feature candidates matched the current site scan.</p>
+      <small>These candidates describe delivered client controls and evidence sources; they do not prove authorization, entitlement, or server-side availability.</small>
+    </article></div>
+    </section>
+
+    <section class="tear-section">
+      <div class="tear-section-heading"><div><span>03</span><h2>Browser evidence inventory</h2></div><p>Normalized artifacts grouped by browser surface.</p></div>
+      <div class="tear-category-grid">
+    <article class="tear-category">
+      <div><strong>8</strong><h3>Browser storage keys</h3></div>
+      <p>8 observed · 0 inferred · 0 unavailable</p>
+      <small>localStorage<br />localStorage<br />sessionStorage<br />sessionStorage<br />localStorage</small>
+    </article>
+    <article class="tear-category">
+      <div><strong>3</strong><h3>Resources</h3></div>
+      <p>3 observed · 0 inferred · 0 unavailable</p>
+      <small>http://127.0.0.1:56781/frame.html<br />http://127.0.0.1:56781/feature-config.json<br />http://127.0.0.1:56781/worker.js</small>
+    </article>
+    <article class="tear-category">
+      <div><strong>2</strong><h3>Cache Storage</h3></div>
+      <p>2 observed · 0 inferred · 0 unavailable</p>
+      <small>cache-storage<br />cache-storage</small>
+    </article>
+    <article class="tear-category">
+      <div><strong>2</strong><h3>Frames</h3></div>
+      <p>2 observed · 0 inferred · 0 unavailable</p>
+      <small>http://127.0.0.1:56781/<br />http://127.0.0.1:56781/frame.html</small>
+    </article>
+    <article class="tear-category">
+      <div><strong>2</strong><h3>Images</h3></div>
+      <p>1 observed · 0 inferred · 1 unavailable</p>
+      <small>blob:http://127.0.0.1:56781/9e9e5480-6293-4933-8778-f07d6cfab72b<br />data:image/gif;[payload omitted]</small>
+    </article>
+    <article class="tear-category">
+      <div><strong>2</strong><h3>IndexedDB databases</h3></div>
+      <p>2 observed · 0 inferred · 0 unavailable</p>
+      <small>indexeddb-database<br />indexeddb-database</small>
+    </article>
+    <article class="tear-category">
+      <div><strong>2</strong><h3>Runtime indicators</h3></div>
+      <p>2 observed · 0 inferred · 0 unavailable</p>
+      <small>http://127.0.0.1:56781/<br />http://127.0.0.1:56781/frame.html</small>
+    </article>
+    <article class="tear-category">
+      <div><strong>2</strong><h3>Scripts</h3></div>
+      <p>2 observed · 0 inferred · 0 unavailable</p>
+      <small>http://127.0.0.1:56781/app.js<br />http://127.0.0.1:56781/app.js</small>
+    </article>
+    <article class="tear-category">
+      <div><strong>1</strong><h3>Iframes</h3></div>
+      <p>1 observed · 0 inferred · 0 unavailable</p>
+      <small>http://127.0.0.1:56781/frame.html</small>
+    </article>
+    <article class="tear-category">
+      <div><strong>1</strong><h3>Service workers</h3></div>
+      <p>1 observed · 0 inferred · 0 unavailable</p>
+      <small>http://127.0.0.1:56781/sw.js</small>
+    </article></div>
+      <div class="tear-provenance-row">
+        <span><strong>24</strong> observed</span>
+        <span><strong>0</strong> inferred</span>
+        <span><strong>1</strong> unavailable provenance</span>
+      </div>
+    </section>
+
+    <section class="tear-section">
+      <div class="tear-section-heading"><div><span>04</span><h2>Origin relationships</h2></div><p>Cross-origin means different from the captured page origin; it does not establish third-party ownership.</p></div>
+      <div class="tear-table-wrap"><table><thead><tr><th>Origin</th><th>Artifacts</th><th>Relationship</th><th>Evidence types</th></tr></thead><tbody>
+        <tr>
+          <td><code>http://127.0.0.1:56781</code></td>
+          <td>12</td>
+          <td>Page origin</td>
+          <td>Frames, Iframes, Images, Resources, Runtime indicators, Scripts, Service workers</td>
+        </tr></tbody></table></div>
+    </section>
+
+    <section class="tear-section">
+      <div class="tear-section-heading"><div><span>05</span><h2>Correlated testing context</h2></div><p>Host-associated workbench records captured at report time.</p></div>
+      <div class="tear-context-grid">
+        <article class="tear-context-panel">
+          <h3>Tester-facing leads <span>7</span></h3>
+          
+    <div class="tear-context-item">
+      <div><strong>1 delivered script source assessed</strong><span class="tear-pill">info · new</span></div>
+      <p>Highest review priority is 30/100 (medium). Purpose: storage-offline. The score ranks review and is not vulnerability severity.</p>
+    </div>
+    <div class="tear-context-item">
+      <div><strong>1 archives result found</strong><span class="tear-pill">warning · new</span></div>
+      <p>Smoke reviewed URL template returned indexed evidence for 127.0.0.1.</p>
+    </div>
+    <div class="tear-context-item">
+      <div><strong>1 archives result found</strong><span class="tear-pill">warning · new</span></div>
+      <p>127.0.0.1: Search with the JavaScript widget returned indexed evidence for 127.0.0.1.</p>
+    </div>
+    <div class="tear-context-item">
+      <div><strong>1 archives result found</strong><span class="tear-pill">warning · new</span></div>
+      <p>127.0.0.1: Search the smoke archive with POST returned indexed evidence for 127.0.0.1.</p>
+    </div>
+    <div class="tear-context-item">
+      <div><strong>1 archives result found</strong><span class="tear-pill">warning · new</span></div>
+      <p>127.0.0.1: Search this smoke site returned indexed evidence for 127.0.0.1.</p>
+    </div>
+    <div class="tear-context-item">
+      <div><strong>10 archives results found</strong><span class="tear-pill">warning · new</span></div>
+      <p>Bing returned indexed evidence for 127.0.0.1.</p>
+    </div>
+    <div class="tear-context-item">
+      <div><strong>8 shipped client feature candidates</strong><span class="tear-pill">warning · new</span></div>
+      <p>2 can be changed reversibly in browser storage; bundle-only and opaque pairs remain evidence-only until correlated.</p>
+    </div>
+        </article>
+        <article class="tear-context-panel">
+          <h3>Tracked search tasks <span>12</span></h3>
+          
+      <div class="tear-context-item">
+        <div>
+          <strong>Site Search: Smoke reviewed URL template</strong>
+          <span class="tear-pill">NERD mode</span>
+        </div>
+        <p>1 task · Targets: 127.0.0.1</p>
+        <small>Operator catalog reviewed 2026-09-09</small>
+        
+        
+    <article class="tear-details">
+      <div>
+        <strong>Recent changes — baseline — acquisition project</strong>
+        <span class="tear-pill">completed-results</span>
+      </div>
+      <p><strong>Session mode:</strong> NERD mode · <strong>Destination:</strong> Smoke reviewed URL template · NERD URL template · GET</p>
+      <p><strong>Dialect:</strong> portable · <strong>Results:</strong> 1</p>
+      <small>Dork ID: dork_portable_127.0.0.1_recent-changes_1_1_1</small>
+      <small>Operator IDs: none recorded</small>
+      <small>Targets: 127.0.0.1</small>
+      <small>Operator catalog reviewed 2026-09-09</small>
+      <p><strong>Exact query</strong><br /><code>security release &quot;acquisition project&quot;</code></p>
+      <p><strong>Warnings / outcome notes:</strong> Site Search queries omit site: because the selected destination already defines target scope and may treat portable operator syntax literally.</p>
+    </article>
+      </div>
+      <div class="tear-context-item">
+        <div>
+          <strong>Site Search: 127.0.0.1: Search with the JavaScript widget</strong>
+          <span class="tear-pill">NERD mode</span>
+        </div>
+        <p>1 task · Targets: 127.0.0.1</p>
+        <small>Operator catalog reviewed 2026-09-09</small>
+        
+        
+    <article class="tear-details">
+      <div>
+        <strong>Recent changes — baseline — acquisition project</strong>
+        <span class="tear-pill">completed-results</span>
+      </div>
+      <p><strong>Session mode:</strong> NERD mode · <strong>Destination:</strong> 127.0.0.1: Search with the JavaScript widget · NERD form · DYNAMIC</p>
+      <p><strong>Dialect:</strong> portable · <strong>Results:</strong> 1</p>
+      <small>Dork ID: dork_portable_127.0.0.1_recent-changes_1_1_1</small>
+      <small>Operator IDs: none recorded</small>
+      <small>Targets: 127.0.0.1</small>
+      <small>Operator catalog reviewed 2026-09-09</small>
+      <p><strong>Exact query</strong><br /><code>security release &quot;acquisition project&quot;</code></p>
+      <p><strong>Warnings / outcome notes:</strong> Site Search queries omit site: because the selected destination already defines target scope and may treat portable operator syntax literally.</p>
+    </article>
+      </div>
+      <div class="tear-context-item">
+        <div>
+          <strong>Site Search: 127.0.0.1: Search the smoke archive with POST</strong>
+          <span class="tear-pill">NERD mode</span>
+        </div>
+        <p>1 task · Targets: 127.0.0.1</p>
+        <small>Operator catalog reviewed 2026-09-09</small>
+        
+        
+    <article class="tear-details">
+      <div>
+        <strong>Recent changes — baseline — acquisition project</strong>
+        <span class="tear-pill">completed-results</span>
+      </div>
+      <p><strong>Session mode:</strong> NERD mode · <strong>Destination:</strong> 127.0.0.1: Search the smoke archive with POST · NERD form · POST</p>
+      <p><strong>Dialect:</strong> portable · <strong>Results:</strong> 1</p>
+      <small>Dork ID: dork_portable_127.0.0.1_recent-changes_1_1_1</small>
+      <small>Operator IDs: none recorded</small>
+      <small>Targets: 127.0.0.1</small>
+      <small>Operator catalog reviewed 2026-09-09</small>
+      <p><strong>Exact query</strong><br /><code>security release &quot;acquisition project&quot;</code></p>
+      <p><strong>Warnings / outcome notes:</strong> Site Search queries omit site: because the selected destination already defines target scope and may treat portable operator syntax literally.</p>
+    </article>
+      </div>
+      <div class="tear-context-item">
+        <div>
+          <strong>Site Search: 127.0.0.1: Search this smoke site</strong>
+          <span class="tear-pill">NERD mode</span>
+        </div>
+        <p>4 tasks · Targets: 127.0.0.1</p>
+        <small>Operator catalog reviewed 2026-09-09</small>
+        
+        
+    <article class="tear-details">
+      <div>
+        <strong>Recent changes — baseline — acquisition project</strong>
+        <span class="tear-pill">completed-results</span>
+      </div>
+      <p><strong>Session mode:</strong> NERD mode · <strong>Destination:</strong> 127.0.0.1: Search this smoke site · NERD GET · GET</p>
+      <p><strong>Dialect:</strong> portable · <strong>Results:</strong> 1</p>
+      <small>Dork ID: dork_portable_127.0.0.1_recent-changes_1_1_1</small>
+      <small>Operator IDs: none recorded</small>
+      <small>Targets: 127.0.0.1</small>
+      <small>Operator catalog reviewed 2026-09-09</small>
+      <p><strong>Exact query</strong><br /><code>security release &quot;acquisition project&quot;</code></p>
+      <p><strong>Warnings / outcome notes:</strong> Site Search queries omit site: because the selected destination already defines target scope and may treat portable operator syntax literally.</p>
+    </article>
+    <article class="tear-details">
+      <div>
+        <strong>Recent changes — baseline — legacy portal</strong>
+        <span class="tear-pill">completed-results</span>
+      </div>
+      <p><strong>Session mode:</strong> NERD mode · <strong>Destination:</strong> 127.0.0.1: Search this smoke site · NERD GET · GET</p>
+      <p><strong>Dialect:</strong> portable · <strong>Results:</strong> 1</p>
+      <small>Dork ID: dork_portable_127.0.0.1_recent-changes_1_2_3</small>
+      <small>Operator IDs: none recorded</small>
+      <small>Targets: 127.0.0.1</small>
+      <small>Operator catalog reviewed 2026-09-09</small>
+      <p><strong>Exact query</strong><br /><code>security release &quot;legacy portal&quot;</code></p>
+      <p><strong>Warnings / outcome notes:</strong> Site Search queries omit site: because the selected destination already defines target scope and may treat portable operator syntax literally.</p>
+    </article>
+    <article class="tear-details">
+      <div>
+        <strong>Recent changes — operator probe — acquisition project</strong>
+        <span class="tear-pill">completed-results</span>
+      </div>
+      <p><strong>Session mode:</strong> NERD mode · <strong>Destination:</strong> 127.0.0.1: Search this smoke site · NERD GET · GET</p>
+      <p><strong>Dialect:</strong> portable · <strong>Results:</strong> 1</p>
+      <small>Dork ID: dork_portable_127.0.0.1_recent-changes_2_1_2</small>
+      <small>Operator IDs: or</small>
+      <small>Targets: 127.0.0.1</small>
+      <small>Operator catalog reviewed 2026-09-09</small>
+      <p><strong>Exact query</strong><br /><code>security OR changelog &quot;acquisition project&quot;</code></p>
+      <p><strong>Warnings / outcome notes:</strong> Site Search queries omit site: because the selected destination already defines target scope and may treat portable operator syntax literally.</p>
+    </article>
+    <article class="tear-details">
+      <div>
+        <strong>Recent changes — operator probe — legacy portal</strong>
+        <span class="tear-pill">completed-results</span>
+      </div>
+      <p><strong>Session mode:</strong> NERD mode · <strong>Destination:</strong> 127.0.0.1: Search this smoke site · NERD GET · GET</p>
+      <p><strong>Dialect:</strong> portable · <strong>Results:</strong> 1</p>
+      <small>Dork ID: dork_portable_127.0.0.1_recent-changes_2_2_4</small>
+      <small>Operator IDs: or</small>
+      <small>Targets: 127.0.0.1</small>
+      <small>Operator catalog reviewed 2026-09-09</small>
+      <p><strong>Exact query</strong><br /><code>security OR changelog &quot;legacy portal&quot;</code></p>
+      <p><strong>Warnings / outcome notes:</strong> Site Search queries omit site: because the selected destination already defines target scope and may treat portable operator syntax literally.</p>
+    </article>
+      </div>
+      <div class="tear-context-item">
+        <div>
+          <strong>Dork suite: 127.0.0.1</strong>
+          <span class="tear-pill">Dork suite</span>
+        </div>
+        <p>5 tasks · Targets: 127.0.0.1</p>
+        <small>Operator catalog reviewed 2026-09-09</small>
+        
+        
+    <article class="tear-details">
+      <div>
+        <strong>Recent changes 1</strong>
+        <span class="tear-pill">completed-no-results</span>
+      </div>
+      <p><strong>Session mode:</strong> Dork suite · <strong>Destination:</strong> Google · engine</p>
+      <p><strong>Dialect:</strong> google · <strong>Results:</strong> 0</p>
+      <small>Dork ID: dork_google_127.0.0.1_recent-changes_1_1_1</small>
+      <small>Operator IDs: site, after</small>
+      <small>Targets: 127.0.0.1</small>
+      <small>Operator catalog reviewed 2026-09-09</small>
+      <p><strong>Exact query</strong><br /><code>site:127.0.0.1 after:2025-10-05 security</code></p>
+      <p><strong>Warnings / outcome notes:</strong> Search operators are constrained by indexing and retrieval limits; no result is not proof of absence.</p>
+    </article>
+    <article class="tear-details">
+      <div>
+        <strong>Recent changes 2</strong>
+        <span class="tear-pill">completed-no-results</span>
+      </div>
+      <p><strong>Session mode:</strong> Dork suite · <strong>Destination:</strong> Google · engine</p>
+      <p><strong>Dialect:</strong> google · <strong>Results:</strong> 0</p>
+      <small>Dork ID: dork_google_127.0.0.1_recent-changes_2_1_2</small>
+      <small>Operator IDs: site, after</small>
+      <small>Targets: 127.0.0.1</small>
+      <small>Operator catalog reviewed 2026-09-09</small>
+      <p><strong>Exact query</strong><br /><code>site:127.0.0.1 after:2025-10-05 changelog</code></p>
+      <p><strong>Warnings / outcome notes:</strong> Search operators are constrained by indexing and retrieval limits; no result is not proof of absence.</p>
+    </article>
+    <article class="tear-details">
+      <div>
+        <strong>Recent changes 1</strong>
+        <span class="tear-pill">completed-results</span>
+      </div>
+      <p><strong>Session mode:</strong> Dork suite · <strong>Destination:</strong> Bing · engine</p>
+      <p><strong>Dialect:</strong> bing · <strong>Results:</strong> 10</p>
+      <small>Dork ID: dork_bing_127.0.0.1_recent-changes_1_1_3</small>
+      <small>Operator IDs: site, prefer</small>
+      <small>Targets: 127.0.0.1</small>
+      <small>Operator catalog reviewed 2026-09-09</small>
+      <p><strong>Exact query</strong><br /><code>site:127.0.0.1 prefer:security release</code></p>
+      <p><strong>Warnings / outcome notes:</strong> Bing prefer: boosts ranking; it is not a date filter. · Bing evaluates only the first ten query terms; BLANCHE keeps this recipe bounded. · Bing browser URL search is used because the legacy Bing Search APIs were retired in 2025.</p>
+    </article>
+    <article class="tear-details">
+      <div>
+        <strong>Recent changes 2</strong>
+        <span class="tear-pill">completed-results</span>
+      </div>
+      <p><strong>Session mode:</strong> Dork suite · <strong>Destination:</strong> Bing · engine</p>
+      <p><strong>Dialect:</strong> bing · <strong>Results:</strong> 10</p>
+      <small>Dork ID: dork_bing_127.0.0.1_recent-changes_2_1_4</small>
+      <small>Operator IDs: site, prefer</small>
+      <small>Targets: 127.0.0.1</small>
+      <small>Operator catalog reviewed 2026-09-09</small>
+      <p><strong>Exact query</strong><br /><code>site:127.0.0.1 prefer:changelog</code></p>
+      <p><strong>Warnings / outcome notes:</strong> Bing prefer: boosts ranking; it is not a date filter. · Bing evaluates only the first ten query terms; BLANCHE keeps this recipe bounded. · Bing browser URL search is used because the legacy Bing Search APIs were retired in 2025.</p>
+    </article>
+    <article class="tear-details">
+      <div>
+        <strong>Recent changes 1</strong>
+        <span class="tear-pill">completed-no-results</span>
+      </div>
+      <p><strong>Session mode:</strong> Dork suite · <strong>Destination:</strong> DuckDuckGo · engine</p>
+      <p><strong>Dialect:</strong> duckduckgo · <strong>Results:</strong> 0</p>
+      <small>Dork ID: dork_duckduckgo_127.0.0.1_recent-changes_1_1_5</small>
+      <small>Operator IDs: site, ddg-semantic</small>
+      <small>Targets: 127.0.0.1</small>
+      <small>Operator catalog reviewed 2026-09-09</small>
+      <p><strong>Exact query</strong><br /><code>site:127.0.0.1 ~&quot;security release&quot;</code></p>
+      <p><strong>Warnings / outcome notes:</strong> DuckDuckGo semantic phrase search is experimental; use its date UI for strict date windows. · DuckDuckGo combines multiple result sources, so documented syntax is not guaranteed for every query.</p>
+    </article>
+      </div>
+        </article>
+        <article class="tear-context-panel">
+          <h3>Document records <span>1</span></h3>
+          
+    <div class="tear-context-item">
+      <div><strong>feature-config.json</strong><span>reviewed</span></div>
+      <p>application/json · 0 keyword hits · 0 extracted URLs</p>
+      <small>SHA-256 5d064a2f150b3c52e5ffe4bb9b73ddd6a69a5861db5c9c43d14107deb649ed83</small>
+    </div>
+        </article>
+        <article class="tear-context-panel">
+          <h3>Latent feature candidates <span>8</span></h3>
+          
+    <div class="tear-context-item">
+      <div><strong>compactDashboard</strong><span>medium</span></div>
+      <p>localStorage · locally probeable</p>
+    </div>
+    <div class="tear-context-item">
+      <div><strong>hiddenTelemetryPanel</strong><span>medium</span></div>
+      <p>localStorage · locally probeable</p>
+    </div>
+    <div class="tear-context-item">
+      <div><strong>smokeWebpackFeature</strong><span>high</span></div>
+      <p>bundle · observation only</p>
+    </div>
+    <div class="tear-context-item">
+      <div><strong>legacyNavigationEnabled</strong><span>high</span></div>
+      <p>bundle · observation only</p>
+    </div>
+    <div class="tear-context-item">
+      <div><strong>blanche-feature-flags</strong><span>medium</span></div>
+      <p>localStorage · observation only</p>
+    </div>
+    <div class="tear-context-item">
+      <div><strong>navigationVariant</strong><span>medium</span></div>
+      <p>runtime-global · observation only</p>
+    </div>
+    <div class="tear-context-item">
+      <div><strong>remotePreviewPanel</strong><span>medium</span></div>
+      <p>runtime-global · observation only</p>
+    </div>
+    <div class="tear-context-item">
+      <div><strong>pairedResponseFeature</strong><span>medium</span></div>
+      <p>runtime-global · observation only</p>
+    </div>
+        </article>
+        <article class="tear-context-panel">
+          <h3>Delivered JavaScript <span>1</span></h3>
+          
+    <div class="tear-context-item">
+      <div><strong>app.js</strong><span>priority 30 · medium</span></div>
+      <p>readable · storage-offline · complete coverage</p>
+      <small>http://127.0.0.1:56781/app.js</small>
+      <small>Review priority is not vulnerability severity.</small>
+    </div>
+        </article>
+        <article class="tear-context-panel">
+          <h3>JavaScript startup observation</h3>
+          
+    <div class="tear-context-item">
+      <div><strong>partial</strong><span>10/5/2026, 11:50:43 AM</span></div>
+      <p>19 bounded runtime events · 2 extension-verified cells · 5 page-world-unverified cells · 2 static-only cells · 2 blocked, failed, or manual cells</p>
+      <small>Scope: in-scope · policy engagement:smoke-local-target 1 · instrumentation integrity: page-world-unverified</small>
+      
+        <small>Bounded source acquisition: passed</small>
+      
+        <small>Document-start instrumentation: passed</small>
+      
+        <small>Startup traffic window: observed</small>
+      
+        <small>Network behavior: observed</small>
+      
+        <small>DOM and interface behavior: observed-unverified</small>
+      
+        <small>Data handling: not-observed</small>
+      
+        <small>Identity, session, and authorization: not-observed</small>
+      
+        <small>Server-side state change: static-only</small>
+      
+        <small>Client storage: observed-unverified</small>
+      
+        <small>Dynamic code loading: observed-unverified</small>
+      
+        <small>Background and realtime behavior: observed-unverified</small>
+      
+        <small>Cross-origin transfer: static-only</small>
+      
+      <small>One startup reload was observed; unobserved and interactive paths remain outside this run.</small>
+      <small>Same-window page instrumentation can be fabricated or suppressed by the inspected page and is not per-script runtime proof.</small>
+    </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="tear-section">
+      <div class="tear-section-heading"><div><span>06</span><h2>Collection coverage</h2></div><p>How BLANCHE gathered the evidence and where collection was limited.</p></div>
+      <div class="tear-capture-facts">
+        <div><strong>passive</strong><span>Collection mode</span></div>
+        <div><strong>No</strong><span>Reload triggered</span></div>
+        <div><strong>29 ms</strong><span>Elapsed collection</span></div>
+        <div><strong>2</strong><span>Frames</span></div>
+      </div>
+      <div class="tear-table-wrap"><table><thead><tr><th>Collector</th><th>Surface</th><th>Status</th><th>Warnings</th><th>Errors</th><th>Gaps</th></tr></thead><tbody>
+        <tr>
+          <td><strong>Frame Structure Collector</strong><small>frame-structure</small></td>
+          <td>background</td>
+          <td><span class="tear-pill tear-status-ok">ok</span></td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td><strong>Page Snapshot Collector</strong><small>page-snapshot</small></td>
+          <td>page</td>
+          <td><span class="tear-pill tear-status-ok">ok</span></td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td><strong>Instrumentation Bridge Collector</strong><small>instrumentation-bridge</small></td>
+          <td>content</td>
+          <td><span class="tear-pill tear-status-partial">partial</span></td>
+          <td>1</td>
+          <td>0</td>
+          <td>1</td>
+        </tr></tbody></table></div>
+      <details class="tear-details" data-disclosure-key="report-permissions">
+        <summary>Permissions recorded with the capture</summary>
+        <div class="tear-permission-grid">
+          <div><strong>Granted extension permissions</strong><p><code>bookmarks</code> <code>devtools</code> <code>downloads</code> <code>storage</code> <code>tabs</code> <code>webNavigation</code> <code>webRequest</code> <code>scripting</code> <code>sidePanel</code></p></div>
+          <div><strong>Granted host permissions</strong><p><code>&lt;all_urls&gt;</code> <code>http://127.0.0.1/*</code> <code>http://blanche.invalid/*</code> <code>http://localhost/*</code></p></div>
+        </div>
+      </details>
+    </section>
+
+    <section class="tear-section">
+      <div class="tear-section-heading"><div><span>07</span><h2>Limitations and interpretation</h2></div><p>Required context for defensible stakeholder use.</p></div>
+      <ul class="tear-limit-list">
+        <li>
+          <div class="tear-limit-heading">
+            <strong>This is not a complete HTTP transaction archive</strong>
+            <code>NOT_FULL_HTTP_ARCHIVE</code>
+          </div>
+          <p>The browser capture includes resource timing and browser-only state, but not complete request and response headers, bodies, cookies, status history, redirect chains, or a full network waterfall. Use Burp HTTP history for transaction-level evidence.</p>
+        </li>
+        <li>
+          <div class="tear-limit-heading">
+            <strong>Collection is intentionally bounded</strong>
+            <code>BOUNDED_COLLECTION</code>
+          </div>
+          <p>Resource, cache, storage-value, and instrumentation buffers have configured caps. The source capture is lossless relative to what BLANCHE retained, not necessarily every event the page produced.</p>
+        </li>
+        <li>
+          <div class="tear-limit-heading">
+            <strong>Observations are not validated vulnerabilities</strong>
+            <code>INFORMATIONAL_ONLY</code>
+          </div>
+          <p>This report explains browser evidence and testing leads. A tester must validate impact, scope, authorization, and reportability.</p>
+        </li>
+        <li>
+          <div class="tear-limit-heading">
+            <strong>Workbench context is host-correlated, not capture-session evidence</strong>
+            <code>HOST_CORRELATED_CONTEXT</code>
+          </div>
+          <p>Findings, searches, documents, latent-feature scans, interest analysis, and activity are included only when their recorded hostname exactly matches the captured site. Their original timestamps are preserved, but they may come from a different task or visit and must be reviewed before attribution to this capture.</p>
+        </li>
+        <li>
+          <div class="tear-limit-heading">
+            <strong>JavaScript purpose is evidence-backed triage</strong>
+            <code>JAVASCRIPT_PURPOSE_HEURISTIC</code>
+          </div>
+          <p>Static transform, purpose, behavior, and review-priority results come from bounded retained source and runtime evidence. Packing, truncation, unresolved chunks, source maps, and environment-dependent paths can limit conclusions. Review priority is not vulnerability severity.</p>
+        </li>
+        <li>
+          <div class="tear-limit-heading">
+            <strong>JavaScript startup observation covers one path</strong>
+            <code>JAVASCRIPT_STARTUP_PATH_ONLY</code>
+          </div>
+          <p>The action reloads the explicitly in-scope current tab once and observes bounded startup behavior. Same-window page instrumentation is explicitly unverified because the inspected page can fabricate or suppress that channel; independently recorded Traffic ledger evidence remains distinguishable. The action does not click controls, submit forms, replay transactions, or prove that unobserved paths are absent.</p>
+        </li>
+        <li>
+          <div class="tear-limit-heading">
+            <strong>Collector warning</strong>
+            <code>PASSIVE_MODE_PROVENANCE_LIMIT</code>
+          </div>
+          <p>Passive mode can enumerate current blob and dynamic artifacts, but cannot retroactively prove creation provenance.</p>
+        </li>
+        <li>
+          <div class="tear-limit-heading">
+            <strong>Collector warning</strong>
+            <code>INSTRUMENTATION_SKIPPED</code>
+          </div>
+          <p>Instrumentation collector skipped because passive mode was selected.</p>
+        </li>
+        <li>
+          <div class="tear-limit-heading">
+            <strong>Visibility gap: timing</strong>
+            <code>PASSIVE_MODE_BLOB_PROVENANCE_GAP</code>
+          </div>
+          <p>Blob URL provenance remains unavailable without instrumented document_start observation.</p>
+        </li>
+        <li>
+          <div class="tear-limit-heading">
+            <strong>Visibility gap: timing</strong>
+            <code>INSTRUMENTATION_NOT_REQUESTED</code>
+          </div>
+          <p>Document_start instrumentation was not requested, so dynamic blob provenance can remain unavailable.</p>
+        </li></ul>
+    </section>
+
+    <section class="tear-section tear-artifact-appendix">
+      <div class="tear-section-heading"><div><span>08</span><h2>Redacted evidence index</h2></div><p>One row per normalized artifact. Raw attributes and full values remain only in JSON evidence.</p></div>
+      <div class="tear-table-wrap"><table><thead><tr><th>Evidence ID</th><th>Category</th><th>Kind / location</th><th>Frame</th><th>Provenance</th><th>Confidence</th></tr></thead><tbody>
+    <tr>
+      <td><code>artifact_muvlusqh_271556d3-e583-4fa4-857b-57170e4e7302</code></td>
+      <td>Frames</td>
+      <td><strong>frame</strong><small>http://127.0.0.1:56781/</small></td>
+      <td>0</td>
+      <td>observed</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <td><code>artifact_muvlusqh_0451f9ca-fe07-4c32-a3ac-61f820cc2e0c</code></td>
+      <td>Frames</td>
+      <td><strong>frame</strong><small>http://127.0.0.1:56781/frame.html</small></td>
+      <td>38</td>
+      <td>observed</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <td><code>artifact_muvlusqh_8b700a45-8f0c-432b-9519-d3188a5db238</code></td>
+      <td>Runtime indicators</td>
+      <td><strong>frame-runtime-state</strong><small>http://127.0.0.1:56781/</small></td>
+      <td>0</td>
+      <td>observed</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <td><code>artifact_muvlusqh_04c89027-5e27-42d2-bac0-eefb5dfae9f1</code></td>
+      <td>Scripts</td>
+      <td><strong>dom-script</strong><small>http://127.0.0.1:56781/app.js</small></td>
+      <td>0</td>
+      <td>observed</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <td><code>artifact_muvlusqh_61e255b5-0e0a-4565-86d7-7198a98f148b</code></td>
+      <td>Images</td>
+      <td><strong>dom-image</strong><small>blob:http://127.0.0.1:56781/9e9e5480-6293-4933-8778-f07d6cfab72b</small></td>
+      <td>0</td>
+      <td>unavailable</td>
+      <td>low</td>
+    </tr>
+    <tr>
+      <td><code>artifact_muvlusqh_11befffb-1f2b-4001-990d-ee450bb12f7e</code></td>
+      <td>Images</td>
+      <td><strong>dom-image</strong><small>data:image/gif;[payload omitted]</small></td>
+      <td>0</td>
+      <td>observed</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <td><code>artifact_muvlusqh_1da3dbbe-24d1-4411-ae63-bdf47c8d0839</code></td>
+      <td>Iframes</td>
+      <td><strong>dom-iframe</strong><small>http://127.0.0.1:56781/frame.html</small></td>
+      <td>0</td>
+      <td>observed</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <td><code>artifact_muvlusqh_3774178a-325f-4914-82a3-93254ec58b10</code></td>
+      <td>Scripts</td>
+      <td><strong>performance-resource</strong><small>http://127.0.0.1:56781/app.js</small></td>
+      <td>0</td>
+      <td>observed</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <td><code>artifact_muvlusqh_e8579dd2-58de-4d28-a09a-7d79e04ff755</code></td>
+      <td>Resources</td>
+      <td><strong>performance-resource</strong><small>http://127.0.0.1:56781/frame.html</small></td>
+      <td>0</td>
+      <td>observed</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <td><code>artifact_muvlusqh_740bbd27-b585-4a94-a85f-fb1a807c7709</code></td>
+      <td>Resources</td>
+      <td><strong>performance-resource</strong><small>http://127.0.0.1:56781/feature-config.json</small></td>
+      <td>0</td>
+      <td>observed</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <td><code>artifact_muvlusqh_464b6f0e-748a-4b07-8b41-7a9d71338260</code></td>
+      <td>Resources</td>
+      <td><strong>performance-resource</strong><small>http://127.0.0.1:56781/worker.js</small></td>
+      <td>0</td>
+      <td>observed</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <td><code>artifact_muvlusqh_46958cf3-98e9-49bf-be13-6df57ddb10e8</code></td>
+      <td>Browser storage keys</td>
+      <td><strong>localStorage</strong><small>localStorage</small></td>
+      <td>0</td>
+      <td>observed</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <td><code>artifact_muvlusqh_5a8eab83-0ac7-44b4-bae0-b33f4b2b3c6a</code></td>
+      <td>Browser storage keys</td>
+      <td><strong>localStorage</strong><small>localStorage</small></td>
+      <td>0</td>
+      <td>observed</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <td><code>artifact_muvlusqh_eb65757c-b7be-4554-a4d9-ba7ed0b6509b</code></td>
+      <td>Browser storage keys</td>
+      <td><strong>sessionStorage</strong><small>sessionStorage</small></td>
+      <td>0</td>
+      <td>observed</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <td><code>artifact_muvlusqh_0321072f-89ea-443f-a0b2-0079bcd984b2</code></td>
+      <td>Browser storage keys</td>
+      <td><strong>sessionStorage</strong><small>sessionStorage</small></td>
+      <td>0</td>
+      <td>observed</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <td><code>artifact_muvlusqh_8fa0a39c-9522-4e7d-883c-362963124324</code></td>
+      <td>IndexedDB databases</td>
+      <td><strong>indexeddb-database</strong><small>indexeddb-database</small></td>
+      <td>0</td>
+      <td>observed</td>
+      <td>medium</td>
+    </tr>
+    <tr>
+      <td><code>artifact_muvlusqh_45a5d824-e101-4b2d-9a10-d400e8169316</code></td>
+      <td>Cache Storage</td>
+      <td><strong>cache-storage</strong><small>cache-storage</small></td>
+      <td>0</td>
+      <td>observed</td>
+      <td>medium</td>
+    </tr>
+    <tr>
+      <td><code>artifact_muvlusqh_2f0fdd2c-2a0d-4861-9d3a-999d6e2c56ef</code></td>
+      <td>Service workers</td>
+      <td><strong>service-worker-registration</strong><small>http://127.0.0.1:56781/sw.js</small></td>
+      <td>0</td>
+      <td>observed</td>
+      <td>medium</td>
+    </tr>
+    <tr>
+      <td><code>artifact_muvlusqh_5f0f97e8-a056-48fd-9f49-b71fc1bb52f7</code></td>
+      <td>Runtime indicators</td>
+      <td><strong>frame-runtime-state</strong><small>http://127.0.0.1:56781/frame.html</small></td>
+      <td>38</td>
+      <td>observed</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <td><code>artifact_muvlusqh_a15e4b34-b666-4195-9176-bf362408c3c7</code></td>
+      <td>Browser storage keys</td>
+      <td><strong>localStorage</strong><small>localStorage</small></td>
+      <td>38</td>
+      <td>observed</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <td><code>artifact_muvlusqh_602f2752-9656-4e79-8489-73e7c4c2e549</code></td>
+      <td>Browser storage keys</td>
+      <td><strong>localStorage</strong><small>localStorage</small></td>
+      <td>38</td>
+      <td>observed</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <td><code>artifact_muvlusqh_1bed148d-4c7c-4a43-8bf0-56b9cb6da65c</code></td>
+      <td>Browser storage keys</td>
+      <td><strong>sessionStorage</strong><small>sessionStorage</small></td>
+      <td>38</td>
+      <td>observed</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <td><code>artifact_muvlusqh_a2e59705-930e-4d50-95db-cd8fb0781070</code></td>
+      <td>Browser storage keys</td>
+      <td><strong>sessionStorage</strong><small>sessionStorage</small></td>
+      <td>38</td>
+      <td>observed</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <td><code>artifact_muvlusqh_2c024d33-0e32-462a-8246-1c870e9fa265</code></td>
+      <td>IndexedDB databases</td>
+      <td><strong>indexeddb-database</strong><small>indexeddb-database</small></td>
+      <td>38</td>
+      <td>observed</td>
+      <td>medium</td>
+    </tr>
+    <tr>
+      <td><code>artifact_muvlusqh_519b46fa-4072-41d2-9344-8a45cf3cd3f9</code></td>
+      <td>Cache Storage</td>
+      <td><strong>cache-storage</strong><small>cache-storage</small></td>
+      <td>38</td>
+      <td>observed</td>
+      <td>medium</td>
+    </tr></tbody></table></div>
+    </section>
+
+    <footer class="tear-footer">
+      <div><strong>Report ID</strong><code>tear-sheet_export_muvlusqi_7732f726-b8c1-495b-97fa-a4b79482b89e_edltp4</code></div>
+      <div><strong>Source export</strong><code>export_muvlusqi_7732f726-b8c1-495b-97fa-a4b79482b89e</code></div>
+      <p>Generated by BLANCHE. This tear sheet describes observed and inferred assessment evidence; it does not assign vulnerability validity or severity.</p>
+    </footer>
+    </div>
+    </main>
+  </body>
+</html>

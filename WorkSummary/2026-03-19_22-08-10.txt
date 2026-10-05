@@ -1,0 +1,20 @@
+Timestamp: 2026-03-19 22:08:10 America/Los_Angeles
+
+Prompt Used:
+Dont use http://burp switch it to http://blanche
+
+Work Summary:
+- Switched the operator-facing synthetic ingest endpoint from `http://burp/blanche/ingest` to `http://blanche/ingest`.
+- Updated the Burp proxy bridge constants in `burp-extension/src/main/java/com/blanche/burp/BlancheProxyBridge.java`.
+- Updated the Chromium Burp Bridge default ingest URL in `chromium-extension/src/modules/burpBridge/background.ts`.
+- Updated the Burp Bridge descriptor defaults and host permissions in `chromium-extension/src/modules/burpBridge/descriptor.json`.
+- Updated README files so the documented handoff path is now `http://blanche/ingest`.
+- Rebuilt the Chromium extension and Burp jar.
+
+Verification:
+- `npm run build`
+- `npm run build:burp`
+
+Implementation Note:
+- The visible endpoint is now `http://blanche/ingest`.
+- The Burp proxy bridge still uses Burp's internal responder as a private transit target so the browser always gets a replaceable response in the proxy flow. That internal detail is not the public handoff URL.

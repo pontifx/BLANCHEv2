@@ -1,0 +1,546 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://blanche.dev/schema/blanche-export-v1.1.json",
+  "title": "BLANCHE Export",
+  "type": "object",
+  "required": [
+    "kind",
+    "schemaVersion",
+    "exportMetadata",
+    "module",
+    "page",
+    "collection",
+    "permissions",
+    "collectors",
+    "artifacts",
+    "trafficLedger",
+    "warnings",
+    "errors",
+    "visibilityGaps",
+    "summary"
+  ],
+  "properties": {
+    "kind": {
+      "const": "blanche.export"
+    },
+    "schemaVersion": {
+      "const": "1.1.0"
+    },
+    "exportMetadata": {
+      "type": "object",
+      "required": ["exportId", "exportedAt", "generatedBy"],
+      "properties": {
+        "exportId": {
+          "type": "string"
+        },
+        "exportedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "generatedBy": {
+          "type": "object",
+          "required": ["product", "component", "version", "moduleId", "moduleVersion"],
+          "properties": {
+            "product": {
+              "const": "BLANCHE"
+            },
+            "component": {
+              "type": "string"
+            },
+            "version": {
+              "type": "string"
+            },
+            "moduleId": {
+              "type": "string"
+            },
+            "moduleVersion": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "module": {
+      "type": "object",
+      "required": ["id", "name", "version"],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "page": {
+      "type": "object",
+      "required": ["frames", "tab"],
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "origin": {
+          "type": "string"
+        },
+        "referrer": {
+          "type": "string"
+        },
+        "topLevelFrameId": {
+          "type": "number"
+        },
+        "frames": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["frameId"],
+            "properties": {
+              "frameId": {
+                "type": "number"
+              },
+              "parentFrameId": {
+                "type": "number"
+              },
+              "url": {
+                "type": "string"
+              },
+              "origin": {
+                "type": "string"
+              },
+              "documentId": {
+                "type": "string"
+              },
+              "transitionType": {
+                "type": "string"
+              },
+              "frameType": {
+                "type": "string"
+              },
+              "errorOccurred": {
+                "type": "boolean"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "tab": {
+          "type": "object",
+          "required": ["tabId"],
+          "properties": {
+            "tabId": {
+              "type": "number"
+            },
+            "windowId": {
+              "type": "number"
+            },
+            "openerTabId": {
+              "type": "number"
+            },
+            "status": {
+              "type": "string"
+            },
+            "active": {
+              "type": "boolean"
+            },
+            "discarded": {
+              "type": "boolean"
+            },
+            "audible": {
+              "type": "boolean"
+            },
+            "favIconUrl": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "collection": {
+      "type": "object",
+      "required": ["sessionId", "mode", "reloadTriggered", "startedAt", "finishedAt", "target"],
+      "properties": {
+        "sessionId": {
+          "type": "string"
+        },
+        "mode": {
+          "enum": ["passive", "instrumented"]
+        },
+        "reloadTriggered": {
+          "type": "boolean"
+        },
+        "startedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "finishedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "target": {
+          "type": "object",
+          "required": ["tabId"],
+          "properties": {
+            "tabId": {
+              "type": "number"
+            },
+            "initialUrl": {
+              "type": "string"
+            },
+            "finalUrl": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "permissions": {
+      "type": "object",
+      "required": ["grantedPermissions", "grantedHostPermissions", "moduleRequirements"],
+      "properties": {
+        "grantedPermissions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "grantedHostPermissions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "moduleRequirements": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["moduleId", "requiredPermissions", "requiredHostPermissions"],
+            "properties": {
+              "moduleId": {
+                "type": "string"
+              },
+              "requiredPermissions": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "requiredHostPermissions": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "collectors": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/collector"
+      }
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/artifact"
+      }
+    },
+    "trafficLedger": {
+      "$ref": "https://blanche.dev/schema/blanche-traffic-ledger-v1.json"
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/warning"
+      }
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/error"
+      }
+    },
+    "visibilityGaps": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/visibilityGap"
+      }
+    },
+    "summary": {
+      "type": "object",
+      "required": [
+        "artifactCount",
+        "artifactCountsByCategory",
+        "warningCount",
+        "errorCount",
+        "visibilityGapCount"
+      ],
+      "properties": {
+        "artifactCount": {
+          "type": "number"
+        },
+        "artifactCountsByCategory": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number"
+          }
+        },
+        "warningCount": {
+          "type": "number"
+        },
+        "errorCount": {
+          "type": "number"
+        },
+        "visibilityGapCount": {
+          "type": "number"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "$defs": {
+    "jsonValue": {
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/jsonValue"
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/jsonValue"
+          }
+        }
+      ]
+    },
+    "warning": {
+      "type": "object",
+      "required": ["code", "message", "severity"],
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "collectorId": {
+          "type": "string"
+        },
+        "severity": {
+          "enum": ["info", "warning"]
+        },
+        "context": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/jsonValue"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "error": {
+      "type": "object",
+      "required": ["code", "message", "recoverable"],
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "collectorId": {
+          "type": "string"
+        },
+        "recoverable": {
+          "type": "boolean"
+        },
+        "context": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/jsonValue"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "visibilityGap": {
+      "type": "object",
+      "required": ["code", "surface", "message", "reason"],
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "surface": {
+          "enum": ["background", "content", "page", "devtools", "sidepanel"]
+        },
+        "message": {
+          "type": "string"
+        },
+        "reason": {
+          "enum": [
+            "cross-origin",
+            "permission",
+            "api-unavailable",
+            "timing",
+            "unsupported-context",
+            "implementation-gap"
+          ]
+        },
+        "context": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/jsonValue"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "provenance": {
+      "type": "object",
+      "required": ["disposition", "confidence", "sources"],
+      "properties": {
+        "disposition": {
+          "enum": ["observed", "inferred", "unavailable"]
+        },
+        "confidence": {
+          "enum": ["high", "medium", "low"]
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "note": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "artifact": {
+      "type": "object",
+      "required": ["artifactId", "category", "kind", "discoveredBy", "attributes", "provenance"],
+      "properties": {
+        "artifactId": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "frameId": {
+          "type": "number"
+        },
+        "origin": {
+          "type": "string"
+        },
+        "discoveredBy": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "attributes": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/jsonValue"
+          }
+        },
+        "provenance": {
+          "$ref": "#/$defs/provenance"
+        }
+      },
+      "additionalProperties": false
+    },
+    "collector": {
+      "type": "object",
+      "required": [
+        "collectorId",
+        "name",
+        "surface",
+        "status",
+        "collectedAt",
+        "warnings",
+        "errors",
+        "visibilityGaps",
+        "data"
+      ],
+      "properties": {
+        "collectorId": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "surface": {
+          "enum": ["background", "content", "page"]
+        },
+        "status": {
+          "enum": ["ok", "partial", "error"]
+        },
+        "collectedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "warnings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/warning"
+          }
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/error"
+          }
+        },
+        "visibilityGaps": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/visibilityGap"
+          }
+        },
+        "data": {
+          "$ref": "#/$defs/jsonValue"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,44 @@
+Timestamp:
+2026-09-03 11:37:01 America/Los_Angeles
+
+Prompt:
+Backup current build, then implement the score-aware traffic ledger.
+
+Backup:
+- Created a verified mirror at C:\Users\ponti\OneDrive\Desktop\BLANCHE\backups\BLANCHE-main-pre-score-aware-traffic-ledger-2026-09-03.
+- Mirrored 1,625 files and verified the mirror with a second Robocopy comparison: 0 mismatches and 0 failures after the documented exclusion.
+- Excluded only burp-extension/build/2026-08-31.burp because Burp held an exclusive lock on the live project database. Extension source, generated assets, dependencies, historical project files, and the loadable JAR were copied.
+- Added BACKUP_MANIFEST.txt with source, method, exclusion, comparison result, and checkpoint hashes.
+
+Summary:
+- Added the canonical blanche.traffic-ledger 1.0.0 TypeScript model and JSON Schema, and embedded it in blanche.export 1.1.0.
+- Added versioned, lossless scope policies with exact-host, wildcard-subdomain, IPv4-CIDR, and URL-prefix rules; method/scheme/port constraints; explicit defaults; priority evaluation; and exclude-on-tie behavior.
+- Added deterministic endpoint identity, privacy-preserving URL templating, scope/boundary/ownership/environment/role/access/operation/data taxonomy, evidence references, coverage gaps, and a reviewable 0-100 triage score with factors.
+- Added passive Chromium webRequest capture with header/body field names only, bounded entry/byte retention, debounced persistence, redirect correlation, target context isolation, control-plane exclusion, and explicit store-wide truncation metadata.
+- Made top-frame webNavigation.onCommitted the only active-context boundary. Pending candidates, committed document markers, and active targets share serialized session state; cross-API event reordering, failed/overlapping/non-committing navigation, MV3 restart, safe-URL collisions, and stale candidates have focused coverage.
+- Added durable capture-loss markers with local plus session fallback and bounded retry. A failed persisted-state read disables capture instead of silently claiming a complete ledger.
+- Added Traffic Ledger UI summary, filters, score ordering, endpoint details, coverage warnings, clear/settings controls, structured scope-rule editing, and canonical JSON/JSONL export.
+- Added executable scope gates to automatic document and latent-library retrieval while preserving explicit manual operator actions.
+- Added traffic-ledger handoff to the Burp bridge and a Burp Suite ledger tab with tolerant legacy parsing, score/scope/factor/provenance display, priority ordering, and truncation warnings.
+- Added docs/traffic-ledger.md plus README, architecture, and tester-workflow updates.
+- Hardened the browser smoke helper with a narrow retry for Chromium's transient removed-frame error after intentional page reloads.
+
+Verification:
+- PASS: backup mirror comparison and checkpoint hash verification
+- PASS: npm run typecheck
+- PASS: npm run test:traffic-ledger
+- PASS: npm run build
+- PASS: npm run build:osint
+- PASS: npm run build:burp
+- PASS: node --check scripts/smoke-burp-bridge.mjs
+- PASS: npm run smoke:extension-workflows
+- Smoke result: 32 artifacts, 5 traffic endpoints, 23 tear-sheet artifacts, 2 documents, 9 latent features, 3 related OSINT hosts, and 3 verified search tabs.
+- Smoke screenshots: WorkSummary/chromium-extension-workflow-smoke.png and WorkSummary/blanche-tear-sheet.png.
+
+Current boundaries:
+- The score is deterministic triage priority, not proof of exploitability or vulnerability severity.
+- The ledger intentionally omits header values, body values, cookies, credentials, query values, fragments, URL user information, and raw request/response bodies.
+- Path templates and metadata names can still expose business semantics and require distribution review.
+- Retention-loss counts are store-wide and conservatively mark a target export incomplete when attribution cannot be proven.
+- Cross-API request correlation has a bounded late-event window; unmatched commits declare NAVIGATION_REQUEST_CONTEXT_UNAVAILABLE rather than asserting complete provenance.
+- If every browser storage write is unavailable, durable loss-marker persistence cannot be guaranteed; the live export reports COVERAGE_MARKER_PERSIST_FAILED.

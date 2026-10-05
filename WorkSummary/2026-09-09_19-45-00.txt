@@ -1,0 +1,53 @@
+Timestamp:
+2026-09-09 19:45:00 America/Los_Angeles
+
+Prompt:
+Backup BLANCHE; cross-assess advanced Google, Bing, and DuckDuckGo search operators; use the assessed operators to generate bounded OSINT/testing dork suites; add NERD mode so an operator can select search functionality on any site and run the suite against it; expose the discovered operators in BLANCHE; and verify the new workflows and their reporting output as a user would.
+
+Backup:
+- Created a pre-change mirror at C:\Users\ponti\OneDrive\Desktop\BLANCHE\backups\BLANCHE-main-pre-nerd-mode-2026-09-09.
+- Mirrored 1,643 files in 182 directories (3.084 GB) and verified the mirror with a second Robocopy comparison: 0 mismatches and 0 failures.
+- Added BACKUP_MANIFEST.txt with the source, method, verification result, and SHA-256 checkpoints for README.md and package-lock.json.
+
+Summary:
+- Added a normalized 50-row search-operator catalog with per-engine Google, Bing, and DuckDuckGo syntax, semantics, evidence status, generation safety, replacements, caveats, review date, and HTTPS references.
+- Added docs/search-operator-matrix.md and an in-product Operators tab so the complete cross-engine assessment is reviewable inside BLANCHE and in source control.
+- Added a bounded Dork Suite workflow for authorized OSINT and testing. It emits exact engine-specific queries for authentication surfaces, indexed documents, APIs, client artifacts, directory listings, and recent changes, with target validation, warnings, provenance, and a 1-60 query cap.
+- Added DuckDuckGo as a first-class search engine and corrected persisted built-in engine migration so current built-ins are not shadowed by stale state.
+- Added NERD mode: scan the active page for search inputs/forms, review and save a discovered or manual GET URL-template surface, select one or more saved surfaces, preview the portable suite, and replay it through the site's own search functionality.
+- NERD form replay dispatches native input/change events and submits through the form, submit control, or Enter fallback. Saved fixed parameters exclude credential- and token-like names such as csrf, xsrf, token, secret, password, session, auth, and api-key.
+- Added generic NERD result parsing, navigation/SPA settling, multi-target result filtering, per-engine launch spacing, persistent task creation, and sanitized surface snapshots.
+- Extended runtime messaging, coordinator execution, Operator Console UI, generated extension assets, tear-sheet JSON, and stakeholder HTML so classic, Dork Suite, and NERD executions retain their mode, exact query, dialect, operator IDs, warnings, target/surface, status, and parsed outcomes.
+- Preserved date-only catalog provenance in stakeholder HTML so 2026-09-09 cannot shift to the prior day under a negative local time-zone offset.
+- Added focused search-feature regression tests and expanded the real-browser workflow smoke to exercise the catalog, one bounded cross-engine suite, discovered GET and POST forms, a JavaScript-driven widget, a reviewed URL template, parsed NERD results, and report correlation.
+
+Verification:
+- PASS: backup mirror comparison and checkpoint hash verification
+- PASS: npm run typecheck
+- PASS: npm run test:search-features
+- PASS: npm run test:traffic-ledger
+- PASS: npm run build
+- PASS: node --check scripts/smoke-burp-bridge.mjs
+- PASS: npm run smoke:tear-sheet
+- PASS: npm run smoke:extension-workflows
+- PASS: manual visual review of the Dork Suite, NERD mode, operator catalog, and search-correlated stakeholder report screenshots
+- Concurrency check: four workers with a configured 120 ms gate completed with observed launch gaps of 128, 124, and 123 ms.
+- Final browser smoke result: 32 artifacts, 5 traffic endpoints, 23 tear-sheet artifacts, 8 limitations, 3 documents, 3 related OSINT hosts, 9 latent features, 4 interest bookmarks, and 3 classic search tabs, plus the catalog/Dork Suite/NERD/report assertions.
+- Dork Suite smoke output: one user launch produced five bounded Recent Changes tasks across all three engines: Google site:+after: (two queries), Bing site:+prefer: (two queries), and DuckDuckGo site:+ddg-semantic (one query). Exact query/operator metadata for every dialect was retained without making the smoke depend on third-party result counts.
+- NERD GET smoke output: portable site:127.0.0.1 \"security release\" ran through a selected local GET form with fixed section=all; the sensitive csrf field was excluded; a result titled \"Local indexed smoke result\" was parsed and retained.
+- NERD POST smoke output: the same exact query ran through a selected application/x-www-form-urlencoded POST form; the safe corpus=knowledge field was retained, the hidden sensitive value was excluded from reports, and \"Local POST-indexed smoke result\" was parsed.
+- NERD dynamic smoke output: the selected form-free JavaScript widget received the exact generated query, updated its page results through site JavaScript, and retained the parsed from=nerd-dynamic result.
+- NERD template smoke output: a user-reviewed HTTP URL containing exactly one {query} placeholder was saved, selected, substituted, run, parsed, and retained with section=template.
+- Reporting check: the cross-engine Dork session and all four NERD sessions appear in correlatedEvidence.searchSessions with exact queries, metadata, warnings, surfaces/transports, statuses, and outcomes; the stakeholder report renders Dork suite, NERD mode, Exact query, GET, POST, DYNAMIC, and URL-template context.
+- Catalog provenance check: all 14 stakeholder report occurrences render the exact review date 2026-09-09; the erroneous localized 9/8/2026 value is absent.
+- Machine-readable smoke trace: WorkSummary/search-feature-smoke-report.json.
+- Preserved standalone report exports: WorkSummary/search-feature-full-report.html and WorkSummary/search-feature-full-report.json.
+- Visual smoke artifacts: WorkSummary/dork-suite-smoke.png, WorkSummary/nerd-mode-smoke.png, WorkSummary/search-operator-catalog-smoke.png, and WorkSummary/blanche-search-report-smoke.png.
+- Preliminary browser-smoke runs exposed stale side-panel target context and rerender timing assumptions in the smoke harness. The harness now reactivates the target, refreshes state, and waits for controls/selection state after each render; repeated final runs pass.
+
+Current boundaries:
+- Dork Suite and NERD mode are intended only for targets the operator is authorized to assess; the UI keeps the target explicit, previews exact queries, applies bounded caps, and records warnings.
+- Search-operator behavior is controlled by third-party engines and can change. The catalog separates documented, observed, fragile, deprecated, and unsupported claims and records the review date and sources rather than promising permanence.
+- NERD supports discoverable HTML search controls, GET/form replay, and reviewed HTTP(S) URL templates containing exactly one {query} placeholder. Sites with inaccessible shadow DOM, anti-automation challenges, authentication gates, unusual scripted widgets, or server-side defenses may require manual setup or may refuse automation.
+- Result parsing is generic evidence collection, not a guarantee that every site's presentation can be normalized or that a no-results outcome proves absence.
+- Sensitive fixed parameter names are excluded defensively, but operators must still review each discovered surface before saving or running it.

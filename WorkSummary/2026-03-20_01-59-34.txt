@@ -1,0 +1,22 @@
+Timestamp: 2026-03-20 01:59:34 America/Los_Angeles
+
+Prompt Used:
+Try that
+
+Work Summary:
+- Changed the default synthetic Burp handoff endpoint from `http://blanche/ingest` to `http://blanche.invalid/ingest`.
+- Updated the Burp proxy bridge in `burp-extension/src/main/java/com/blanche/burp/BlancheProxyBridge.java` to match the new reserved-domain host.
+- Updated the Chromium Burp Bridge default ingest URL and required host permissions in:
+  - `chromium-extension/src/modules/burpBridge/background.ts`
+  - `chromium-extension/src/modules/burpBridge/descriptor.json`
+- Updated README files to document the new default endpoint and why `.invalid` is used.
+- Rebuilt both deliverables:
+  - `npm run build`
+  - `npm run build:burp`
+
+Reasoning:
+- `blanche.invalid` uses the reserved `.invalid` TLD, which is less likely to be treated as a simple local/intranet hostname and bypass the configured proxy path.
+
+Verification Note:
+- The built Chromium files and manifest now carry `http://blanche.invalid/ingest` and `http://blanche.invalid/*`.
+- Earlier text searches hit stale strings in inline sourcemap content, not the live runtime constants.

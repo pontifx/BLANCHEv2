@@ -1,0 +1,54 @@
+BLANCHE work turn: full backup and extension feature survey
+Research date: 2026-10-02 (client date)
+
+REQUEST
+- Back up BLANCHE.
+- Survey Burp BApp Store, GitHub extensions, and other browser extensions.
+- Recommend features that materially simplify OSINT/browser use for humans and AI.
+
+ACTION AND RESULT
+- Created a non-overwriting full active-project backup under:
+  ../../backups/BLANCHE-full-pre-extension-survey-2026-10-02
+- Included BLANCHE-main in full (dependencies, builds, WorkSummary, Burp sessions), plus root AGENTS.md.
+- Backup PASS: 1,701 files, 4,530,860,152 bytes, no missing/hash-mismatched records,
+  source metadata stable during copy, and source path inventory stable.
+- Historical backups and legacy blache-backup retained in place, not recursively duplicated.
+- Every file was byte/hash checked; no live application restore was performed.
+- Backup is a local same-drive snapshot and does not capture browser-profile state outside the workspace.
+- Added reusable local backup procedure ../../backups/backup-blanche-full.mjs.
+- Inventoried all 438 entries exposed in the observed official BApp Store catalog.
+- Reviewed 45 selected official BApp detail pages.
+- Reviewed 34 browser-extension projects and 23 GitHub repositories plus 5 supplementary
+  official sources. Samples overlap; no exhaustive all-GitHub/all-browser-store claim.
+- Inspected BLANCHE source/docs to distinguish existing capabilities from proposed additions.
+- Wrote docs/extension-survey-2026-10-02.md with 14 ranked features, human/AI benefits,
+  source citations, local integration gaps, effort estimates, and proposed acceptance checks.
+
+RECOMMENDATION
+- First useful workflow: select content, preserve evidence, annotate/extract, copy cited AI
+  context, and reopen it later. Add entity pivots and local transforms to the same workflow.
+- Durable case/evidence IDs are the foundation; current host state stores one lastExport and
+  the collection session manager trims recent history to 25 sessions.
+- Reuse current Search, Documents, Traffic, Findings, Report, and Burp integration foundations.
+- Feature proposals and speed targets are not claims of implemented or measured behavior.
+
+REVIEW ARTIFACTS
+- ../docs/extension-survey-2026-10-02.md
+- ../../research/2026-10-02-extension-survey/burp/catalog.csv
+- ../../research/2026-10-02-extension-survey/burp/coverage-manifest.json
+- ../../research/2026-10-02-extension-survey/burp/findings.json
+- ../../research/2026-10-02-extension-survey/browsers/inventory.json
+- ../../research/2026-10-02-extension-survey/browsers/findings.md
+- ../../research/2026-10-02-extension-survey/github/github-inventory.json
+- ../../research/2026-10-02-extension-survey/verification.json
+- ../../research/2026-10-02-extension-survey/verify_survey.py
+
+VALIDATION AND LIMITS
+- Backup manifest records SHA-256 and size equality for all copied files.
+- Survey verifier checks counts, uniqueness, source coverage, local links and manifest totals.
+- Burp verifier checks raw catalog/detail hashes and citation references.
+- No application tests were needed for this documentation/research turn; runtime code unchanged.
+- No third-party extensions were installed or runtime-tested.
+- No publishing, account changes, credential operations, provider uploads, messaging or schedules.
+- Exact browser availability varies; InVID current store availability remains unverified.
+- The backup precedes this turn's new report and work summary; research artifacts are separately saved.

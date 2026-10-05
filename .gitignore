@@ -1,0 +1,8 @@
+node_modules/
+chromium-extension/dist/
+chromium-extension/manifest.json
+shared-schema/dist/
+burp-extension/build/
+.gradle/
+*.class
+*.log
